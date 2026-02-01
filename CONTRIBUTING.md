@@ -408,8 +408,9 @@ test(users): add unit tests for user service
 
 <div align="center">
 
-**صنع بـ ❤️ من قبل مجتمع Moien Delivery**
+**صنع بـ ADUD TEAM
 
 [🔙 العودة للرئيسية](README.md)
 
 </div>
+
