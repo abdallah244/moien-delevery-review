@@ -215,7 +215,7 @@ Redis
 | ------------ | ------------------------------------- |
 | 🔐 المصادقة  | JWT, OAuth 2.0, Firebase Auth         |
 | 🗺️ الخرائط   | Google Maps API, Mapbox               |
-| 💳 المدفوعات | Stripe, PayPal, Apple Pay, Google Pay |
+| 💳 المدفوعات | Stripe |
 | 📨 الإشعارات | Firebase Cloud Messaging, OneSignal   |
 | 📊 التحليلات | Google Analytics, Mixpanel            |
 | 🔍 البحث     | Elasticsearch, Algolia                |
@@ -428,3 +428,4 @@ cd ../mfrontend && flutter pub get
 [🔝 Zréck no uewen](#-moien-delivery--موين-دليفري)
 
 </div>
+
