@@ -423,10 +423,11 @@ cd ../mfrontend && flutter pub get
 
 ### ⭐ Wann Dir de Projet gär hutt, gitt eis e Stär!
 
-**Gemaach mat ❤️ zu Lëtzebuerg**
+**Gemaach mat ADUD TEAM zu Lëtzebuerg**
 
 [🔝 Zréck no uewen](#-moien-delivery--موين-دليفري)
 
 </div>
+
 
 
