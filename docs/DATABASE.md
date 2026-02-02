@@ -34,20 +34,42 @@
 
 ### الإعدادات
 
+الإعدادات موجودة في `backend/src/config/database.config.ts`:
+
 ```typescript
 // database.config.ts
-export default {
+import { registerAs } from "@nestjs/config";
+
+export default registerAs("database", () => ({
   type: "postgres",
-  host: process.env.DATABASE_HOST,
-  port: parseInt(process.env.DATABASE_PORT, 10),
-  username: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE_NAME,
+  host: process.env.DATABASE_HOST || "localhost",
+  port: parseInt(process.env.DATABASE_PORT ?? "5432", 10),
+  username: process.env.DATABASE_USER || "postgres",
+  password: process.env.DATABASE_PASSWORD || "password",
+  database: process.env.DATABASE_NAME || "moien_delivery",
   entities: ["dist/**/*.entity.js"],
   migrations: ["dist/database/migrations/*.js"],
-  synchronize: false,
+  synchronize: process.env.NODE_ENV === "development",
   logging: process.env.NODE_ENV === "development",
-};
+}));
+```
+
+### متغيرات البيئة المطلوبة
+
+```env
+# Database
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
+DATABASE_NAME=moien_delivery
+DATABASE_USER=postgres
+DATABASE_PASSWORD=your_secure_password
+```
+
+### إنشاء قاعدة البيانات
+
+```sql
+-- PostgreSQL
+CREATE DATABASE moien_delivery;
 ```
 
 ---

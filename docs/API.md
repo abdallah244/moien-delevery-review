@@ -33,6 +33,33 @@
 | التطوير | `http://localhost:3000/api/v1`     |
 | الإنتاج | `https://api.moiendelivery.com/v1` |
 
+### ✅ Endpoints المتاحة حالياً (v0.0.1)
+
+| المسار                  | الطريقة | الوصف                    | الحالة         |
+| ----------------------- | ------- | ------------------------ | -------------- |
+| `/`                     | GET     | لوحة تحكم الخادم (HTML)  | ✅ متاح        |
+| `/api/v1/health`        | GET     | فحص صحة الخادم (JSON)    | ✅ متاح        |
+| `/api/v1/health/status` | GET     | صفحة حالة Health (HTML)  | ✅ متاح        |
+| `/api/docs`             | GET     | صفحة حالة التوثيق (HTML) | ⚠️ قيد التطوير |
+
+---
+
+### فحص صحة الخادم (Health Check)
+
+```http
+GET /api/v1/health
+```
+
+**Response (200):**
+
+```json
+{
+  "status": "ok",
+  "timestamp": "2026-02-01T12:00:00.000Z",
+  "uptime": 3600.123
+}
+```
+
 ### صيغة البيانات
 
 - **Request**: `application/json`

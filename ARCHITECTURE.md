@@ -125,7 +125,20 @@ backend/
 │   │   ├── filters/               # مرشحات الاستثناءات
 │   │   ├── interceptors/          # المعترضات
 │   │   ├── pipes/                 # الأنابيب
-│   │   └── utils/                 # الأدوات
+│   │   ├── utils/                 # الأدوات
+│   │   └── services/              # ✅ 22 خدمة متكاملة
+│   │       ├── security/          # 🔐 Rate Limiter, Encryption, JWT, IP Guard, Sanitizer
+│   │       ├── performance/       # ⚡ Cache, Compression, Query Optimizer, Connection Pool, Response Optimizer
+│   │       ├── realtime/          # 🔄 WebSocket Service
+│   │       ├── ui/                # 🎨 Loading, Toast, Validation
+│   │       ├── communication/     # 📧 Email, SMS, Notification
+│   │       ├── storage/           # 📁 File Upload
+│   │       ├── monitoring/        # 📊 Logger
+│   │       ├── location/          # 📍 Geolocation
+│   │       ├── search/            # 🔍 Full-text Search
+│   │       ├── analytics/         # 📈 Analytics & Metrics
+│   │       ├── queue/             # 📬 Background Jobs
+│   │       └── backup/            # 💾 Database Backup & Restore
 │   │
 │   ├── config/                    # الإعدادات
 │   │   ├── database.config.ts

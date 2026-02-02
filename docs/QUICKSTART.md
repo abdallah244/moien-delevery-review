@@ -27,8 +27,10 @@ docker-compose up -d
 
 انتظر دقيقة، ثم:
 
-- 🌐 الويب: http://localhost:4200
+- 💻 لوحة التحكم: http://localhost:3000
 - 📡 API: http://localhost:3000/api/v1
+- 🟢 Health Check: http://localhost:3000/api/v1/health
+- 🌐 الويب: http://localhost:4200
 
 ### 3️⃣ أو بدون Docker
 

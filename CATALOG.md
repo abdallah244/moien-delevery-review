@@ -5,8 +5,20 @@
 [![Services](https://img.shields.io/badge/Services-12-blue.svg)]()
 [![APIs](https://img.shields.io/badge/APIs-RESTful-green.svg)]()
 [![Status](https://img.shields.io/badge/Status-Active-success.svg)]()
+[![Version](https://img.shields.io/badge/Version-v0.0.1-orange.svg)]()
 
 </div>
+
+---
+
+## ✅ الخدمات المتاحة حالياً (v0.0.1)
+
+| الخدمة              | الحالة   | الوصف                               |
+| ------------------- | -------- | ----------------------------------- |
+| 🏠 Server Dashboard | ✅ مكتمل | لوحة تحكم الخادم على localhost:3000 |
+| 💚 Health Check     | ✅ مكتمل | فحص صحة الخادم والـ APIs            |
+| ⚙️ Configuration    | ✅ مكتمل | نظام التكوين مع دعم متغيرات البيئة  |
+| 🗄️ Database Setup   | ✅ مكتمل | إعداد PostgreSQL مع TypeORM         |
 
 ---
 
