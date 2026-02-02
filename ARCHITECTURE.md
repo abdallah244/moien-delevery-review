@@ -207,41 +207,34 @@ export class OrdersService {
 wfrontend/
 ├── src/
 │   ├── app/
-│   │   ├── core/                  # النواة
-│   │   │   ├── guards/
-│   │   │   ├── interceptors/
-│   │   │   ├── services/
-│   │   │   └── models/
+│   │   ├── components/            # ✅ المكونات المكتملة
+│   │   │   ├── navbar/           # شريط تنقل المستخدمين
+│   │   │   ├── footer/           # تذييل المستخدمين
+│   │   │   ├── admin-navbar/     # شريط تنقل المسؤول
+│   │   │   ├── admin-footer/     # تذييل المسؤول
+│   │   │   ├── language-modal/   # نافذة اختيار اللغة
+│   │   │   ├── theme-modal/      # نافذة اختيار الثيم
+│   │   │   └── toast-container/  # حاوية الإشعارات
 │   │   │
-│   │   ├── shared/                # المشترك
-│   │   │   ├── components/
-│   │   │   ├── directives/
-│   │   │   ├── pipes/
-│   │   │   └── utils/
+│   │   ├── services/              # ✅ الخدمات
+│   │   │   ├── language.ts       # إدارة الترجمات
+│   │   │   ├── theme.ts          # إدارة الثيمات
+│   │   │   ├── auth.ts           # المصادقة
+│   │   │   └── toast.ts          # الإشعارات
 │   │   │
-│   │   ├── features/              # الميزات
-│   │   │   ├── landing/           # الصفحة الرئيسية
-│   │   │   │   ├── hero/
-│   │   │   │   ├── restaurants/
-│   │   │   │   ├── how-it-works/
-│   │   │   │   └── footer/
-│   │   │   │
-│   │   │   └── admin/             # لوحة التحكم
-│   │   │       ├── dashboard/
-│   │   │       ├── users/
-│   │   │       ├── restaurants/
-│   │   │       ├── orders/
-│   │   │       ├── drivers/
-│   │   │       ├── payments/
-│   │   │       ├── reports/
-│   │   │       └── settings/
+│   │   ├── guards/                # ✅ حراس المسارات
+│   │   │   └── auth.guard.ts     # Auth Guard + Login Guard
 │   │   │
-│   │   ├── layout/                # التخطيط
-│   │   │   ├── header/
-│   │   │   ├── sidebar/
-│   │   │   └── footer/
+│   │   ├── layouts/               # ✅ التخطيطات
+│   │   │   ├── user-layout/      # تخطيط المستخدمين
+│   │   │   └── admin-layout/     # تخطيط المسؤول
 │   │   │
-│   │   └── app.routes.ts
+│   │   ├── pages/                 # ✅ الصفحات
+│   │   │   └── admin/
+│   │   │       ├── login/        # صفحة تسجيل الدخول
+│   │   │       └── dashboard/    # لوحة التحكم
+│   │   │
+│   │   └── app.routes.ts          # المسارات
 │   │
 │   ├── assets/                    # الأصول
 │   │   ├── images/
@@ -250,10 +243,7 @@ wfrontend/
 │   │       ├── ar.json
 │   │       └── lb.json
 │   │
-│   └── styles/                    # الأنماط
-│       ├── _variables.scss
-│       ├── _mixins.scss
-│       └── _themes.scss
+│   └── styles.css                 # CSS Variables للثيمات
 │
 └── public/
 ```

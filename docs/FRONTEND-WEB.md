@@ -28,19 +28,23 @@
 
 ### الصفحات
 
-| الصفحة             | الوصف                  | الحالة         |
-| ------------------ | ---------------------- | -------------- |
-| 🏠 Landing Page    | الصفحة الرئيسية للزوار | ⏳ قيد التطوير |
-| 🔐 Admin Dashboard | لوحة تحكم المشرفين     | ⏳ قيد التطوير |
+| الصفحة             | الوصف                   | الحالة         |
+| ------------------ | ----------------------- | -------------- |
+| 🏠 Landing Page    | الصفحة الرئيسية للزوار  | ⏳ قيد التطوير |
+| 🔐 Admin Login     | صفحة تسجيل دخول المسؤول | ✅ مكتمل       |
+| 📊 Admin Dashboard | لوحة تحكم المسؤول       | ✅ مكتمل       |
 
 ### المكونات المكتملة
 
-| المكون            | الوصف              | الحالة   |
-| ----------------- | ------------------ | -------- |
-| 🧭 Navbar         | شريط التنقل        | ✅ مكتمل |
-| 🦶 Footer         | التذييل            | ✅ مكتمل |
-| 🌍 Language Modal | نافذة اختيار اللغة | ✅ مكتمل |
-| 🎨 Theme Modal    | نافذة اختيار الثيم | ✅ مكتمل |
+| المكون             | الوصف                  | الحالة   |
+| ------------------ | ---------------------- | -------- |
+| 🧭 Navbar          | شريط التنقل للمستخدمين | ✅ مكتمل |
+| 🦶 Footer          | التذييل للمستخدمين     | ✅ مكتمل |
+| 🌍 Language Modal  | نافذة اختيار اللغة     | ✅ مكتمل |
+| 🎨 Theme Modal     | نافذة اختيار الثيم     | ✅ مكتمل |
+| 🔒 Admin Navbar    | شريط تنقل المسؤول      | ✅ مكتمل |
+| 🔒 Admin Footer    | تذييل المسؤول          | ✅ مكتمل |
+| 🍞 Toast Container | حاوية الإشعارات        | ✅ مكتمل |
 
 ### التقنيات
 
@@ -322,76 +326,66 @@ wfrontend/
 ├── src/
 │   ├── app/
 │   │   ├── components/               # ✅ المكونات المكتملة
-│   │   │   ├── navbar/
+│   │   │   ├── navbar/              # شريط تنقل المستخدمين
 │   │   │   │   ├── navbar.ts
 │   │   │   │   ├── navbar.html
 │   │   │   │   └── navbar.css
-│   │   │   ├── footer/
+│   │   │   ├── footer/              # تذييل المستخدمين
 │   │   │   │   ├── footer.ts
 │   │   │   │   ├── footer.html
 │   │   │   │   └── footer.css
+│   │   │   ├── admin-navbar/        # ✅ شريط تنقل المسؤول
+│   │   │   │   ├── admin-navbar.ts
+│   │   │   │   ├── admin-navbar.html
+│   │   │   │   └── admin-navbar.css
+│   │   │   ├── admin-footer/        # ✅ تذييل المسؤول
+│   │   │   │   ├── admin-footer.ts
+│   │   │   │   ├── admin-footer.html
+│   │   │   │   └── admin-footer.css
 │   │   │   ├── language-modal/
 │   │   │   │   ├── language-modal.ts
 │   │   │   │   ├── language-modal.html
 │   │   │   │   └── language-modal.css
-│   │   │   └── theme-modal/
-│   │   │       ├── theme-modal.ts
-│   │   │       ├── theme-modal.html
-│   │   │       └── theme-modal.css
+│   │   │   ├── theme-modal/
+│   │   │   │   ├── theme-modal.ts
+│   │   │   │   ├── theme-modal.html
+│   │   │   │   └── theme-modal.css
+│   │   │   └── toast-container/     # ✅ حاوية الإشعارات
+│   │   │       ├── toast-container.ts
+│   │   │       ├── toast-container.html
+│   │   │       └── toast-container.css
 │   │   │
 │   │   ├── services/                 # ✅ الخدمات المكتملة
 │   │   │   ├── language.ts          # إدارة الترجمات
-│   │   │   └── theme.ts             # إدارة الثيمات
+│   │   │   ├── theme.ts             # إدارة الثيمات
+│   │   │   ├── auth.ts              # ✅ المصادقة
+│   │   │   └── toast.ts             # ✅ الإشعارات
 │   │   │
-│   │   ├── core/                     # النواة (قيد التطوير)
-│   │   │   ├── guards/
-│   │   │   │   ├── auth.guard.ts
-│   │   │   │   └── admin.guard.ts
-│   │   │   ├── interceptors/
-│   │   │   │   ├── auth.interceptor.ts
-│   │   │   │   └── error.interceptor.ts
-│   │   │   ├── services/
-│   │   │   │   ├── auth.service.ts
-│   │   │   │   ├── api.service.ts
-│   │   │   │   └── storage.service.ts
-│   │   │   └── models/
-│   │   │       ├── user.model.ts
-│   │   │       └── api-response.model.ts
+│   │   ├── guards/                   # ✅ حراس المسارات
+│   │   │   └── auth.guard.ts        # Auth Guard + Login Guard
 │   │   │
-│   │   ├── shared/                   # المشترك
-│   │   │   ├── components/
-│   │   │   │   ├── header/
-│   │   │   │   ├── footer/
-│   │   │   │   ├── sidebar/
-│   │   │   │   └── loading/
-│   │   │   ├── directives/
-│   │   │   ├── pipes/
-│   │   │   └── utils/
+│   │   ├── layouts/                  # ✅ تخطيطات الصفحات
+│   │   │   ├── user-layout/         # تخطيط صفحات المستخدمين
+│   │   │   │   ├── user-layout.ts
+│   │   │   │   ├── user-layout.html
+│   │   │   │   └── user-layout.css
+│   │   │   └── admin-layout/        # تخطيط صفحات المسؤول
+│   │   │       ├── admin-layout.ts
+│   │   │       ├── admin-layout.html
+│   │   │       └── admin-layout.css
 │   │   │
-│   │   ├── features/                 # الميزات
-│   │   │   ├── landing/              # الصفحة الرئيسية
-│   │   │   │   ├── hero/
-│   │   │   │   ├── features/
-│   │   │   │   ├── how-it-works/
-│   │   │   │   ├── restaurants/
-│   │   │   │   ├── download/
-│   │   │   │   └── contact/
-│   │   │   │
-│   │   │   └── admin/                # لوحة التحكم
-│   │   │       ├── dashboard/
-│   │   │       ├── users/
-│   │   │       ├── restaurants/
-│   │   │       ├── orders/
-│   │   │       ├── drivers/
-│   │   │       ├── promotions/
-│   │   │       ├── reports/
-│   │   │       └── settings/
+│   │   ├── pages/                    # ✅ الصفحات
+│   │   │   └── admin/
+│   │   │       ├── login/           # صفحة تسجيل دخول المسؤول
+│   │   │       │   ├── login.ts
+│   │   │       │   ├── login.html
+│   │   │       │   └── login.css
+│   │   │       └── dashboard/       # لوحة تحكم المسؤول
+│   │   │           ├── dashboard.ts
+│   │   │           ├── dashboard.html
+│   │   │           └── dashboard.css
 │   │   │
-│   │   ├── layout/
-│   │   │   ├── landing-layout/
-│   │   │   └── admin-layout/
-│   │   │
-│   │   └── app.routes.ts
+│   │   └── app.routes.ts            # المسارات
 │   │
 │   ├── assets/
 │   │   ├── images/
@@ -520,41 +514,157 @@ export class AdminStore {
 // src/app/app.routes.ts
 
 export const routes: Routes = [
+  // صفحات المستخدمين مع Navbar/Footer
   {
     path: "",
-    component: LandingLayoutComponent,
+    component: UserLayoutComponent,
     children: [
       { path: "", component: LandingComponent },
       { path: "about", component: AboutComponent },
       { path: "contact", component: ContactComponent },
     ],
   },
+
+  // صفحات المسؤول بدون User Navbar/Footer
   {
     path: "admin",
     component: AdminLayoutComponent,
-    canActivate: [authGuard, adminGuard],
     children: [
-      { path: "", redirectTo: "dashboard", pathMatch: "full" },
+      { path: "", redirectTo: "login", pathMatch: "full" },
+      {
+        path: "login",
+        loadComponent: () => import("./pages/admin/login/login").then((m) => m.AdminLoginComponent),
+        canActivate: [loginGuard], // يمنع الوصول إذا كان مسجل دخول
+      },
       {
         path: "dashboard",
-        loadComponent: () => import("./features/admin/dashboard/dashboard.component").then((m) => m.DashboardComponent),
-      },
-      {
-        path: "users",
-        loadComponent: () => import("./features/admin/users/users.component").then((m) => m.UsersComponent),
-      },
-      {
-        path: "restaurants",
-        loadComponent: () => import("./features/admin/restaurants/restaurants.component").then((m) => m.RestaurantsComponent),
-      },
-      {
-        path: "orders",
-        loadComponent: () => import("./features/admin/orders/orders.component").then((m) => m.OrdersComponent),
+        loadComponent: () => import("./pages/admin/dashboard/dashboard").then((m) => m.AdminDashboardComponent),
+        canActivate: [authGuard], // يتطلب تسجيل الدخول
       },
     ],
   },
+
   { path: "**", redirectTo: "" },
 ];
+```
+
+---
+
+## 🔐 نظام المصادقة
+
+### Auth Service
+
+```typescript
+// src/app/services/auth.ts
+
+@Injectable({ providedIn: "root" })
+export class AuthService {
+  // حالة تسجيل الدخول
+  isAuthenticated(): boolean;
+
+  // الحصول على المستخدم الحالي
+  getCurrentUser(): User | null;
+
+  // تسجيل الدخول
+  login(email: string, password: string): Observable<LoginResult>;
+
+  // تسجيل الخروج
+  logout(): void;
+}
+```
+
+### بيانات الدخول الافتراضية
+
+```
+Email: admin@moien.com
+Password: 123456
+```
+
+### Rate Limiting
+
+- **الحد الأقصى:** 5 محاولات
+- **مدة الحظر:** 15 دقيقة
+
+---
+
+## 🔒 حراس المسارات (Guards)
+
+### Auth Guard
+
+يحمي صفحات الـ Admin من الوصول غير المصرح:
+
+```typescript
+// src/app/guards/auth.guard.ts
+
+export const authGuard: CanActivateFn = () => {
+  const auth = inject(AuthService);
+  const router = inject(Router);
+
+  if (auth.isAuthenticated()) {
+    return true;
+  }
+
+  return router.createUrlTree(["/admin/login"]);
+};
+```
+
+### Login Guard
+
+يمنع الوصول لصفحة تسجيل الدخول بعد المصادقة:
+
+```typescript
+export const loginGuard: CanActivateFn = () => {
+  const auth = inject(AuthService);
+  const router = inject(Router);
+
+  if (!auth.isAuthenticated()) {
+    return true;
+  }
+
+  return router.createUrlTree(["/admin/dashboard"]);
+};
+```
+
+---
+
+## 🍞 نظام الإشعارات (Toast)
+
+### Toast Service
+
+```typescript
+// src/app/services/toast.ts
+
+@Injectable({ providedIn: "root" })
+export class ToastService {
+  // إشعار نجاح
+  success(message: string, duration?: number): void;
+
+  // إشعار خطأ
+  error(message: string, duration?: number): void;
+
+  // إشعار معلومات
+  info(message: string, duration?: number): void;
+
+  // إشعار تحذير
+  warning(message: string, duration?: number): void;
+}
+```
+
+### الاستخدام
+
+```typescript
+@Component({...})
+export class MyComponent {
+  private toast = inject(ToastService);
+
+  onSuccess() {
+    this.toast.success('تم الحفظ بنجاح!');
+  }
+
+  onError() {
+    this.toast.error('حدث خطأ، يرجى المحاولة لاحقاً');
+  }
+}
 ```
 
 ---
