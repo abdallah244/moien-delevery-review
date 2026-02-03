@@ -35,24 +35,28 @@
 
 ### ✅ Endpoints المتاحة حالياً (v0.0.1)
 
-| المسار                      | الطريقة | الوصف                    | الحالة         |
-| --------------------------- | ------- | ------------------------ | -------------- |
-| `/`                         | GET     | لوحة تحكم الخادم (HTML)  | ✅ متاح        |
-| `/api/v1/health`            | GET     | فحص صحة الخادم (JSON)    | ✅ متاح        |
-| `/api/v1/health/status`     | GET     | صفحة حالة Health (HTML)  | ✅ متاح        |
-| `/api/docs`                 | GET     | صفحة حالة التوثيق (HTML) | ⚠️ قيد التطوير |
-| `/api/v1/admin-staff`       | GET     | قائمة الموظفين (Admin)   | ✅ متاح        |
-| `/api/v1/admin-staff`       | POST    | إنشاء موظف + رفع صورة    | ✅ متاح        |
-| `/api/v1/admin-staff/login` | POST    | تسجيل دخول الأدمن        | ✅ متاح        |
-| `/api/v1/admin-staff/:id`   | DELETE  | حذف موظف                 | ✅ متاح        |
-| `/api/v1/users`             | GET     | قائمة المستخدمين (Admin) | ✅ متاح        |
-| `/api/v1/users/register`    | POST    | تسجيل مستخدم جديد        | ✅ متاح        |
-| `/api/v1/users/login`       | POST    | تسجيل دخول مستخدم        | ✅ متاح        |
-| `/api/v1/users/:id`         | PATCH   | تحديث بيانات المستخدم    | ✅ متاح        |
-| `/api/v1/users/:id/photo`   | POST    | رفع صورة المستخدم        | ✅ متاح        |
-| `/api/v1/users/:id/email/verify/send`    | POST    | إرسال كود تحقق الإيميل     | ✅ متاح        |
-| `/api/v1/users/:id/email/verify/confirm` | POST    | تأكيد كود تحقق الإيميل     | ✅ متاح        |
-| `/api/v1/users/:id`         | DELETE  | حذف مستخدم (Admin)       | ✅ متاح        |
+| المسار                                   | الطريقة | الوصف                    | الحالة         |
+| ---------------------------------------- | ------- | ------------------------ | -------------- |
+| `/`                                      | GET     | لوحة تحكم الخادم (HTML)  | ✅ متاح        |
+| `/api/v1/health`                         | GET     | فحص صحة الخادم (JSON)    | ✅ متاح        |
+| `/api/v1/health/status`                  | GET     | صفحة حالة Health (HTML)  | ✅ متاح        |
+| `/api/docs`                              | GET     | صفحة حالة التوثيق (HTML) | ⚠️ قيد التطوير |
+| `/api/v1/admin-staff`                    | GET     | قائمة الموظفين (Admin)   | ✅ متاح        |
+| `/api/v1/admin-staff`                    | POST    | إنشاء موظف + رفع صورة    | ✅ متاح        |
+| `/api/v1/admin-staff/login`              | POST    | تسجيل دخول الأدمن        | ✅ متاح        |
+| `/api/v1/admin-staff/:id`                | DELETE  | حذف موظف                 | ✅ متاح        |
+| `/api/v1/users`                          | GET     | قائمة المستخدمين (Admin) | ✅ متاح        |
+| `/api/v1/users/register`                 | POST    | تسجيل مستخدم جديد        | ✅ متاح        |
+| `/api/v1/users/login`                    | POST    | تسجيل دخول مستخدم        | ✅ متاح        |
+| `/api/v1/users/:id`                      | PATCH   | تحديث بيانات المستخدم    | ✅ متاح        |
+| `/api/v1/users/:id/photo`                | POST    | رفع صورة المستخدم        | ✅ متاح        |
+| `/api/v1/users/:id/email/verify/send`    | POST    | إرسال كود تحقق الإيميل   | ✅ متاح        |
+| `/api/v1/users/:id/email/verify/confirm` | POST    | تأكيد كود تحقق الإيميل   | ✅ متاح        |
+| `/api/v1/users/:id/phone/verify/send`    | POST    | إرسال كود تحقق الهاتف    | ✅ متاح        |
+| `/api/v1/users/:id/phone/verify/confirm` | POST    | تأكيد كود تحقق الهاتف    | ✅ متاح        |
+| `/api/v1/users/:id/ban`                  | POST    | حظر مستخدم (Admin)       | ✅ متاح        |
+| `/api/v1/users/:id/unban`                | POST    | إلغاء حظر مستخدم (Admin) | ✅ متاح        |
+| `/api/v1/users/:id`                      | DELETE  | حذف مستخدم (Admin)       | ✅ متاح        |
 
 ---
 
@@ -122,6 +126,9 @@ Content-Type: application/json
     "countryCode": "LU",
     "countryName": "Luxembourg",
     "phone": "+352691234567",
+    "isBanned": false,
+    "bannedAt": null,
+    "phoneVerified": false,
     "email": "user@example.com",
     "emailVerified": false,
     "photoUrl": null,
@@ -159,11 +166,26 @@ Content-Type: application/json
     "countryCode": "LU",
     "countryName": "Luxembourg",
     "phone": "+352691234567",
+    "isBanned": false,
+    "bannedAt": null,
+    "phoneVerified": false,
     "email": "user@example.com",
     "emailVerified": false,
     "photoUrl": null,
     "createdAt": "2026-02-01T12:00:00.000Z"
   }
+}
+```
+
+**Response (403) - Account banned:**
+
+> إذا كان المستخدم محظوراً سيتم رفض تسجيل الدخول برسالة ثابتة يمكن للواجهة ترجمتها.
+
+```json
+{
+  "statusCode": 403,
+  "message": "ACCOUNT_BANNED",
+  "error": "Forbidden"
 }
 ```
 
@@ -298,6 +320,9 @@ GET /api/v1/users
     "countryCode": "LU",
     "countryName": "Luxembourg",
     "phone": "+352691234567",
+    "isBanned": false,
+    "bannedAt": null,
+    "phoneVerified": false,
     "email": "user@example.com",
     "emailVerified": false,
     "photoUrl": null,
@@ -330,6 +355,9 @@ Content-Type: application/json
     "countryCode": "LU",
     "countryName": "Luxembourg",
     "phone": "+352691234567",
+    "isBanned": false,
+    "bannedAt": null,
+    "phoneVerified": false,
     "email": "user@example.com",
     "emailVerified": false,
     "photoUrl": null,
@@ -347,7 +375,7 @@ Content-Type: multipart/form-data
 
 **Form fields:**
 
-- `photo` (file, image/*)
+- `photo` (file, image/\*)
 
 **Response (200):**
 
@@ -393,6 +421,55 @@ Content-Type: application/json
 { "code": "A1B2C3" }
 ```
 
+#### إرسال كود تحقق الهاتف (WhatsApp)
+
+> يرسل كود مكوّن من **6 أرقام** إلى رقم الهاتف المُسجّل للمستخدم عبر WhatsApp.
+> الكود صالح لمدة **10 دقائق**.
+
+```http
+POST /api/v1/users/:id/phone/verify/send
+```
+
+**Response (200):**
+
+```json
+{
+  "ok": true,
+  "phone": "+352691234567",
+  "expiresInSeconds": 600
+}
+```
+
+#### تأكيد كود تحقق الهاتف
+
+```http
+POST /api/v1/users/:id/phone/verify/confirm
+Content-Type: application/json
+```
+
+**Body:**
+
+```json
+{ "code": "123456" }
+```
+
+**Validation Notes:**
+
+- `code` يجب أن يكون **6** أرقام بالضبط
+
+**Response (200):**
+
+```json
+{
+  "ok": true,
+  "user": {
+    "id": "uuid",
+    "phone": "+352691234567",
+    "phoneVerified": true
+  }
+}
+```
+
 **Validation Notes:**
 
 - `code` يجب أن يكون **6** أحرف بالضبط
@@ -421,6 +498,53 @@ DELETE /api/v1/users/:id
 
 ```json
 { "ok": true }
+```
+
+#### حظر مستخدم (Ban)
+
+> مخصص للاستخدام الإداري. يتطلب إدخال سبب الحظر (بالإنجليزية) ليتم تضمينه في رسالة البريد للمستخدم.
+
+```http
+POST /api/v1/users/:id/ban
+Content-Type: application/json
+```
+
+**Body:**
+
+```json
+{ "reason": "Policy violation" }
+```
+
+**Response (200):**
+
+```json
+{
+  "ok": true,
+  "user": {
+    "id": "uuid",
+    "isBanned": true,
+    "bannedAt": "2026-02-03T10:00:00.000Z"
+  }
+}
+```
+
+#### إلغاء حظر مستخدم (Unban)
+
+```http
+POST /api/v1/users/:id/unban
+```
+
+**Response (200):**
+
+```json
+{
+  "ok": true,
+  "user": {
+    "id": "uuid",
+    "isBanned": false,
+    "bannedAt": null
+  }
+}
 ```
 
 ---

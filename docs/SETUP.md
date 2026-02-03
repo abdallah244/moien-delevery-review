@@ -143,6 +143,19 @@ TWILIO_ACCOUNT_SID=your_sid
 TWILIO_AUTH_TOKEN=your_token
 TWILIO_PHONE_NUMBER=+1234567890
 
+# WhatsApp (Meta Cloud API)
+# Important: WhatsApp messages are sent from the WhatsApp Business number connected to your Meta app.
+# You cannot force a random sender number unless it is the verified business number linked to WHATSAPP_PHONE_NUMBER_ID.
+WHATSAPP_ENABLED=true
+WHATSAPP_TOKEN=your_meta_whatsapp_token
+WHATSAPP_PHONE_NUMBER_ID=your_phone_number_id
+WHATSAPP_API_VERSION=v19.0
+# Optional: send using a WhatsApp template instead of a free-form text message
+WHATSAPP_TEMPLATE_NAME=
+WHATSAPP_TEMPLATE_LANG=en_US
+# Optional: if you store phone numbers locally like 011..., set a default calling code (Egypt = 20)
+WHATSAPP_DEFAULT_COUNTRY_CALLING_CODE=20
+
 # Payment (Stripe)
 STRIPE_SECRET_KEY=sk_test_xxx
 STRIPE_WEBHOOK_SECRET=whsec_xxx

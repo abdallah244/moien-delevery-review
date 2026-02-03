@@ -3,7 +3,7 @@
 <div align="center">
 
 [![Docs](https://img.shields.io/badge/Documentation-Complete-success.svg)]()
-[![Languages](https://img.shields.io/badge/Languages-AR%20|%20LB-blue.svg)]()
+[![Languages](https://img.shields.io/badge/Languages-Web%207%20|%20Admin%20AR-blue.svg)]()
 
 **مرحباً بك في مركز توثيق Moien Delivery**
 
@@ -32,24 +32,14 @@
 
 | الملف                                    | الوصف                 |
 | ---------------------------------------- | --------------------- |
-| [BACKEND.md](BACKEND.md)                 | هيكل الخادم الخلفي    |
 | [FRONTEND-WEB.md](FRONTEND-WEB.md)       | هيكل واجهة الويب      |
 | [FRONTEND-MOBILE.md](FRONTEND-MOBILE.md) | هيكل تطبيقات الموبايل |
 
 ### 🚢 النشر والتشغيل
 
-| الملف                          | الوصف               |
-| ------------------------------ | ------------------- |
-| [DEPLOYMENT.md](DEPLOYMENT.md) | دليل النشر          |
-| [DOCKER.md](DOCKER.md)         | Docker و Kubernetes |
-| [MONITORING.md](MONITORING.md) | المراقبة والتنبيهات |
-
-### 🧪 الاختبار والجودة
-
-| الملف                          | الوصف               |
-| ------------------------------ | ------------------- |
-| [TESTING.md](TESTING.md)       | استراتيجية الاختبار |
-| [CODE-STYLE.md](CODE-STYLE.md) | معايير الكود        |
+| الملف                          | الوصف      |
+| ------------------------------ | ---------- |
+| [DEPLOYMENT.md](DEPLOYMENT.md) | دليل النشر |
 
 ### 🌐 الترجمة
 
@@ -69,14 +59,9 @@ docs/
 ├── API.md              # توثيق API
 ├── DATABASE.md         # قاعدة البيانات
 ├── WEBSOCKETS.md       # WebSocket
-├── BACKEND.md          # الخادم الخلفي
 ├── FRONTEND-WEB.md     # واجهة الويب
 ├── FRONTEND-MOBILE.md  # تطبيقات الموبايل
 ├── DEPLOYMENT.md       # النشر
-├── DOCKER.md           # Docker
-├── MONITORING.md       # المراقبة
-├── TESTING.md          # الاختبار
-├── CODE-STYLE.md       # معايير الكود
 ├── i18n.md             # الترجمة
 └── assets/             # الصور والملفات
     ├── logo.png
@@ -98,9 +83,8 @@ docs/
 
 ## 🌍 اللغات المتاحة
 
-- 🇸🇦 العربية (افتراضي)
-- 🇱🇺 Lëtzebuergesch (قريباً)
-- 🇬🇧 English (قريباً)
+- 🌐 Web (Users): `en`, `fr`, `lb`, `de`, `it`, `pt`, `es`
+- 🔒 Admin Panel: `en`, `ar`
 
 ---
 

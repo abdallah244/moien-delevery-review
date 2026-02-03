@@ -190,6 +190,16 @@ CREATE TABLE users (
     countryCode VARCHAR(2) NOT NULL,
     countryName VARCHAR(120) NOT NULL,
     phone VARCHAR(30) NOT NULL,
+
+    -- Ban / disable
+    isBanned BOOLEAN DEFAULT FALSE,
+    banReason VARCHAR(500),
+    bannedAt TIMESTAMPTZ,
+
+    -- Phone verification (WhatsApp)
+    phoneVerified BOOLEAN DEFAULT FALSE,
+    phoneVerificationCodeHash VARCHAR(200),
+    phoneVerificationExpiresAt TIMESTAMPTZ,
     email VARCHAR(254) UNIQUE NOT NULL,
 
     -- Email verification

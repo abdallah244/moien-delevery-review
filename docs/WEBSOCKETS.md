@@ -66,7 +66,12 @@ socket.on("connect_error", () => {
   "countryCode": "LU",
   "countryName": "Luxembourg",
   "phone": "+352691234567",
+  "isBanned": false,
+  "bannedAt": null,
+  "phoneVerified": false,
   "email": "user@example.com",
+  "emailVerified": false,
+  "photoUrl": null,
   "createdAt": "2026-02-01T12:00:00.000Z"
 }
 ```
@@ -82,6 +87,48 @@ socket.on("connect_error", () => {
 ```json
 { "id": "uuid" }
 ```
+
+### `users.updated`
+
+يتم بث الحدث عند تحديث بيانات المستخدم (مثل: تحديث الاسم/الصورة/التحقق من الإيميل أو الهاتف/حظر أو إلغاء الحظر).
+
+**Payload (PublicUserDto):**
+
+```json
+{
+  "id": "uuid",
+  "fullName": "Ahmed Mohamed Ali",
+  "countryCode": "LU",
+  "countryName": "Luxembourg",
+  "phone": "+352691234567",
+  "isBanned": true,
+  "bannedAt": "2026-02-03T10:00:00.000Z",
+  "phoneVerified": true,
+  "email": "user@example.com",
+  "emailVerified": true,
+  "photoUrl": "https://res.cloudinary.com/.../image/upload/...",
+  "createdAt": "2026-02-01T12:00:00.000Z"
+}
+```
+
+### `account.banned`
+
+> حدث موجّه لمستخدم واحد فقط (يُرسل إلى غرفة `user:<userId>`). يتم استخدامه لـ **طرد المستخدم فوراً** عند الحظر أو حذف الحساب.
+
+**Payload:**
+
+```json
+{
+  "kind": "banned",
+  "message": "Your account has been disabled by an administrator.",
+  "at": "2026-02-03T10:00:00.000Z"
+}
+```
+
+**ملاحظات:**
+
+- `kind` قد تكون `banned` أو `deleted`.
+- بعد إرسال الحدث، يقوم السيرفر بعمل `disconnect(true)` لكل sockets الخاصة بالمستخدم.
 
 ---
 
@@ -102,6 +149,7 @@ socket.on("connect_error", () => {
 
 - عند `users.created`: إضافة المستخدم أعلى الجدول (مع منع التكرار).
 - عند `users.deleted`: حذف المستخدم من الجدول.
+- عند `users.updated`: تحديث صف المستخدم (أو إضافته إذا لم يكن موجوداً).
 
 ---
 

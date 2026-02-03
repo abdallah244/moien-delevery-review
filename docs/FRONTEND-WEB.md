@@ -384,9 +384,11 @@ wfrontend/
 │   │   │       │   ├── login.html
 │   │   │       │   └── login.css
 │   │   │       └── dashboard/       # لوحة تحكم المسؤول
-│   │   │           ├── dashboard.ts
-│   │   │           ├── dashboard.html
-│   │   │           └── dashboard.css
+│   │   │           ├── admin-dashboard.ts
+│   │   │           ├── admin-dashboard.html
+│   │   │           └── admin-dashboard.css
+│   │   │
+│   │   │       └── system-settings/  # إعدادات السيستم (Admin Staff)
 │   │   │
 │   │   └── user/
 │   │       └── profile/              # ✅ My Profile page
@@ -437,42 +439,50 @@ wfrontend/
 export class LandingComponent {}
 ```
 
-### لوحة التحكم الإدارية
+### لوحة التحكم الإدارية (Admin Dashboard)
 
-```typescript
-// src/app/features/admin/dashboard/dashboard.component.ts
+اللوحة الحالية تركيزها الأساسي على **إدارة المستخدمين**:
 
-@Component({
-  selector: "app-admin-dashboard",
-  standalone: true,
-  template: `
-    <div class="grid grid-cols-4 gap-6">
-      <!-- إحصائيات -->
-      <app-stat-card title="الطلبات اليوم" [value]="stats().ordersToday" icon="shopping_cart" color="blue" />
-      <app-stat-card title="الإيرادات" [value]="stats().revenue | currency: 'EUR'" icon="payments" color="green" />
-      <app-stat-card title="المستخدمين الجدد" [value]="stats().newUsers" icon="person_add" color="purple" />
-      <app-stat-card title="السائقين النشطين" [value]="stats().activeDrivers" icon="delivery_dining" color="orange" />
-    </div>
+- عرض جدول المستخدمين (الاسم/الإيميل/البلد/الهاتف/الحالة/تاريخ الإنشاء).
+- تحديثات لحظية عبر Socket.IO على namespace `/users`:
+  - `users.created`, `users.updated`, `users.deleted`
+- إجراءات:
+  - **Ban** مع نافذة (Modal) لكتابة سبب الحظر (بالإنجليزية).
+  - **Unban**.
+  - **Delete**.
 
-    <!-- الرسوم البيانية -->
-    <div class="grid grid-cols-2 gap-6 mt-6">
-      <app-orders-chart [data]="ordersChartData()" />
-      <app-revenue-chart [data]="revenueChartData()" />
-    </div>
+الملفات:
 
-    <!-- الطلبات الأخيرة -->
-    <app-recent-orders [orders]="recentOrders()" />
-  `,
-})
-export class DashboardComponent {
-  private dashboardService = inject(DashboardService);
-
-  stats = this.dashboardService.stats;
-  ordersChartData = this.dashboardService.ordersChartData;
-  revenueChartData = this.dashboardService.revenueChartData;
-  recentOrders = this.dashboardService.recentOrders;
-}
 ```
+src/app/pages/admin/dashboard/
+├── admin-dashboard.ts
+├── admin-dashboard.html
+└── admin-dashboard.css
+```
+
+> ملاحظة: يوجد جزء "Under Construction" لباقي أجزاء الداشبورد حالياً.
+
+### صفحة My Profile (User)
+
+صفحة الملف الشخصي صممت بواجهة مشابهة لـ Wolt مع الحفاظ على نفس ألوان الثيم:
+
+- Hero header + زر Contact support (حالياً placeholder).
+- Tabs: Personal info / Payment methods / Addresses / Order history / Earn credits / Redeem code / Settings.
+- داخل تبويب Personal info:
+  - Summary row (Avatar + الاسم/الإيميل/الهاتف) + تغيير الصورة.
+  - تعديل الاسم.
+  - Email verification + Phone verification (WhatsApp).
+
+الملفات:
+
+```
+src/app/pages/user/profile/
+├── user-profile.ts
+├── user-profile.html
+└── user-profile.css
+```
+
+> تنبيه: يوجد حد صارم لحجم CSS لبعض المكونات (budget)، لذلك قد يكون CSS الخاص بالـ profile حساس لأي زيادات كبيرة.
 
 ---
 
