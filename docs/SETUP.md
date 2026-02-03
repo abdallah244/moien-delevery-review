@@ -127,12 +127,16 @@ JWT_EXPIRES_IN=15m
 JWT_REFRESH_SECRET=your_refresh_secret_key
 JWT_REFRESH_EXPIRES_IN=7d
 
-# Mail
-MAIL_HOST=smtp.mailtrap.io
+# Mail (SMTP)
+# Recommended: Gmail SMTP + App Password
+MAIL_HOST=smtp.gmail.com
 MAIL_PORT=587
-MAIL_USER=your_user
-MAIL_PASS=your_pass
-MAIL_FROM=noreply@moiendelivery.com
+MAIL_SECURE=false
+MAIL_USER=your_gmail@gmail.com
+MAIL_PASS=your_gmail_app_password
+# Optional: if empty, backend can fallback to `Moien Delivery <MAIL_USER>`
+MAIL_FROM=
+MAIL_REPLY_TO=your_gmail@gmail.com
 
 # SMS (Twilio)
 TWILIO_ACCOUNT_SID=your_sid

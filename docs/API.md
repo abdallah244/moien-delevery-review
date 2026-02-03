@@ -48,6 +48,10 @@
 | `/api/v1/users`             | GET     | قائمة المستخدمين (Admin) | ✅ متاح        |
 | `/api/v1/users/register`    | POST    | تسجيل مستخدم جديد        | ✅ متاح        |
 | `/api/v1/users/login`       | POST    | تسجيل دخول مستخدم        | ✅ متاح        |
+| `/api/v1/users/:id`         | PATCH   | تحديث بيانات المستخدم    | ✅ متاح        |
+| `/api/v1/users/:id/photo`   | POST    | رفع صورة المستخدم        | ✅ متاح        |
+| `/api/v1/users/:id/email/verify/send`    | POST    | إرسال كود تحقق الإيميل     | ✅ متاح        |
+| `/api/v1/users/:id/email/verify/confirm` | POST    | تأكيد كود تحقق الإيميل     | ✅ متاح        |
 | `/api/v1/users/:id`         | DELETE  | حذف مستخدم (Admin)       | ✅ متاح        |
 
 ---
@@ -119,6 +123,8 @@ Content-Type: application/json
     "countryName": "Luxembourg",
     "phone": "+352691234567",
     "email": "user@example.com",
+    "emailVerified": false,
+    "photoUrl": null,
     "createdAt": "2026-02-01T12:00:00.000Z"
   }
 }
@@ -154,6 +160,8 @@ Content-Type: application/json
     "countryName": "Luxembourg",
     "phone": "+352691234567",
     "email": "user@example.com",
+    "emailVerified": false,
+    "photoUrl": null,
     "createdAt": "2026-02-01T12:00:00.000Z"
   }
 }
@@ -291,9 +299,116 @@ GET /api/v1/users
     "countryName": "Luxembourg",
     "phone": "+352691234567",
     "email": "user@example.com",
+    "emailVerified": false,
+    "photoUrl": null,
     "createdAt": "2026-02-01T12:00:00.000Z"
   }
 ]
+```
+
+#### تحديث الاسم
+
+```http
+PATCH /api/v1/users/:id
+Content-Type: application/json
+```
+
+**Body:**
+
+```json
+{ "fullName": "Ahmed Mohamed Ali" }
+```
+
+**Response (200):**
+
+```json
+{
+  "ok": true,
+  "user": {
+    "id": "uuid",
+    "fullName": "Ahmed Mohamed Ali",
+    "countryCode": "LU",
+    "countryName": "Luxembourg",
+    "phone": "+352691234567",
+    "email": "user@example.com",
+    "emailVerified": false,
+    "photoUrl": null,
+    "createdAt": "2026-02-01T12:00:00.000Z"
+  }
+}
+```
+
+#### رفع صورة المستخدم
+
+```http
+POST /api/v1/users/:id/photo
+Content-Type: multipart/form-data
+```
+
+**Form fields:**
+
+- `photo` (file, image/*)
+
+**Response (200):**
+
+```json
+{
+  "ok": true,
+  "user": {
+    "id": "uuid",
+    "photoUrl": "https://res.cloudinary.com/.../image/upload/..."
+  }
+}
+```
+
+#### إرسال كود تحقق الإيميل
+
+> يرسل كود مكوّن من **6 أحرف/أرقام** (Alphanumeric) إلى نفس الإيميل المُسجّل للمستخدم.
+> الكود صالح لمدة **10 دقائق**.
+
+```http
+POST /api/v1/users/:id/email/verify/send
+```
+
+**Response (200):**
+
+```json
+{
+  "ok": true,
+  "email": "user@example.com",
+  "expiresInSeconds": 600
+}
+```
+
+#### تأكيد كود تحقق الإيميل
+
+```http
+POST /api/v1/users/:id/email/verify/confirm
+Content-Type: application/json
+```
+
+**Body:**
+
+```json
+{ "code": "A1B2C3" }
+```
+
+**Validation Notes:**
+
+- `code` يجب أن يكون **6** أحرف بالضبط
+- يسمح فقط بـ `A-Z` و `a-z` و `0-9`
+
+**Response (200):**
+
+```json
+{
+  "ok": true,
+  "user": {
+    "id": "uuid",
+    "email": "user@example.com",
+    "emailVerified": true
+  }
+}
 ```
 
 #### حذف مستخدم

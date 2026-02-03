@@ -186,21 +186,24 @@ CREATE DATABASE moien_delivery;
 ```sql
 CREATE TABLE users (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    email VARCHAR(255) UNIQUE NOT NULL,
-    password_hash VARCHAR(255) NOT NULL,
-    name VARCHAR(100) NOT NULL,
-    phone VARCHAR(20) UNIQUE,
-    avatar VARCHAR(500),
-    role VARCHAR(20) NOT NULL DEFAULT 'customer',
-    is_verified BOOLEAN DEFAULT FALSE,
-    is_active BOOLEAN DEFAULT TRUE,
-    last_login_at TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+    fullName VARCHAR(180) NOT NULL,
+    countryCode VARCHAR(2) NOT NULL,
+    countryName VARCHAR(120) NOT NULL,
+    phone VARCHAR(30) NOT NULL,
+    email VARCHAR(254) UNIQUE NOT NULL,
 
--- الأنواع
--- role: 'customer' | 'restaurant_owner' | 'driver' | 'admin'
+    -- Email verification
+    emailVerified BOOLEAN DEFAULT FALSE,
+    emailVerificationCodeHash VARCHAR(200),
+    emailVerificationExpiresAt TIMESTAMPTZ,
+
+    -- Profile photo
+    photoUrl VARCHAR(500),
+
+    passwordHash VARCHAR(200) NOT NULL,
+    createdAt TIMESTAMPTZ DEFAULT NOW(),
+    updatedAt TIMESTAMPTZ DEFAULT NOW()
+);
 ```
 
 ---
