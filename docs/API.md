@@ -35,12 +35,16 @@
 
 ### ✅ Endpoints المتاحة حالياً (v0.0.1)
 
-| المسار                  | الطريقة | الوصف                    | الحالة         |
-| ----------------------- | ------- | ------------------------ | -------------- |
-| `/`                     | GET     | لوحة تحكم الخادم (HTML)  | ✅ متاح        |
-| `/api/v1/health`        | GET     | فحص صحة الخادم (JSON)    | ✅ متاح        |
-| `/api/v1/health/status` | GET     | صفحة حالة Health (HTML)  | ✅ متاح        |
-| `/api/docs`             | GET     | صفحة حالة التوثيق (HTML) | ⚠️ قيد التطوير |
+| المسار                      | الطريقة | الوصف                    | الحالة         |
+| --------------------------- | ------- | ------------------------ | -------------- |
+| `/`                         | GET     | لوحة تحكم الخادم (HTML)  | ✅ متاح        |
+| `/api/v1/health`            | GET     | فحص صحة الخادم (JSON)    | ✅ متاح        |
+| `/api/v1/health/status`     | GET     | صفحة حالة Health (HTML)  | ✅ متاح        |
+| `/api/docs`                 | GET     | صفحة حالة التوثيق (HTML) | ⚠️ قيد التطوير |
+| `/api/v1/admin-staff`       | GET     | قائمة الموظفين (Admin)   | ✅ متاح        |
+| `/api/v1/admin-staff`       | POST    | إنشاء موظف + رفع صورة    | ✅ متاح        |
+| `/api/v1/admin-staff/login` | POST    | تسجيل دخول الأدمن        | ✅ متاح        |
+| `/api/v1/admin-staff/:id`   | DELETE  | حذف موظف                 | ✅ متاح        |
 
 ---
 
@@ -179,6 +183,111 @@ Authorization: Bearer <access_token>
 ---
 
 ## 📍 نقاط النهاية
+
+### الأدمن (Admin Staff / Employees)
+
+> ملاحظة: هذه endpoints مخصصة للوحة الأدمن. حالياً لا يوجد توكن/صلاحيات على مستوى الـAPI (الحماية موجودة في واجهة الأدمن)، ويمكن إضافة حماية لاحقاً.
+
+#### قائمة الموظفين
+
+```http
+GET /api/v1/admin-staff
+```
+
+**Response (200):**
+
+```json
+[
+  {
+    "id": "uuid",
+    "name": "Ahmed Ali",
+    "email": "admin123@moien.com",
+    "photoUrl": "https://res.cloudinary.com/.../image/upload/...",
+    "birthDate": "1995-02-03",
+    "contractValidUntil": "2026-12-31",
+    "jobTitle": "Dispatcher",
+    "createdAt": "2026-02-03T10:00:00.000Z"
+  }
+]
+```
+
+#### إنشاء موظف (مع صورة)
+
+```http
+POST /api/v1/admin-staff
+Content-Type: multipart/form-data
+```
+
+**Form fields:**
+
+- `name` (string)
+- `email` (string)
+- `password` (string)
+- `jobTitle` (string)
+- `birthDate` (YYYY-MM-DD)
+- `contractValidUntil` (YYYY-MM-DD)
+- `photo` (file, optional)
+
+**Response (201):**
+
+```json
+{
+  "id": "uuid",
+  "name": "Ahmed Ali",
+  "email": "admin123@moien.com",
+  "photoUrl": "https://res.cloudinary.com/.../image/upload/...",
+  "birthDate": "1995-02-03",
+  "contractValidUntil": "2026-12-31",
+  "jobTitle": "Dispatcher",
+  "createdAt": "2026-02-03T10:00:00.000Z"
+}
+```
+
+#### تسجيل دخول الأدمن
+
+```http
+POST /api/v1/admin-staff/login
+Content-Type: application/json
+```
+
+**Body:**
+
+```json
+{
+  "email": "admin123@moien.com",
+  "password": "yourPassword"
+}
+```
+
+**Response (200):**
+
+```json
+{
+  "ok": true,
+  "user": {
+    "id": "uuid",
+    "name": "Ahmed Ali",
+    "email": "admin123@moien.com",
+    "photoUrl": "https://res.cloudinary.com/.../image/upload/...",
+    "birthDate": "1995-02-03",
+    "contractValidUntil": "2026-12-31",
+    "jobTitle": "Dispatcher",
+    "createdAt": "2026-02-03T10:00:00.000Z"
+  }
+}
+```
+
+#### حذف موظف
+
+```http
+DELETE /api/v1/admin-staff/:id
+```
+
+**Response (200):**
+
+```json
+{ "ok": true }
+```
 
 ### المستخدمين (Users)
 

@@ -157,6 +157,13 @@ AWS_SECRET_ACCESS_KEY=your_secret_key
 AWS_REGION=eu-central-1
 AWS_S3_BUCKET=moien-delivery
 
+# Storage (Cloudinary)
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+# Optional
+CLOUDINARY_FOLDER=moien/admin-staff
+
 # Logging
 LOG_LEVEL=debug
 ```

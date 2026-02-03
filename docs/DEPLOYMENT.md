@@ -480,6 +480,13 @@ STRIPE_SECRET_KEY=sk_live_xxx
 GOOGLE_MAPS_API_KEY=xxx
 FIREBASE_PROJECT_ID=moien-delivery-prod
 AWS_S3_BUCKET=moien-delivery-prod
+
+# Cloudinary (Employee photos)
+CLOUDINARY_CLOUD_NAME=prod_cloud_name
+CLOUDINARY_API_KEY=prod_api_key
+CLOUDINARY_API_SECRET=prod_api_secret
+# Optional
+CLOUDINARY_FOLDER=moien/admin-staff
 ```
 
 ---
