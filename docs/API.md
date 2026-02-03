@@ -45,6 +45,10 @@
 | `/api/v1/admin-staff`       | POST    | إنشاء موظف + رفع صورة    | ✅ متاح        |
 | `/api/v1/admin-staff/login` | POST    | تسجيل دخول الأدمن        | ✅ متاح        |
 | `/api/v1/admin-staff/:id`   | DELETE  | حذف موظف                 | ✅ متاح        |
+| `/api/v1/users`             | GET     | قائمة المستخدمين (Admin) | ✅ متاح        |
+| `/api/v1/users/register`    | POST    | تسجيل مستخدم جديد        | ✅ متاح        |
+| `/api/v1/users/login`       | POST    | تسجيل دخول مستخدم        | ✅ متاح        |
+| `/api/v1/users/:id`         | DELETE  | حذف مستخدم (Admin)       | ✅ متاح        |
 
 ---
 
@@ -71,11 +75,8 @@ GET /api/v1/health
 
 ### المصادقة
 
-جميع الطلبات (ماعدا التسجيل والدخول) تتطلب Bearer Token:
-
-```http
-Authorization: Bearer <access_token>
-```
+> ملاحظة مهمة: حالياً **لا يوجد JWT / Bearer Token** في المشروع. نقاط النهاية الحالية تُعيد بيانات المستخدم فقط.
+> يمكن إضافة JWT لاحقاً (ومواءمة التوثيق عند اعتماد التوكن).
 
 ---
 
@@ -84,37 +85,41 @@ Authorization: Bearer <access_token>
 ### تسجيل مستخدم جديد
 
 ```http
-POST /auth/register
+POST /api/v1/users/register
+Content-Type: application/json
 ```
 
 **Body:**
 
 ```json
 {
-  "email": "user@example.com",
-  "password": "SecureP@ss123",
-  "name": "أحمد محمد",
+  "fullName": "Ahmed Mohamed Ali",
+  "countryCode": "LU",
+  "countryName": "Luxembourg",
   "phone": "+352691234567",
-  "role": "customer"
+  "email": "user@example.com",
+  "password": "SecureP@ss123"
 }
 ```
+
+**Validation Notes:**
+
+- `fullName` يجب أن يحتوي على **3 كلمات على الأقل**.
+- `countryCode` يجب أن يكون ISO-3166 alpha-2 (مثل `LU`).
 
 **Response (201):**
 
 ```json
 {
-  "success": true,
-  "message": "تم التسجيل بنجاح. يرجى تأكيد بريدك الإلكتروني.",
-  "data": {
-    "user": {
-      "id": "uuid",
-      "email": "user@example.com",
-      "name": "أحمد محمد",
-      "phone": "+352691234567",
-      "role": "customer",
-      "isVerified": false,
-      "createdAt": "2026-02-01T12:00:00.000Z"
-    }
+  "ok": true,
+  "user": {
+    "id": "uuid",
+    "fullName": "Ahmed Mohamed Ali",
+    "countryCode": "LU",
+    "countryName": "Luxembourg",
+    "phone": "+352691234567",
+    "email": "user@example.com",
+    "createdAt": "2026-02-01T12:00:00.000Z"
   }
 }
 ```
@@ -124,7 +129,8 @@ POST /auth/register
 ### تسجيل الدخول
 
 ```http
-POST /auth/login
+POST /api/v1/users/login
+Content-Type: application/json
 ```
 
 **Body:**
@@ -140,45 +146,22 @@ POST /auth/login
 
 ```json
 {
-  "success": true,
-  "data": {
-    "accessToken": "eyJhbGciOiJIUzI1NiIs...",
-    "refreshToken": "eyJhbGciOiJIUzI1NiIs...",
-    "expiresIn": 900,
-    "user": {
-      "id": "uuid",
-      "email": "user@example.com",
-      "name": "أحمد محمد",
-      "role": "customer"
-    }
+  "ok": true,
+  "user": {
+    "id": "uuid",
+    "fullName": "Ahmed Mohamed Ali",
+    "countryCode": "LU",
+    "countryName": "Luxembourg",
+    "phone": "+352691234567",
+    "email": "user@example.com",
+    "createdAt": "2026-02-01T12:00:00.000Z"
   }
 }
 ```
 
 ---
 
-### تجديد التوكن
-
-```http
-POST /auth/refresh
-```
-
-**Body:**
-
-```json
-{
-  "refreshToken": "eyJhbGciOiJIUzI1NiIs..."
-}
-```
-
----
-
-### تسجيل الخروج
-
-```http
-POST /auth/logout
-Authorization: Bearer <access_token>
-```
+> ملاحظة: `refresh` و `logout` بتوكن غير مُطبقين حالياً.
 
 ---
 
@@ -291,58 +274,38 @@ DELETE /api/v1/admin-staff/:id
 
 ### المستخدمين (Users)
 
-#### الحصول على الملف الشخصي
+#### قائمة المستخدمين
 
 ```http
-GET /users/me
-Authorization: Bearer <access_token>
+GET /api/v1/users
 ```
 
 **Response (200):**
 
 ```json
-{
-  "success": true,
-  "data": {
+[
+  {
     "id": "uuid",
-    "email": "user@example.com",
-    "name": "أحمد محمد",
+    "fullName": "Ahmed Mohamed Ali",
+    "countryCode": "LU",
+    "countryName": "Luxembourg",
     "phone": "+352691234567",
-    "avatar": "https://storage.moiendelivery.com/avatars/uuid.jpg",
-    "role": "customer",
-    "isVerified": true,
-    "addresses": [
-      {
-        "id": "uuid",
-        "label": "المنزل",
-        "address": "123 شارع الاستقلال",
-        "city": "لوكسمبورج",
-        "coordinates": {
-          "lat": 49.6116,
-          "lng": 6.1319
-        },
-        "isDefault": true
-      }
-    ],
+    "email": "user@example.com",
     "createdAt": "2026-02-01T12:00:00.000Z"
   }
-}
+]
 ```
 
-#### تحديث الملف الشخصي
+#### حذف مستخدم
 
 ```http
-PATCH /users/me
-Authorization: Bearer <access_token>
+DELETE /api/v1/users/:id
 ```
 
-**Body:**
+**Response (200):**
 
 ```json
-{
-  "name": "أحمد محمد علي",
-  "phone": "+352691234568"
-}
+{ "ok": true }
 ```
 
 ---
