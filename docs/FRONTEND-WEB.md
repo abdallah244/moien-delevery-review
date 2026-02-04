@@ -78,7 +78,7 @@
 - ✅ خانة بحث متوسعة مع Animation سلسة
 - ✅ أزرار تسجيل الدخول والتسجيل
 - ✅ بعد تسجيل الدخول: تتحول الأزرار إلى Avatar chip مع قائمة منسدلة
-- ✅ عناصر القائمة: Profile، Redeem code (placeholder)، Language submenu، Contact support (placeholder)، Logout
+- ✅ عناصر القائمة: Profile، Redeem code، Language submenu، Contact support (placeholder)، Logout
 - ✅ دعم كامل للـ Themes عبر CSS Variables
 - ✅ تصميم Responsive
 
@@ -472,6 +472,12 @@ src/app/pages/admin/dashboard/
   - Summary row (Avatar + الاسم/الإيميل/الهاتف) + تغيير الصورة.
   - تعديل الاسم.
   - Email verification + Phone verification (WhatsApp).
+
+ملاحظات تخص التابات الجديدة:
+
+- **Redeem code**: شاشة أنيقة وسريعة لإدخال الكود مع Validation بسيط ورسائل Inline. (التطبيق الحالي يعرض Coming Soon لأن endpoint الخاص بالـ redeem لم يتم ربطه بعد).
+- **Earn credits**: Coming Soon لكن بتصميم أفضل (Cards توضّح طرق كسب الـ credits + زر تواصل مع الدعم).
+- **Settings → Delete account**: الحذف يتم عبر Modal يطلب كلمة المرور للتأكيد قبل حذف الحساب.
 
 الملفات:
 

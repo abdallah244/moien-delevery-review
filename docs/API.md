@@ -56,6 +56,7 @@
 | `/api/v1/users/:id/phone/verify/confirm` | POST    | تأكيد كود تحقق الهاتف    | ✅ متاح        |
 | `/api/v1/users/:id/ban`                  | POST    | حظر مستخدم (Admin)       | ✅ متاح        |
 | `/api/v1/users/:id/unban`                | POST    | إلغاء حظر مستخدم (Admin) | ✅ متاح        |
+| `/api/v1/users/:id/delete`               | POST    | حذف حساب المستخدم (Self) | ✅ متاح        |
 | `/api/v1/users/:id`                      | DELETE  | حذف مستخدم (Admin)       | ✅ متاح        |
 
 ---
@@ -488,7 +489,41 @@ Content-Type: application/json
 }
 ```
 
-#### حذف مستخدم
+#### حذف حساب المستخدم (مع كلمة المرور)
+
+> هذه endpoint مخصصة للمستخدم نفسه من واجهة المستخدم (Settings → Delete account).
+> الهدف: تأكيد نية الحذف بإدخال كلمة المرور قبل حذف الحساب.
+
+```http
+POST /api/v1/users/:id/delete
+Content-Type: application/json
+```
+
+**Body:**
+
+```json
+{ "password": "SecureP@ss123" }
+```
+
+**Response (200):**
+
+```json
+{ "ok": true }
+```
+
+**Response (401) - Wrong password:**
+
+> يتم إرجاع رسالة ثابتة لتسهيل التعامل معها في الواجهة.
+
+```json
+{
+  "statusCode": 401,
+  "message": "WRONG_PASSWORD",
+  "error": "Unauthorized"
+}
+```
+
+#### حذف مستخدم (Admin)
 
 ```http
 DELETE /api/v1/users/:id

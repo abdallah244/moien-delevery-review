@@ -81,6 +81,7 @@ socket.on("connect_error", () => {
 يتم بث الحدث عند نجاح حذف مستخدم عبر:
 
 - `DELETE /api/v1/users/:id`
+- `POST /api/v1/users/:id/delete`
 
 **Payload:**
 
