@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Version](https://img.shields.io/badge/Version-v0.0.5-orange.svg)]()
+[![Version](https://img.shields.io/badge/Version-v0.0.7-orange.svg)]()
 [![Status](https://img.shields.io/badge/Status-قيد%20التطوير-yellow.svg)]()
 [![Last Updated](https://img.shields.io/badge/آخر%20تحديث-فبراير%202026-blue.svg)]()
 
@@ -21,6 +21,7 @@
 - [الميزات الناقصة](#-الميزات-الناقصة-missing-features)
 - [مميزات تميزنا عن المنافسين](#-مميزات-تميزنا-عن-المنافسين-competitive-advantages)
 - [خريطة الطريق المقترحة](#-خريطة-الطريق-المقترحة)
+- [آخر التحديثات](#-آخر-التحديثات-v007)
 
 ---
 
@@ -30,24 +31,27 @@
 
 | المكون           | نسبة الإنجاز | الحالة         |
 | ---------------- | ------------ | -------------- |
-| 🖥️ Backend API   | 25%          | 🟡 قيد التطوير |
-| 🌐 Web Frontend  | 15%          | 🟡 قيد التطوير |
+| 🖥️ Backend API   | 30%          | 🟡 قيد التطوير |
+| 🌐 Web Frontend  | 20%          | 🟡 قيد التطوير |
 | 📱 Mobile App    | 0%           | 🔴 لم يبدأ     |
-| 🗄️ Database      | 30%          | 🟡 قيد التطوير |
+| 🗄️ Database      | 35%          | 🟡 قيد التطوير |
 | 📚 Documentation | 70%          | 🟢 متقدم       |
 | 🧪 Testing       | 5%           | 🔴 ضعيف        |
 
 ### ما تم إنجازه ✅
 
-| المكون   | التفاصيل                                                    |
-| -------- | ----------------------------------------------------------- |
-| Backend  | 4 وحدات (Admin Staff, Users, Support Tickets, Payments)     |
-| Backend  | 22 خدمة مشتركة (Security, Performance, Communication, etc.) |
-| Backend  | إعداد PostgreSQL + TypeORM                                  |
-| Backend  | تكامل Stripe + Cloudinary                                   |
-| Frontend | 7 components + 10 services                                  |
-| Frontend | نظام المصادقة + لوحة تحكم الأدمن                            |
-| Docs     | توثيق شامل (8 ملفات markdown)                               |
+| المكون   | التفاصيل                                                               |
+| -------- | ---------------------------------------------------------------------- |
+| Backend  | 5 وحدات (Admin Staff, Users, Support Tickets, Payments, Site Settings) |
+| Backend  | 22 خدمة مشتركة (Security, Performance, Communication, etc.)            |
+| Backend  | إعداد PostgreSQL + TypeORM                                             |
+| Backend  | تكامل Stripe + Cloudinary                                              |
+| Frontend | 8 components + 11 services                                             |
+| Frontend | نظام المصادقة + لوحة تحكم الأدمن                                       |
+| Frontend | صفحة الهبوط (Landing Page) مع 7 لغات + تحسينات أداء (Skeleton/Lazy)     |
+| Frontend | إدارة صور اللاندنج (Hero + 4 صور Why Choose Us) عبر Cloudinary          |
+| Frontend | أزرار الـ Cute Navbar تعمل كتبديل (Tabs) لعرض الصور والنصوص ديناميكياً |
+| Docs     | توثيق شامل (8 ملفات markdown)                                          |
 
 ---
 
@@ -201,7 +205,7 @@
 
 | #   | الصفحة/الميزة               | الوصف              | الأولوية |
 | --- | --------------------------- | ------------------ | -------- |
-| 1   | 🏠 **Landing Page**         | صفحة هبوط جذابة    | 🔴 حرج   |
+| 1   | 🏠 **Landing Page**         | ✅ تم تنفيذها (MVP) | 🔴 حرج   |
 | 2   | 🍴 **Restaurant List**      | قائمة المطاعم      | 🔴 حرج   |
 | 3   | 📋 **Restaurant Menu**      | قائمة الطعام       | 🔴 حرج   |
 | 4   | 🛒 **Shopping Cart**        | سلة التسوق         | 🔴 حرج   |
@@ -211,6 +215,8 @@
 | 8   | 👤 **User Profile**         | الملف الشخصي       | 🟠 عالي  |
 | 9   | 🏪 **Restaurant Dashboard** | لوحة تحكم المطعم   | 🟠 عالي  |
 | 10  | 🚗 **Driver Dashboard**     | لوحة تحكم السائق   | 🟠 عالي  |
+
+> ملاحظة: Landing Page مكتملة كـ MVP، وباقي صفحات المتجر ما زالت ضمن الميزات الناقصة.
 
 ### تطبيق الموبايل (Mobile App)
 
@@ -408,6 +414,61 @@
 | 📈 تحتاج تحسين  | 17    | 6                | 6                 | 5                 |
 | 📦 ميزات ناقصة  | 28    | 12               | 10                | 6                 |
 | 🌟 ميزات تميزنا | 40+   | -                | -                 | -                 |
+
+---
+
+## 🆕 آخر التحديثات (v0.0.7)
+
+### Backend
+
+| الميزة                   | الوصف                                                  |
+| ------------------------ | ------------------------------------------------------ |
+| **Site Settings Module** | وحدة جديدة لإدارة إعدادات الموقع                       |
+| **Hero Image API**       | API لرفع وحذف صورة الهيرو سيكشن مع تخزين في Cloudinary |
+| **Landing Images API**   | API لإدارة صور اللاندنج (Hero + 4 صور Why Choose Us)   |
+| **Site Settings Entity** | جدول جديد لتخزين إعدادات الموقع (key-value)            |
+| **WebSocket Updates**    | أحداث Socket.IO لتحديث صور اللاندنج لحظياً             |
+
+### Frontend Web
+
+| الميزة                        | الوصف                                                |
+| ----------------------------- | ---------------------------------------------------- |
+| **Landing Images Admin**      | صفحة الأدمن أصبحت لإدارة صور اللاندنج (5 Slots)       |
+| **Landing Page Dynamic Hero** | الهيرو سيكشن يدعم صورة خلفية ديناميكية مع نفس التقوس |
+| **Drag & Drop Upload**        | رفع الصور بالسحب والإفلات أو الضغط للتصفح            |
+| **Preview with Curve**        | معاينة الصورة مع نفس شكل التقوس السفلي               |
+| **7 Languages Support**       | صفحة الهبوط تدعم 7 لغات (en, fr, lb, de, it, pt, es) |
+| **WebSocket Real-time**       | تحديث فوري لصور اللاندنج (Hero + Why) باستخدام Socket.IO |
+| **Cute Navbar Tabs**          | أزرار الـ Cute Navbar تعمل كتبديل لعرض الصور والنصوص |
+| **Skeleton + Toast Loading**  | Skeleton + Lazy loading للصور + Loading toast عند البطء |
+
+### Technical Details
+
+```
+Backend:
+  - POST   /api/v1/site-settings/hero-image/upload  (رفع صورة)
+  - GET    /api/v1/site-settings/hero-image         (جلب الصورة)
+  - DELETE /api/v1/site-settings/hero-image         (حذف الصورة)
+
+  - GET    /api/v1/site-settings/landing-images                   (جلب كل الصور)
+  - POST   /api/v1/site-settings/landing-images/:slot/upload      (رفع صورة slot)
+  - DELETE /api/v1/site-settings/landing-images/:slot             (حذف صورة slot)
+
+WebSocket:
+  - Namespace: /site-settings
+  - Event: hero-image.updated { url: string | null }
+  - Event: landing-image.updated { slot: 'hero'|'whyFresh'|'whyFast'|'whySupport'|'whyQuality', url: string | null }
+
+Frontend:
+  - /admin/hero-settings                            (صفحة الإدارة)
+  - صفحة الإدارة تعرض 5 Slots (Hero + 4 صور Why Choose Us)
+  - الهيرو يعرض صورة أو اللون الأحمر الافتراضي
+  - تحديث لحظي عند رفع/حذف الصور من الأدمن
+
+Build/Budgets:
+  - Angular production budgets: anyComponentStyle warning=10kB / error=20kB
+  - تم تفادي تحذيرات الـ CSS budget في build
+```
 
 ---
 
