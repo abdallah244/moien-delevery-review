@@ -18,10 +18,77 @@
 
 ### 🔄 قيد التطوير
 
-- نظام المصادقة والتسجيل
-- إدارة المستخدمين
-- إدارة المطاعم
+- نظام المطاعم
 - نظام الطلبات
+- تطبيق الموبايل
+
+---
+
+## [0.0.5] - 2026-02-05
+
+### 🚀 مضاف
+
+- **تحديث Dashboard الخادم**
+  - إضافة جميع الـ Endpoints الجديدة في لوحة التحكم
+  - صفحات حالة (Status Pages) لكل endpoint
+  - عرض حالة Online/Offline لكل endpoint
+  - عرض وقت الاستجابة (Response Time)
+  - تصميم موحد لجميع صفحات الحالة
+
+- **Admin Staff Module - وحدة إدارة الموظفين**
+  | Endpoint | Method | الوصف |
+  |----------|--------|-------|
+  | `/api/v1/admin-staff` | GET | قائمة الموظفين |
+  | `/api/v1/admin-staff` | POST | إنشاء موظف جديد + رفع صورة |
+  | `/api/v1/admin-staff/login` | POST | تسجيل دخول الأدمن |
+  | `/api/v1/admin-staff/:id` | DELETE | حذف موظف |
+
+- **Users Module - وحدة المستخدمين**
+  | Endpoint | Method | الوصف |
+  |----------|--------|-------|
+  | `/api/v1/users` | GET | قائمة المستخدمين |
+  | `/api/v1/users/summary` | GET | ملخص المستخدمين |
+  | `/api/v1/users/register` | POST | تسجيل مستخدم جديد |
+  | `/api/v1/users/login` | POST | تسجيل دخول |
+  | `/api/v1/users/:id` | PATCH | تحديث بيانات المستخدم |
+  | `/api/v1/users/:id` | DELETE | حذف مستخدم (Admin) |
+  | `/api/v1/users/:id/photo` | POST | رفع صورة المستخدم |
+  | `/api/v1/users/:id/ban` | POST | حظر مستخدم |
+  | `/api/v1/users/:id/unban` | POST | إلغاء حظر مستخدم |
+  | `/api/v1/users/:id/delete` | POST | حذف الحساب (Self) |
+  | `/api/v1/users/:id/email/verify/send` | POST | إرسال كود تحقق الإيميل |
+  | `/api/v1/users/:id/email/verify/confirm` | POST | تأكيد كود تحقق الإيميل |
+  | `/api/v1/users/:id/phone/verify/send` | POST | إرسال كود تحقق الهاتف |
+  | `/api/v1/users/:id/phone/verify/confirm` | POST | تأكيد كود تحقق الهاتف |
+  | `/api/v1/users/:id/payment-methods` | GET | قائمة طرق الدفع |
+  | `/api/v1/users/:id/payment-methods/setup-intent` | POST | إنشاء Setup Intent |
+  | `/api/v1/users/:id/payment-methods/attach` | POST | ربط طريقة دفع |
+  | `/api/v1/users/:id/payment-methods/:pmId/default` | POST | تعيين طريقة دفع افتراضية |
+  | `/api/v1/users/:id/payment-methods/:pmId` | DELETE | حذف طريقة دفع |
+  | `/api/v1/users/addresses/meta` | GET | بيانات العناوين الوصفية |
+  | `/api/v1/users/:id/addresses` | GET | قائمة العناوين |
+  | `/api/v1/users/:id/addresses` | POST | إضافة عنوان |
+  | `/api/v1/users/:id/addresses/:addressId/default` | POST | تعيين عنوان افتراضي |
+  | `/api/v1/users/:id/addresses/:addressId` | DELETE | حذف عنوان |
+
+- **Support Tickets Module - وحدة تذاكر الدعم**
+  | Endpoint | Method | الوصف |
+  |----------|--------|-------|
+  | `/api/v1/support-tickets` | GET | قائمة التذاكر |
+  | `/api/v1/support-tickets` | POST | إنشاء تذكرة |
+  | `/api/v1/support-tickets/:id/open` | POST | فتح تذكرة |
+  | `/api/v1/support-tickets/:id/reply` | POST | الرد على تذكرة |
+
+- **Payments Module - وحدة المدفوعات**
+  | Endpoint | Method | الوصف |
+  |----------|--------|-------|
+  | `/api/v1/payments/stripe/publishable-key` | GET | مفتاح Stripe العام |
+
+### 🔧 محسّن
+
+- تحديث رقم الإصدار إلى v0.0.5
+- إضافة عداد Modules في لوحة التحكم (4 Active)
+- إضافة ألوان DELETE و PATCH في الـ CSS
 
 ---
 

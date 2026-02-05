@@ -2,16 +2,26 @@
 
 <div align="center">
 
-[![Services](https://img.shields.io/badge/Services-12-blue.svg)]()
+[![Services](https://img.shields.io/badge/Services-22-blue.svg)]()
+[![Modules](https://img.shields.io/badge/Modules-4-green.svg)]()
 [![APIs](https://img.shields.io/badge/APIs-RESTful-green.svg)]()
 [![Status](https://img.shields.io/badge/Status-Active-success.svg)]()
-[![Version](https://img.shields.io/badge/Version-v0.0.1-orange.svg)]()
+[![Version](https://img.shields.io/badge/Version-v0.0.5-orange.svg)]()
 
 </div>
 
 ---
 
-## ✅ الخدمات المتاحة حالياً (v0.0.1)
+## ✅ الوحدات المتاحة حالياً (v0.0.5)
+
+| الوحدة             | الحالة   | الوصف                      |
+| ------------------ | -------- | -------------------------- |
+| 👥 Admin Staff     | ✅ مكتمل | إدارة الموظفين والمسؤولين  |
+| 👤 Users           | ✅ مكتمل | إدارة المستخدمين والمصادقة |
+| 🎫 Support Tickets | ✅ مكتمل | نظام تذاكر الدعم الفني     |
+| 💳 Payments        | ✅ مكتمل | المدفوعات عبر Stripe       |
+
+## ✅ الخدمات الأساسية (v0.0.5)
 
 | الخدمة              | الحالة   | الوصف                               |
 | ------------------- | -------- | ----------------------------------- |
@@ -19,6 +29,8 @@
 | 💚 Health Check     | ✅ مكتمل | فحص صحة الخادم والـ APIs            |
 | ⚙️ Configuration    | ✅ مكتمل | نظام التكوين مع دعم متغيرات البيئة  |
 | 🗄️ Database Setup   | ✅ مكتمل | إعداد PostgreSQL مع TypeORM         |
+| ☁️ Cloudinary       | ✅ مكتمل | رفع وإدارة الصور                    |
+| 💳 Stripe           | ✅ مكتمل | معالجة المدفوعات                    |
 
 ---
 
