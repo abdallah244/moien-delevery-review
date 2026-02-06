@@ -24,6 +24,34 @@
 
 ---
 
+## [0.0.8] - 2026-02-06
+
+### 🚀 مضاف
+
+- **About Page (Web)**
+  - صفحة About جديدة (Wolt-inspired) مع تقليل السكاشن
+  - ألوان متناسقة مع Landing v2 + تحسينات Contrast و UI
+  - تأثير “stacked sections” (تداخل الكروت) لإحساس scroll أكثر فزيائية
+
+- **Site Settings: About Images (Backend + Web Admin)**
+  - Endpoints جديدة لإدارة صور About (Slots مستقلة عن اللاندنج):
+    - `GET /api/v1/site-settings/about-images`
+    - `POST /api/v1/site-settings/about-images/:slot/upload`
+    - `DELETE /api/v1/site-settings/about-images/:slot`
+  - WebSocket events جديدة ضمن namespace `/site-settings`:
+    - `about-image.updated`
+    - `about-images.updated`
+  - صفحة أدمن جديدة لإدارة صور About:
+    - `/admin/about-images`
+
+### 🧾 توثيق
+
+- تحديث [docs/API.md](docs/API.md) لإضافة Site Settings endpoints (Landing/About)
+- تحديث [docs/WEBSOCKETS.md](docs/WEBSOCKETS.md) لإضافة `/site-settings` events
+- تحديث [REPORT.md](REPORT.md) ليعكس تغييرات v0.0.8
+
+---
+
 ## [0.0.5] - 2026-02-05
 
 ### 🚀 مضاف

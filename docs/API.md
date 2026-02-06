@@ -105,6 +105,45 @@
 | ----------------------------------------- | ------- | ------------------ | ------- |
 | `/api/v1/payments/stripe/publishable-key` | GET     | مفتاح Stripe العام | ✅ متاح |
 
+#### ⚙️ Site Settings Module
+
+> ملاحظة: هذه endpoints تُستخدم لتخصيص صور الواجهة (Landing/About) من لوحة الأدمن.
+
+| المسار                                              | الطريقة | الوصف                       | الحالة  |
+| --------------------------------------------------- | ------- | --------------------------- | ------- |
+| `/api/v1/site-settings/hero-image`                  | GET     | جلب صورة الهيرو (legacy)    | ✅ متاح |
+| `/api/v1/site-settings/hero-image/upload`           | POST    | رفع صورة الهيرو (legacy)    | ✅ متاح |
+| `/api/v1/site-settings/hero-image`                  | DELETE  | حذف صورة الهيرو (legacy)    | ✅ متاح |
+| `/api/v1/site-settings/landing-images`              | GET     | جلب كل صور اللاندنج         | ✅ متاح |
+| `/api/v1/site-settings/landing-images/:slot/upload` | POST    | رفع صورة لاندنج حسب الـslot | ✅ متاح |
+| `/api/v1/site-settings/landing-images/:slot`        | DELETE  | حذف صورة لاندنج حسب الـslot | ✅ متاح |
+| `/api/v1/site-settings/about-images`                | GET     | جلب كل صور صفحة About       | ✅ متاح |
+| `/api/v1/site-settings/about-images/:slot/upload`   | POST    | رفع صورة About حسب الـslot  | ✅ متاح |
+| `/api/v1/site-settings/about-images/:slot`          | DELETE  | حذف صورة About حسب الـslot  | ✅ متاح |
+
+**Landing slots:**
+
+- `hero`
+- `whyFresh`
+- `whyFast`
+- `whySupport`
+- `whyQuality`
+- `carousel1` `carousel2` `carousel3` `carousel4`
+
+**About slots:**
+
+- `aboutHero`
+- `aboutStory`
+- `aboutFeature1`
+- `aboutFeature2`
+- `aboutFeature3`
+
+**Upload notes:**
+
+- Field name: `image` (multipart/form-data)
+- Max size: 5MB
+- Only `image/*` files allowed
+
 ---
 
 ### فحص صحة الخادم (Health Check)

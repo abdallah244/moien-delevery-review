@@ -13,11 +13,12 @@
 
 ## 🎯 نظرة عامة
 
-يستخدم المشروع **Socket.IO** لتمرير تحديثات المستخدمين إلى لوحة الأدمن بشكل فوري (بدون Refresh).
+يستخدم المشروع **Socket.IO** لتمرير تحديثات فورية (بدون Refresh) للواجهة ولوحة الأدمن.
 
-- **Server**: NestJS Socket.IO Gateway
-- **Namespace**: `/users`
-- **هدف الاستخدام الحالي**: تحديث جدول المستخدمين في لوحة الأدمن عند إنشاء/حذف مستخدم
+- **Server**: NestJS Socket.IO Gateways
+- **Namespaces الحالية**:
+  - `/users` (تحديثات المستخدمين)
+  - `/site-settings` (تحديثات صور اللاندنج/الأبوت)
 
 > ملاحظة: الـ WebSocket لا يمر عبر `api/v1` (هو مسار Socket.IO مستقل على نفس الـ host/port).
 
@@ -27,7 +28,8 @@
 
 ### رابط الاتصال في التطوير
 
-- `http://localhost:3000/users`
+- Users: `http://localhost:3000/users`
+- Site Settings: `http://localhost:3000/site-settings`
 
 ### مثال (TypeScript)
 
@@ -35,6 +37,10 @@
 import { io } from "socket.io-client";
 
 const socket = io("http://localhost:3000/users", {
+  transports: ["websocket"],
+});
+
+const siteSettingsSocket = io("http://localhost:3000/site-settings", {
   transports: ["websocket"],
 });
 
@@ -50,6 +56,66 @@ socket.on("connect_error", () => {
 ---
 
 ## 📣 الأحداث (Events)
+
+## ⚙️ Site Settings Namespace
+
+**Namespace:** `/site-settings`
+
+### `hero-image.updated`
+
+يبث عند رفع/حذف صورة الهيرو.
+
+**Payload:**
+
+```json
+{ "url": "https://..." }
+```
+
+> عند الحذف: `{ "url": null }`
+
+### `landing-image.updated`
+
+يبث عند تحديث صورة واحدة في اللاندنج.
+
+**Payload:**
+
+```json
+{ "slot": "hero", "url": "https://..." }
+```
+
+### `landing-images.updated`
+
+يبث كـ patch object لتحديث slot واحد (مفيد للـstate merges).
+
+**Payload مثال:**
+
+```json
+{ "whyFresh": "https://..." }
+```
+
+### `about-image.updated`
+
+يبث عند تحديث صورة واحدة في صفحة About.
+
+**Payload:**
+
+```json
+{ "slot": "aboutHero", "url": "https://..." }
+```
+
+### `about-images.updated`
+
+يبث كـ patch object لتحديث slot واحد.
+
+**Payload مثال:**
+
+```json
+{ "aboutFeature2": null }
+```
+
+---
+
+## 👤 Users Namespace
 
 ### `users.created`
 
