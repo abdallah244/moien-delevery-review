@@ -40,26 +40,26 @@
 
 ### ما تم إنجازه ✅
 
-| المكون   | التفاصيل                                                                         |
-| -------- | -------------------------------------------------------------------------------- |
-| Backend  | 5 وحدات (Admin Staff, Users, Support Tickets, Payments, Site Settings)           |
-| Backend  | Restaurants + Restaurant Categories + Menu Items (CRUD + filtering)              |
-| Backend  | Orders (Cart) + Checkout (promoCode + discount)                                  |
-| Backend  | Promotions (Validate + Redemption tracking)                                      |
-| Backend  | Notifications (DB + Socket.IO realtime عبر namespace /notifications)             |
-| Backend  | 22 خدمة مشتركة (Security, Performance, Communication, etc.)                      |
-| Backend  | إعداد PostgreSQL + TypeORM                                                       |
-| Backend  | تكامل Stripe + Cloudinary                                                        |
-| Frontend | 8 components + 11 services                                                       |
-| Frontend | نظام المصادقة + لوحة تحكم الأدمن                                                 |
-| Frontend | صفحة الهبوط (Landing Page) مع 7 لغات + تحسينات أداء (Skeleton/Lazy)              |
-| Frontend | صفحات المتجر (MVP): Restaurants List + Restaurant Details/Menu + Cart + Checkout |
-| Frontend | إدارة صور اللاندنج (Hero + 4 صور Why Choose Us) عبر Cloudinary                   |
-| Frontend | صفحة About (Wolt-inspired) مع تقليل السكاشن + تحسينات UI/Contrast                |
-| Frontend | إدارة صور صفحة About عبر الأدمن (Slots مستقلة عن اللاندنج)                       |
-| Frontend | أزرار الـ Cute Navbar تعمل كتبديل (Tabs) لعرض الصور والنصوص ديناميكياً           |
-| Frontend | إصلاح الثيم (Dark/High-contrast) ليؤثر على صفحات المستخدم (بدون ألوان hardcoded) |
-| Docs     | توثيق شامل (8 ملفات markdown)                                                    |
+| المكون   | التفاصيل                                                                                              |
+| -------- | ----------------------------------------------------------------------------------------------------- |
+| Backend  | 5 وحدات (Admin Staff, Users, Support Tickets, Payments, Site Settings)                                |
+| Backend  | Restaurants + Restaurant Categories + Menu Items (CRUD + filtering)                                   |
+| Backend  | Orders (Cart) + Checkout (promoCode + discount)                                                       |
+| Backend  | Promotions (Validate + Redemption tracking)                                                           |
+| Backend  | Notifications (DB + Socket.IO realtime عبر namespace /notifications)                                  |
+| Backend  | 26 خدمة مشتركة (Security/Performance/Communication/Storage/Monitoring/...) + gating للـ stubs عبر env |
+| Backend  | إعداد PostgreSQL + TypeORM                                                                            |
+| Backend  | تكامل Stripe + Cloudinary                                                                             |
+| Frontend | 8 components + 11 services                                                                            |
+| Frontend | نظام المصادقة + لوحة تحكم الأدمن                                                                      |
+| Frontend | صفحة الهبوط (Landing Page) مع 7 لغات + تحسينات أداء (Skeleton/Lazy)                                   |
+| Frontend | صفحات المتجر (MVP): Restaurants List + Restaurant Details/Menu + Cart + Checkout                      |
+| Frontend | إدارة صور اللاندنج (Hero + 4 صور Why Choose Us) عبر Cloudinary                                        |
+| Frontend | صفحة About (Wolt-inspired) مع تقليل السكاشن + تحسينات UI/Contrast                                     |
+| Frontend | إدارة صور صفحة About عبر الأدمن (Slots مستقلة عن اللاندنج)                                            |
+| Frontend | أزرار الـ Cute Navbar تعمل كتبديل (Tabs) لعرض الصور والنصوص ديناميكياً                                |
+| Frontend | إصلاح الثيم (Dark/High-contrast) ليؤثر على صفحات المستخدم (بدون ألوان hardcoded)                      |
+| Docs     | توثيق شامل (8 ملفات markdown)                                                                         |
 
 ---
 
@@ -103,13 +103,13 @@
 
 ### Backend
 
-| #   | المشكلة                                           | الملف/الموقع                             | الأولوية |
-| --- | ------------------------------------------------- | ---------------------------------------- | -------- |
-| 1   | الخدمات المشتركة (22 خدمة) كلها placeholder فارغة | `backend/src/common/services/*`          | 🔴 عالي  |
-| 2   | `main.ts` يحتاج تفعيل Validation Pipe بشكل صحيح   | `backend/src/main.ts`                    | ✅ تم    |
-| 3   | Error handling غير موحد                           | جميع الـ controllers                     | 🟠 متوسط |
-| 4   | لا يوجد logging فعلي للأخطاء                      | `backend/src/common/services/monitoring` | 🟠 متوسط |
-| 5   | عدم وجود response interceptor موحد                | `backend/src/common/interceptors`        | 🟡 منخفض |
+| #   | المشكلة                                            | الملف/الموقع                             | الأولوية        |
+| --- | -------------------------------------------------- | ---------------------------------------- | --------------- |
+| 1   | الخدمات المشتركة (26 خدمة) كانت محسوبة placeholder | `backend/src/common/services/*`          | ✅ تم           |
+| 2   | `main.ts` يحتاج تفعيل Validation Pipe بشكل صحيح    | `backend/src/main.ts`                    | ✅ تم           |
+| 3   | Error handling غير موحد                            | جميع الـ controllers                     | ✅ تم           |
+| 4   | لا يوجد logging فعلي للأخطاء                       | `backend/src/common/services/monitoring` | ✅ تم           |
+| 5   | عدم وجود response interceptor موحد                 | `backend/src/common/interceptors`        | ✅ تم (اختياري) |
 
 ### Frontend (Angular)
 
@@ -430,23 +430,29 @@
 
 ### Backend
 
-| الميزة                   | الوصف                                                                 |
-| ------------------------ | --------------------------------------------------------------------- |
-| **Site Settings Module** | وحدة جديدة لإدارة إعدادات الموقع                                      |
-| **Hero Image API**       | API لرفع وحذف صورة الهيرو سيكشن مع تخزين في Cloudinary                |
-| **Landing Images API**   | API لإدارة صور اللاندنج (Hero + 4 صور Why Choose Us)                  |
-| **About Images API**     | API لإدارة صور صفحة About (5 Slots مستقلة)                            |
-| **Site Settings Entity** | جدول جديد لتخزين إعدادات الموقع (key-value)                           |
-| **WebSocket Updates**    | أحداث Socket.IO لتحديث صور اللاندنج لحظياً                            |
-| **Restaurants API**      | CRUD للمطاعم + تصنيفات المطعم + عناصر القائمة                         |
-| **Orders/Cart API**      | Cart كـ Order + عمليات الإضافة/التعديل + Checkout                     |
-| **Promotions API**       | Endpoint للتحقق من الكوبونات + Tracking للاستخدام                     |
-| **Notifications API**    | تخزين إشعارات + realtime عبر Socket.IO                                |
-| **Security Hardening**   | Rate limiting + CORS whitelist + Helmet + Validation + CSRF (اختياري) |
-| **DB Migrations**        | TypeORM migrations + DataSource + scripts (`db:migrate:*`)            |
-| **DB Seeding**           | Seed script (`db:seed`) لإنشاء بيانات تطوير جاهزة                     |
-| **DB Indexes**           | Indexes أساسية على restaurants/menu/orders/notifications/...          |
-| **Soft Delete**          | `deletedAt` columns + تحويل حذف كيانات رئيسية إلى soft delete         |
+| الميزة                     | الوصف                                                                                    |
+| -------------------------- | ---------------------------------------------------------------------------------------- |
+| **Site Settings Module**   | وحدة جديدة لإدارة إعدادات الموقع                                                         |
+| **Hero Image API**         | API لرفع وحذف صورة الهيرو سيكشن مع تخزين في Cloudinary                                   |
+| **Landing Images API**     | API لإدارة صور اللاندنج (Hero + 4 صور Why Choose Us)                                     |
+| **About Images API**       | API لإدارة صور صفحة About (5 Slots مستقلة)                                               |
+| **Site Settings Entity**   | جدول جديد لتخزين إعدادات الموقع (key-value)                                              |
+| **WebSocket Updates**      | أحداث Socket.IO لتحديث صور اللاندنج لحظياً                                               |
+| **Restaurants API**        | CRUD للمطاعم + تصنيفات المطعم + عناصر القائمة                                            |
+| **Orders/Cart API**        | Cart كـ Order + عمليات الإضافة/التعديل + Checkout                                        |
+| **Promotions API**         | Endpoint للتحقق من الكوبونات + Tracking للاستخدام                                        |
+| **Notifications API**      | تخزين إشعارات + realtime عبر Socket.IO                                                   |
+| **Security Hardening**     | Rate limiting + CORS whitelist + Helmet + Validation + CSRF (اختياري)                    |
+| **DB Migrations**          | TypeORM migrations + DataSource + scripts (`db:migrate:*`)                               |
+| **DB Seeding**             | Seed script (`db:seed`) لإنشاء بيانات تطوير جاهزة                                        |
+| **DB Indexes**             | Indexes أساسية على restaurants/menu/orders/notifications/...                             |
+| **Soft Delete**            | `deletedAt` columns + تحويل حذف كيانات رئيسية إلى soft delete                            |
+| **Common Platform Infra**  | CommonModule عالمي لتجميع وتصدير الـ shared services + DI جاهز                           |
+| **Unified Error Handling** | Global exception filter مع JSON موحد للأخطاء + requestId                                 |
+| **HTTP Logging**           | Global interceptor لتسجيل الطلبات والمدة + تجميع logs في LoggerService                   |
+| **Monitoring Logs API**    | `/api/v1/monitoring/logs/*` (مقفولة في production إلا إذا `MONITORING_LOGS_PUBLIC=true`) |
+| **Response Envelope**      | Interceptor اختياري لتوحيد الردود `{ ok: true, data }` عبر `RESPONSE_ENVELOPE=true`      |
+| **Auth Smoke Test**        | تم اختبار login → me → sessions → refresh → logout → refresh fails (401)                 |
 
 ### Frontend Web
 
