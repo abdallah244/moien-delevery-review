@@ -113,14 +113,14 @@
 
 ### Frontend (Angular)
 
-| #   | المشكلة                                            | الملف/الموقع      | الأولوية |
-| --- | -------------------------------------------------- | ----------------- | -------- |
-| 1   | لا يوجد Error Handling موحد                        | جميع الـ services | 🔴 عالي  |
-| 2   | لا يوجد Loading State عام                          | App level         | 🟠 متوسط |
-| 3   | لا يوجد HTTP Interceptor موحد (Auth/Errors/Retry)  | App level         | 🟠 متوسط |
-| 4   | بعض الصفحات لا تتأثر بتغيير الثيم بسبب ألوان ثابتة | صفحات User/Store  | ✅ تم    |
-| 5   | لا يوجد PWA support                                | -                 | 🟡 منخفض |
-| 6   | لا يوجد SEO optimization                           | -                 | 🟡 منخفض |
+| #   | المشكلة                                            | الملف/الموقع                                                                            | الأولوية |
+| --- | -------------------------------------------------- | --------------------------------------------------------------------------------------- | -------- |
+| 1   | لا يوجد Error Handling موحد                        | `wfrontend/src/app/interceptors/error.interceptor.ts` + `utils/global-error-handler.ts` | ✅ تم    |
+| 2   | لا يوجد Loading State عام                          | `wfrontend/src/app/services/loading.ts` + `components/global-loading/*`                 | ✅ تم    |
+| 3   | لا يوجد HTTP Interceptor موحد (Auth/Errors/Retry)  | `wfrontend/src/app/app.config.ts` + `wfrontend/src/app/interceptors/*`                  | ✅ تم    |
+| 4   | بعض الصفحات لا تتأثر بتغيير الثيم بسبب ألوان ثابتة | صفحات User/Store                                                                        | ✅ تم    |
+| 5   | لا يوجد PWA support                                | -                                                                                       | 🟡 منخفض |
+| 6   | لا يوجد SEO optimization                           | -                                                                                       | 🟡 منخفض |
 
 ### Mobile (Flutter)
 
@@ -456,25 +456,28 @@
 
 ### Frontend Web
 
-| الميزة                        | الوصف                                                    |
-| ----------------------------- | -------------------------------------------------------- |
-| **Landing Images Admin**      | صفحة الأدمن أصبحت لإدارة صور اللاندنج (5 Slots)          |
-| **About Images Admin**        | صفحة أدمن جديدة لإدارة صور صفحة About (5 Slots)          |
-| **Landing Page Dynamic Hero** | الهيرو سيكشن يدعم صورة خلفية ديناميكية مع نفس التقوس     |
-| **Drag & Drop Upload**        | رفع الصور بالسحب والإفلات أو الضغط للتصفح                |
-| **Preview with Curve**        | معاينة الصورة مع نفس شكل التقوس السفلي                   |
-| **7 Languages Support**       | صفحة الهبوط تدعم 7 لغات (en, fr, lb, de, it, pt, es)     |
-| **WebSocket Real-time**       | تحديث فوري لصور اللاندنج (Hero + Why) باستخدام Socket.IO |
-| **Cute Navbar Tabs**          | أزرار الـ Cute Navbar تعمل كتبديل لعرض الصور والنصوص     |
-| **Skeleton + Toast Loading**  | Skeleton + Lazy loading للصور + Loading toast عند البطء  |
-| **About Page UI**             | صفحة About جديدة بألوان Landing v2 + تداخل سيكشنات       |
-| **Restaurants Listing (MVP)** | قائمة مطاعم حقيقية من الـ API + بحث + فلتر Open Only     |
-| **Restaurant Details (MVP)**  | تبويبات التصنيفات + عرض الـ menu + Add to cart           |
-| **Cart + Checkout (MVP)**     | تعديل الكميات + promo validate + Checkout                |
-| **Navbar Search/Cart Badge**  | البحث يفتح restaurants مع query + عداد السلة             |
-| **Theme Fix (User Pages)**    | إصلاح الدارك مود ليشمل الصفحات (Profile/Legal/About/…)   |
-| **Theme RGB Helpers**         | إضافة `--ink-rgb`/`--paper-rgb` وتطبيقها في CSS overlays |
-| **Placeholder Pages Themed**  | صفحات Driver/Provider أصبحت تستخدم ألوان الثيم           |
+| الميزة                        | الوصف                                                                  |
+| ----------------------------- | ---------------------------------------------------------------------- |
+| **HTTP Interceptors**         | Interceptors موحدة (Auth + Retry + Loading + Errors) على مستوى التطبيق |
+| **Global Loading State**      | Overlay عام يظهر أثناء أي HTTP request عبر LoadingService              |
+| **Unified Error Handling**    | ErrorInterceptor + GlobalErrorHandler مع Toast موحد للأخطاء            |
+| **Landing Images Admin**      | صفحة الأدمن أصبحت لإدارة صور اللاندنج (5 Slots)                        |
+| **About Images Admin**        | صفحة أدمن جديدة لإدارة صور صفحة About (5 Slots)                        |
+| **Landing Page Dynamic Hero** | الهيرو سيكشن يدعم صورة خلفية ديناميكية مع نفس التقوس                   |
+| **Drag & Drop Upload**        | رفع الصور بالسحب والإفلات أو الضغط للتصفح                              |
+| **Preview with Curve**        | معاينة الصورة مع نفس شكل التقوس السفلي                                 |
+| **7 Languages Support**       | صفحة الهبوط تدعم 7 لغات (en, fr, lb, de, it, pt, es)                   |
+| **WebSocket Real-time**       | تحديث فوري لصور اللاندنج (Hero + Why) باستخدام Socket.IO               |
+| **Cute Navbar Tabs**          | أزرار الـ Cute Navbar تعمل كتبديل لعرض الصور والنصوص                   |
+| **Skeleton + Toast Loading**  | Skeleton + Lazy loading للصور + Loading toast عند البطء                |
+| **About Page UI**             | صفحة About جديدة بألوان Landing v2 + تداخل سيكشنات                     |
+| **Restaurants Listing (MVP)** | قائمة مطاعم حقيقية من الـ API + بحث + فلتر Open Only                   |
+| **Restaurant Details (MVP)**  | تبويبات التصنيفات + عرض الـ menu + Add to cart                         |
+| **Cart + Checkout (MVP)**     | تعديل الكميات + promo validate + Checkout                              |
+| **Navbar Search/Cart Badge**  | البحث يفتح restaurants مع query + عداد السلة                           |
+| **Theme Fix (User Pages)**    | إصلاح الدارك مود ليشمل الصفحات (Profile/Legal/About/…)                 |
+| **Theme RGB Helpers**         | إضافة `--ink-rgb`/`--paper-rgb` وتطبيقها في CSS overlays               |
+| **Placeholder Pages Themed**  | صفحات Driver/Provider أصبحت تستخدم ألوان الثيم                         |
 
 ### Technical Details
 
