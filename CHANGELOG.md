@@ -24,6 +24,40 @@
 
 ---
 
+## [0.0.10] - 2026-02-07
+
+### 🔧 مُصلَح
+
+- **Theme (Web)**
+  - إصلاح مشكلة أن الدارك مود كان يؤثر على الـ Navbar/Footer فقط في بعض الصفحات
+  - إضافة متغيرات مساعدة `--ink-rgb` و `--paper-rgb` لاستخدامها في `rgba(...)` للـ borders/overlays/skeletons
+  - تحويل عدة صفحات (Profile/Legal/Restaurants/Restaurant Details/… إلخ) لاستخدام ألوان الثيم بدل ألوان ثابتة
+
+---
+
+## [0.0.9] - 2026-02-07
+
+### 🚀 مضاف
+
+- **Restaurants + Menu (Backend + Web MVP)**
+  - CRUD للمطاعم + التصنيفات + عناصر المنيو + filtering
+
+- **Orders/Cart + Checkout (Backend + Web MVP)**
+  - Cart كـ Order + إضافة/تعديل عناصر السلة + Checkout
+  - Promo validation + تطبيق الخصم أثناء Checkout
+
+- **Promotions (Backend)**
+  - Validate endpoint + Tracking لاستخدام الكوبونات
+
+- **Notifications (Backend)**
+  - تخزين إشعارات + realtime عبر Socket.IO ضمن namespace `/notifications`
+
+### 🧾 توثيق
+
+- تحديث [REPORT.md](REPORT.md) لعرض تقدم الـ MVP والـ endpoints
+
+---
+
 ## [0.0.8] - 2026-02-06
 
 ### 🚀 مضاف

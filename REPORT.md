@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Version](https://img.shields.io/badge/Version-v0.0.9-orange.svg)]()
+[![Version](https://img.shields.io/badge/Version-v0.0.10-orange.svg)]()
 [![Status](https://img.shields.io/badge/Status-قيد%20التطوير-yellow.svg)]()
 [![Last Updated](https://img.shields.io/badge/آخر%20تحديث-فبراير%202026-blue.svg)]()
 
@@ -21,7 +21,7 @@
 - [الميزات الناقصة](#-الميزات-الناقصة-missing-features)
 - [مميزات تميزنا عن المنافسين](#-مميزات-تميزنا-عن-المنافسين-competitive-advantages)
 - [خريطة الطريق المقترحة](#-خريطة-الطريق-المقترحة)
-- [آخر التحديثات](#-آخر-التحديثات-v009)
+- [آخر التحديثات](#-آخر-التحديثات-v0010)
 
 ---
 
@@ -40,25 +40,26 @@
 
 ### ما تم إنجازه ✅
 
-| المكون   | التفاصيل                                                               |
-| -------- | ---------------------------------------------------------------------- |
-| Backend  | 5 وحدات (Admin Staff, Users, Support Tickets, Payments, Site Settings) |
-| Backend  | Restaurants + Restaurant Categories + Menu Items (CRUD + filtering)     |
-| Backend  | Orders (Cart) + Checkout (promoCode + discount)                         |
-| Backend  | Promotions (Validate + Redemption tracking)                              |
-| Backend  | Notifications (DB + Socket.IO realtime عبر namespace /notifications)     |
-| Backend  | 22 خدمة مشتركة (Security, Performance, Communication, etc.)            |
-| Backend  | إعداد PostgreSQL + TypeORM                                             |
-| Backend  | تكامل Stripe + Cloudinary                                              |
-| Frontend | 8 components + 11 services                                             |
-| Frontend | نظام المصادقة + لوحة تحكم الأدمن                                       |
-| Frontend | صفحة الهبوط (Landing Page) مع 7 لغات + تحسينات أداء (Skeleton/Lazy)    |
+| المكون   | التفاصيل                                                                         |
+| -------- | -------------------------------------------------------------------------------- |
+| Backend  | 5 وحدات (Admin Staff, Users, Support Tickets, Payments, Site Settings)           |
+| Backend  | Restaurants + Restaurant Categories + Menu Items (CRUD + filtering)              |
+| Backend  | Orders (Cart) + Checkout (promoCode + discount)                                  |
+| Backend  | Promotions (Validate + Redemption tracking)                                      |
+| Backend  | Notifications (DB + Socket.IO realtime عبر namespace /notifications)             |
+| Backend  | 22 خدمة مشتركة (Security, Performance, Communication, etc.)                      |
+| Backend  | إعداد PostgreSQL + TypeORM                                                       |
+| Backend  | تكامل Stripe + Cloudinary                                                        |
+| Frontend | 8 components + 11 services                                                       |
+| Frontend | نظام المصادقة + لوحة تحكم الأدمن                                                 |
+| Frontend | صفحة الهبوط (Landing Page) مع 7 لغات + تحسينات أداء (Skeleton/Lazy)              |
 | Frontend | صفحات المتجر (MVP): Restaurants List + Restaurant Details/Menu + Cart + Checkout |
-| Frontend | إدارة صور اللاندنج (Hero + 4 صور Why Choose Us) عبر Cloudinary         |
-| Frontend | صفحة About (Wolt-inspired) مع تقليل السكاشن + تحسينات UI/Contrast      |
-| Frontend | إدارة صور صفحة About عبر الأدمن (Slots مستقلة عن اللاندنج)             |
-| Frontend | أزرار الـ Cute Navbar تعمل كتبديل (Tabs) لعرض الصور والنصوص ديناميكياً |
-| Docs     | توثيق شامل (8 ملفات markdown)                                          |
+| Frontend | إدارة صور اللاندنج (Hero + 4 صور Why Choose Us) عبر Cloudinary                   |
+| Frontend | صفحة About (Wolt-inspired) مع تقليل السكاشن + تحسينات UI/Contrast                |
+| Frontend | إدارة صور صفحة About عبر الأدمن (Slots مستقلة عن اللاندنج)                       |
+| Frontend | أزرار الـ Cute Navbar تعمل كتبديل (Tabs) لعرض الصور والنصوص ديناميكياً           |
+| Frontend | إصلاح الثيم (Dark/High-contrast) ليؤثر على صفحات المستخدم (بدون ألوان hardcoded) |
+| Docs     | توثيق شامل (8 ملفات markdown)                                                    |
 
 ---
 
@@ -112,13 +113,14 @@
 
 ### Frontend (Angular)
 
-| #   | المشكلة                          | الملف/الموقع      | الأولوية |
-| --- | -------------------------------- | ----------------- | -------- |
-| 1   | لا يوجد Error Handling موحد      | جميع الـ services | 🔴 عالي  |
-| 2   | لا يوجد Loading State عام        | App level         | 🟠 متوسط |
-| 3   | لا يوجد HTTP Interceptor موحد (Auth/Errors/Retry) | App level | 🟠 متوسط |
-| 4   | لا يوجد PWA support              | -                 | 🟡 منخفض |
-| 5   | لا يوجد SEO optimization         | -                 | 🟡 منخفض |
+| #   | المشكلة                                            | الملف/الموقع      | الأولوية |
+| --- | -------------------------------------------------- | ----------------- | -------- |
+| 1   | لا يوجد Error Handling موحد                        | جميع الـ services | 🔴 عالي  |
+| 2   | لا يوجد Loading State عام                          | App level         | 🟠 متوسط |
+| 3   | لا يوجد HTTP Interceptor موحد (Auth/Errors/Retry)  | App level         | 🟠 متوسط |
+| 4   | بعض الصفحات لا تتأثر بتغيير الثيم بسبب ألوان ثابتة | صفحات User/Store  | ✅ تم    |
+| 5   | لا يوجد PWA support                                | -                 | 🟡 منخفض |
+| 6   | لا يوجد SEO optimization                           | -                 | 🟡 منخفض |
 
 ### Mobile (Flutter)
 
@@ -182,16 +184,16 @@
 
 ### الوحدات الأساسية (Core Modules)
 
-| #   | الوحدة                | الوصف                        | الأولوية | الحالة     |
-| --- | --------------------- | ---------------------------- | -------- | ---------- |
-| 1   | 🍴 **Restaurants**    | إدارة المطاعم والقوائم       | 🔴 حرج   | ✅ تم (Backend + Web MVP) |
-| 2   | 🛒 **Orders**         | نظام الطلبات والسلة          | 🔴 حرج   | ✅ تم (Cart + Checkout MVP) |
-| 3   | 🚗 **Drivers**        | إدارة السائقين والتوصيل      | 🔴 حرج   | ❌ لم يبدأ |
-| 4   | 📍 **Delivery Zones** | مناطق التوصيل والتغطية       | 🔴 حرج   | ❌ لم يبدأ |
-| 5   | 🏷️ **Categories**     | تصنيفات المطاعم والأطباق     | 🟠 عالي  | 🟡 جزئي (Restaurant Categories) |
-| 6   | ⭐ **Reviews**        | نظام التقييمات والمراجعات    | 🟠 عالي  | ❌ لم يبدأ |
+| #   | الوحدة                | الوصف                        | الأولوية | الحالة                                     |
+| --- | --------------------- | ---------------------------- | -------- | ------------------------------------------ |
+| 1   | 🍴 **Restaurants**    | إدارة المطاعم والقوائم       | 🔴 حرج   | ✅ تم (Backend + Web MVP)                  |
+| 2   | 🛒 **Orders**         | نظام الطلبات والسلة          | 🔴 حرج   | ✅ تم (Cart + Checkout MVP)                |
+| 3   | 🚗 **Drivers**        | إدارة السائقين والتوصيل      | 🔴 حرج   | ❌ لم يبدأ                                 |
+| 4   | 📍 **Delivery Zones** | مناطق التوصيل والتغطية       | 🔴 حرج   | ❌ لم يبدأ                                 |
+| 5   | 🏷️ **Categories**     | تصنيفات المطاعم والأطباق     | 🟠 عالي  | 🟡 جزئي (Restaurant Categories)            |
+| 6   | ⭐ **Reviews**        | نظام التقييمات والمراجعات    | 🟠 عالي  | ❌ لم يبدأ                                 |
 | 7   | 🎁 **Promotions**     | الكوبونات والعروض            | 🟠 عالي  | 🟡 تم (Validate + تطبيق الخصم في Checkout) |
-| 8   | 🔔 **Notifications**  | الإشعارات (Push, Email, SMS) | 🟠 عالي  | 🟡 Backend ✅ / Web UI ❌ |
+| 8   | 🔔 **Notifications**  | الإشعارات (Push, Email, SMS) | 🟠 عالي  | 🟡 Backend ✅ / Web UI ❌                  |
 
 ### الميزات الإضافية (Additional Features)
 
@@ -424,7 +426,7 @@
 
 ---
 
-## 🆕 آخر التحديثات (v0.0.9)
+## 🆕 آخر التحديثات (v0.0.10)
 
 ### Backend
 
@@ -436,10 +438,10 @@
 | **About Images API**     | API لإدارة صور صفحة About (5 Slots مستقلة)             |
 | **Site Settings Entity** | جدول جديد لتخزين إعدادات الموقع (key-value)            |
 | **WebSocket Updates**    | أحداث Socket.IO لتحديث صور اللاندنج لحظياً             |
-| **Restaurants API**      | CRUD للمطاعم + تصنيفات المطعم + عناصر القائمة           |
-| **Orders/Cart API**      | Cart كـ Order + عمليات الإضافة/التعديل + Checkout       |
-| **Promotions API**       | Endpoint للتحقق من الكوبونات + Tracking للاستخدام       |
-| **Notifications API**    | تخزين إشعارات + realtime عبر Socket.IO                  |
+| **Restaurants API**      | CRUD للمطاعم + تصنيفات المطعم + عناصر القائمة          |
+| **Orders/Cart API**      | Cart كـ Order + عمليات الإضافة/التعديل + Checkout      |
+| **Promotions API**       | Endpoint للتحقق من الكوبونات + Tracking للاستخدام      |
+| **Notifications API**    | تخزين إشعارات + realtime عبر Socket.IO                 |
 
 ### Frontend Web
 
@@ -459,6 +461,9 @@
 | **Restaurant Details (MVP)**  | تبويبات التصنيفات + عرض الـ menu + Add to cart           |
 | **Cart + Checkout (MVP)**     | تعديل الكميات + promo validate + Checkout                |
 | **Navbar Search/Cart Badge**  | البحث يفتح restaurants مع query + عداد السلة             |
+| **Theme Fix (User Pages)**    | إصلاح الدارك مود ليشمل الصفحات (Profile/Legal/About/…)   |
+| **Theme RGB Helpers**         | إضافة `--ink-rgb`/`--paper-rgb` وتطبيقها في CSS overlays |
+| **Placeholder Pages Themed**  | صفحات Driver/Provider أصبحت تستخدم ألوان الثيم           |
 
 ### Technical Details
 
@@ -500,6 +505,10 @@ Frontend:
 Build/Budgets:
   - Angular production budgets: anyComponentStyle warning=10kB / error=20kB
   - تم تفادي تحذيرات الـ CSS budget في build
+
+Theme notes:
+  - السبب الأساسي للمشكلة كان وجود ألوان hardcoded داخل CSS لبعض الصفحات (خصوصاً rgba للأبيض)
+  - تم تحويلها لاستخدام متغيرات CSS theme-reactive عبر `--ink-rgb`/`--paper-rgb`
 ```
 
 ---
@@ -511,6 +520,7 @@ Build/Budgets:
 3. **التالي مباشرة**: Notifications UI في الويب (قائمة + badge + mark as read + realtime)
 4. **التالي**: Order History UI وربطه بـ Orders API + Tracking status (backend + UI)
 5. **بعدها**: Drivers/Delivery Zones + Real-time tracking (خريطة)
+6. **تحسين سريع**: مراجعة ما تبقى من ألوان hardcoded داخل صفحات الويب (إن وُجدت) لتوحيد الثيم بالكامل
 
 ---
 
