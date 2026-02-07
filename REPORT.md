@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Version](https://img.shields.io/badge/Version-v0.0.11-orange.svg)]()
+[![Version](https://img.shields.io/badge/Version-v0.0.12-orange.svg)]()
 [![Status](https://img.shields.io/badge/Status-قيد%20التطوير-yellow.svg)]()
 [![Last Updated](https://img.shields.io/badge/آخر%20تحديث-فبراير%202026-blue.svg)]()
 
@@ -21,7 +21,7 @@
 - [الميزات الناقصة](#-الميزات-الناقصة-missing-features)
 - [مميزات تميزنا عن المنافسين](#-مميزات-تميزنا-عن-المنافسين-competitive-advantages)
 - [خريطة الطريق المقترحة](#-خريطة-الطريق-المقترحة)
-- [آخر التحديثات](#-آخر-التحديثات-v0011)
+- [آخر التحديثات](#-آخر-التحديثات-v0012)
 
 ---
 
@@ -34,7 +34,7 @@
 | 🖥️ Backend API   | 55%          | 🟡 قيد التطوير |
 | 🌐 Web Frontend  | 45%          | 🟡 قيد التطوير |
 | 📱 Mobile App    | 0%           | 🔴 لم يبدأ     |
-| 🗄️ Database      | 40%          | 🟡 قيد التطوير |
+| 🗄️ Database      | 55%          | 🟡 قيد التطوير |
 | 📚 Documentation | 75%          | 🟢 متقدم       |
 | 🧪 Testing       | 10%          | 🔴 ضعيف        |
 
@@ -81,12 +81,12 @@
 
 ### 2. 🗄️ قاعدة البيانات (Database)
 
-| المشكلة                         | الخطورة  | الوصف                                          |
-| ------------------------------- | -------- | ---------------------------------------------- |
-| **لا يوجد Database Migrations** | 🔴 حرج   | استخدام `synchronize: true` خطير في Production |
-| **لا يوجد Database Seeding**    | 🟠 عالي  | لا يوجد بيانات تجريبية للتطوير                 |
-| **لا يوجد Database Indexes**    | 🟠 عالي  | يؤثر على الأداء مع كبر حجم البيانات            |
-| **لا يوجد Soft Delete**         | 🟡 متوسط | الحذف نهائي بدون استرجاع                       |
+| المشكلة                 | الخطورة | الوصف                                                                         |
+| ----------------------- | ------- | ----------------------------------------------------------------------------- |
+| **Database Migrations** | ✅ تم   | إضافة TypeORM migrations + DataSource + scripts لتشغيلها بأمان                |
+| **Database Seeding**    | ✅ تم   | سكربت `db:seed` لإضافة بيانات تجريبية (users/restaurants/menu/promo)          |
+| **Database Indexes**    | ✅ تم   | إضافة indexes أساسية عبر migration لتحسين الأداء على الجداول الأكثر استخداماً |
+| **Soft Delete**         | ✅ تم   | إضافة `deletedAt` + تحويل عمليات الحذف الأساسية إلى `softDelete`              |
 
 ### 3. 🔑 المصادقة (Authentication)
 
@@ -426,7 +426,7 @@
 
 ---
 
-## 🆕 آخر التحديثات (v0.0.11)
+## 🆕 آخر التحديثات (v0.0.12)
 
 ### Backend
 
@@ -443,6 +443,10 @@
 | **Promotions API**       | Endpoint للتحقق من الكوبونات + Tracking للاستخدام                     |
 | **Notifications API**    | تخزين إشعارات + realtime عبر Socket.IO                                |
 | **Security Hardening**   | Rate limiting + CORS whitelist + Helmet + Validation + CSRF (اختياري) |
+| **DB Migrations**        | TypeORM migrations + DataSource + scripts (`db:migrate:*`)            |
+| **DB Seeding**           | Seed script (`db:seed`) لإنشاء بيانات تطوير جاهزة                     |
+| **DB Indexes**           | Indexes أساسية على restaurants/menu/orders/notifications/...          |
+| **Soft Delete**          | `deletedAt` columns + تحويل حذف كيانات رئيسية إلى soft delete         |
 
 ### Frontend Web
 
@@ -513,6 +517,14 @@ Security (Backend):
   - Helmet enabled (CSP disabled by default)
   - CSRF middleware (double-submit cookie): enable via `CSRF_ENABLED=true`
 
+Database (Backend):
+  - Run migrations: `npm run db:migrate:run`
+  - Show migrations: `npm run db:migrate:show`
+  - Revert last migration: `npm run db:migrate:revert`
+  - Seed dev data: `npm run db:seed`
+  - Safety: `DATABASE_SYNC` is ignored in production (sync=false)
+  - Optional: auto-run migrations on boot via `DATABASE_MIGRATIONS_RUN=true`
+
 Theme notes:
   - السبب الأساسي للمشكلة كان وجود ألوان hardcoded داخل CSS لبعض الصفحات (خصوصاً rgba للأبيض)
   - تم تحويلها لاستخدام متغيرات CSS theme-reactive عبر `--ink-rgb`/`--paper-rgb`
@@ -523,11 +535,11 @@ Theme notes:
 ## 📞 الخطوات القادمة
 
 1. **فوراً**: استكمال الأمان المتبقي في Auth (Refresh Tokens + Token revocation/blacklist + Session management)
-2. **هذا الأسبوع**: Database migrations + seeding + indexes (لـ restaurants/orders)
+2. **هذا الأسبوع**: تشغيل migrations + seed على بيئة dev/staging والتأكد من عدم الاعتماد على `synchronize`
 3. **التالي مباشرة**: Notifications UI في الويب (قائمة + badge + mark as read + realtime)
 4. **التالي**: Order History UI وربطه بـ Orders API + Tracking status (backend + UI)
 5. **بعدها**: Drivers/Delivery Zones + Real-time tracking (خريطة)
-6. **تحسين سريع**: مراجعة ما تبقى من ألوان hardcoded داخل صفحات الويب (إن وُجدت) لتوحيد الثيم بالكامل
+6. **تحسين سريع**: إضافة اختبارات integration/e2e أساسية لمسارات Cart/Checkout + مراجعة أي queries مخصصة مع soft delete
 
 ---
 
