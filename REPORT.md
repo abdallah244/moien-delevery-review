@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Version](https://img.shields.io/badge/Version-v0.0.10-orange.svg)]()
+[![Version](https://img.shields.io/badge/Version-v0.0.11-orange.svg)]()
 [![Status](https://img.shields.io/badge/Status-قيد%20التطوير-yellow.svg)]()
 [![Last Updated](https://img.shields.io/badge/آخر%20تحديث-فبراير%202026-blue.svg)]()
 
@@ -21,7 +21,7 @@
 - [الميزات الناقصة](#-الميزات-الناقصة-missing-features)
 - [مميزات تميزنا عن المنافسين](#-مميزات-تميزنا-عن-المنافسين-competitive-advantages)
 - [خريطة الطريق المقترحة](#-خريطة-الطريق-المقترحة)
-- [آخر التحديثات](#-آخر-التحديثات-v0010)
+- [آخر التحديثات](#-آخر-التحديثات-v0011)
 
 ---
 
@@ -69,15 +69,15 @@
 
 ### 1. 🔐 الأمان (Security)
 
-| المشكلة                                  | الخطورة | الوصف                                        |
-| ---------------------------------------- | ------- | -------------------------------------------- |
-| **لا يوجد Rate Limiting فعلي**           | 🔴 حرج  | الخدمة موجودة كـ placeholder ولكن غير مفعّلة |
-| **لا يوجد تشفير كلمات المرور بـ bcrypt** | 🔴 حرج  | يجب التحقق من تطبيق التشفير في Users Module  |
-| **لا يوجد CORS محكم**                    | 🔴 حرج  | يجب تحديد الـ origins المسموح بها            |
-| **لا يوجد Helmet للـ Headers**           | 🟠 عالي | حماية HTTP headers ناقصة                     |
-| **لا يوجد CSRF Protection**              | 🟠 عالي | حماية ضد هجمات CSRF                          |
-| **لا يوجد SQL Injection Protection**     | 🟠 عالي | TypeORM يوفر حماية أساسية لكن تحتاج مراجعة   |
-| **لا يوجد Input Validation شامل**        | 🟠 عالي | class-validator موجود لكن التغطية غير كاملة  |
+| المشكلة                          | الخطورة         | الوصف                                                                                    |
+| -------------------------------- | --------------- | ---------------------------------------------------------------------------------------- |
+| **Rate Limiting (فعلي)**         | ✅ تم           | تفعيل ThrottlerGuard عالمياً + إمكانية ضبطه عبر env                                      |
+| **تشفير كلمات المرور بـ bcrypt** | ✅ تم           | `passwordHash` يتم توليده/مقارنته في Users Service                                       |
+| **CORS محكم**                    | ✅ تم           | origins قابلة للضبط عبر `CORS_ORIGINS` مع whitelist                                      |
+| **Helmet للـ Headers**           | ✅ تم           | تفعيل `helmet()` افتراضياً (CSP off by default)                                          |
+| **CSRF Protection**              | 🟡 اختياري      | Middleware (Double-submit cookie) عبر `CSRF_ENABLED=true` + لا يطبق مع Bearer auth       |
+| **SQL Injection Protection**     | 🟡 مغطى جزئياً  | TypeORM parameterization + ValidationPipe (مع استمرار المراجعة عند استخدام QueryBuilder) |
+| **Input Validation شامل**        | ✅ تم (أساسياً) | Global ValidationPipe (whitelist/forbid/transform) + DTOs موجودة لمعظم الـ modules       |
 
 ### 2. 🗄️ قاعدة البيانات (Database)
 
@@ -106,7 +106,7 @@
 | #   | المشكلة                                           | الملف/الموقع                             | الأولوية |
 | --- | ------------------------------------------------- | ---------------------------------------- | -------- |
 | 1   | الخدمات المشتركة (22 خدمة) كلها placeholder فارغة | `backend/src/common/services/*`          | 🔴 عالي  |
-| 2   | `main.ts` يحتاج تفعيل Validation Pipe بشكل صحيح   | `backend/src/main.ts`                    | 🔴 عالي  |
+| 2   | `main.ts` يحتاج تفعيل Validation Pipe بشكل صحيح   | `backend/src/main.ts`                    | ✅ تم    |
 | 3   | Error handling غير موحد                           | جميع الـ controllers                     | 🟠 متوسط |
 | 4   | لا يوجد logging فعلي للأخطاء                      | `backend/src/common/services/monitoring` | 🟠 متوسط |
 | 5   | عدم وجود response interceptor موحد                | `backend/src/common/interceptors`        | 🟡 منخفض |
@@ -426,22 +426,23 @@
 
 ---
 
-## 🆕 آخر التحديثات (v0.0.10)
+## 🆕 آخر التحديثات (v0.0.11)
 
 ### Backend
 
-| الميزة                   | الوصف                                                  |
-| ------------------------ | ------------------------------------------------------ |
-| **Site Settings Module** | وحدة جديدة لإدارة إعدادات الموقع                       |
-| **Hero Image API**       | API لرفع وحذف صورة الهيرو سيكشن مع تخزين في Cloudinary |
-| **Landing Images API**   | API لإدارة صور اللاندنج (Hero + 4 صور Why Choose Us)   |
-| **About Images API**     | API لإدارة صور صفحة About (5 Slots مستقلة)             |
-| **Site Settings Entity** | جدول جديد لتخزين إعدادات الموقع (key-value)            |
-| **WebSocket Updates**    | أحداث Socket.IO لتحديث صور اللاندنج لحظياً             |
-| **Restaurants API**      | CRUD للمطاعم + تصنيفات المطعم + عناصر القائمة          |
-| **Orders/Cart API**      | Cart كـ Order + عمليات الإضافة/التعديل + Checkout      |
-| **Promotions API**       | Endpoint للتحقق من الكوبونات + Tracking للاستخدام      |
-| **Notifications API**    | تخزين إشعارات + realtime عبر Socket.IO                 |
+| الميزة                   | الوصف                                                                 |
+| ------------------------ | --------------------------------------------------------------------- |
+| **Site Settings Module** | وحدة جديدة لإدارة إعدادات الموقع                                      |
+| **Hero Image API**       | API لرفع وحذف صورة الهيرو سيكشن مع تخزين في Cloudinary                |
+| **Landing Images API**   | API لإدارة صور اللاندنج (Hero + 4 صور Why Choose Us)                  |
+| **About Images API**     | API لإدارة صور صفحة About (5 Slots مستقلة)                            |
+| **Site Settings Entity** | جدول جديد لتخزين إعدادات الموقع (key-value)                           |
+| **WebSocket Updates**    | أحداث Socket.IO لتحديث صور اللاندنج لحظياً                            |
+| **Restaurants API**      | CRUD للمطاعم + تصنيفات المطعم + عناصر القائمة                         |
+| **Orders/Cart API**      | Cart كـ Order + عمليات الإضافة/التعديل + Checkout                     |
+| **Promotions API**       | Endpoint للتحقق من الكوبونات + Tracking للاستخدام                     |
+| **Notifications API**    | تخزين إشعارات + realtime عبر Socket.IO                                |
+| **Security Hardening**   | Rate limiting + CORS whitelist + Helmet + Validation + CSRF (اختياري) |
 
 ### Frontend Web
 
@@ -506,6 +507,12 @@ Build/Budgets:
   - Angular production budgets: anyComponentStyle warning=10kB / error=20kB
   - تم تفادي تحذيرات الـ CSS budget في build
 
+Security (Backend):
+  - Rate limiting (global): ThrottlerGuard (env: THROTTLE_TTL_SEC, THROTTLE_LIMIT)
+  - CORS whitelist: `CORS_ORIGINS` (comma-separated)
+  - Helmet enabled (CSP disabled by default)
+  - CSRF middleware (double-submit cookie): enable via `CSRF_ENABLED=true`
+
 Theme notes:
   - السبب الأساسي للمشكلة كان وجود ألوان hardcoded داخل CSS لبعض الصفحات (خصوصاً rgba للأبيض)
   - تم تحويلها لاستخدام متغيرات CSS theme-reactive عبر `--ink-rgb`/`--paper-rgb`
@@ -515,7 +522,7 @@ Theme notes:
 
 ## 📞 الخطوات القادمة
 
-1. **فوراً**: معالجة المشاكل الحرجة الأمنية (Rate Limiting, CORS, Helmet, Refresh Tokens)
+1. **فوراً**: استكمال الأمان المتبقي في Auth (Refresh Tokens + Token revocation/blacklist + Session management)
 2. **هذا الأسبوع**: Database migrations + seeding + indexes (لـ restaurants/orders)
 3. **التالي مباشرة**: Notifications UI في الويب (قائمة + badge + mark as read + realtime)
 4. **التالي**: Order History UI وربطه بـ Orders API + Tracking status (backend + UI)
