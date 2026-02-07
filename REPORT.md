@@ -90,12 +90,12 @@
 
 ### 3. 🔑 المصادقة (Authentication)
 
-| المشكلة                        | الخطورة  | الوصف                                       |
-| ------------------------------ | -------- | ------------------------------------------- |
-| **لا يوجد Refresh Token**      | 🔴 حرج   | المستخدم سيخرج من النظام بعد انتهاء الـ JWT |
-| **لا يوجد Token Blacklisting** | 🟠 عالي  | لا يمكن إبطال التوكنات                      |
-| **لا يوجد Session Management** | 🟠 عالي  | لا يوجد تتبع للجلسات النشطة                 |
-| **لا يوجد OAuth**              | 🟡 متوسط | تسجيل الدخول بـ Google/Apple/Facebook       |
+| المشكلة                | الخطورة  | الوصف                                                         |
+| ---------------------- | -------- | ------------------------------------------------------------- |
+| **Refresh Token**      | ✅ تم    | Refresh token opaque + rotation عبر sessions في DB            |
+| **Token Blacklisting** | ✅ تم    | إبطال الجلسة (revoke session) يبطل access tokens المرتبطة بها |
+| **Session Management** | ✅ تم    | جدول sessions + list/revoke endpoints لتتبع الجلسات النشطة    |
+| **لا يوجد OAuth**      | 🟡 متوسط | تسجيل الدخول بـ Google/Apple/Facebook                         |
 
 ---
 
@@ -522,8 +522,21 @@ Database (Backend):
   - Show migrations: `npm run db:migrate:show`
   - Revert last migration: `npm run db:migrate:revert`
   - Seed dev data: `npm run db:seed`
+  - Seed dry-run: `npm run db:seed:dry`
   - Safety: `DATABASE_SYNC` is ignored in production (sync=false)
   - Optional: auto-run migrations on boot via `DATABASE_MIGRATIONS_RUN=true`
+
+Auth (Backend):
+  - POST /api/v1/auth/user/login
+  - POST /api/v1/auth/user/refresh
+  - POST /api/v1/auth/user/logout
+  - GET  /api/v1/auth/user/sessions (Bearer)
+  - POST /api/v1/auth/user/sessions/:id/revoke (Bearer)
+  - POST /api/v1/auth/admin/login
+  - POST /api/v1/auth/admin/refresh
+  - POST /api/v1/auth/admin/logout
+  - GET  /api/v1/auth/admin/sessions (Bearer)
+  - POST /api/v1/auth/admin/sessions/:id/revoke (Bearer)
 
 Theme notes:
   - السبب الأساسي للمشكلة كان وجود ألوان hardcoded داخل CSS لبعض الصفحات (خصوصاً rgba للأبيض)
