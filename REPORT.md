@@ -2,11 +2,11 @@
 
 <div align="center">
 
-[![Version](https://img.shields.io/badge/Version-v0.0.8-orange.svg)]()
+[![Version](https://img.shields.io/badge/Version-v0.0.9-orange.svg)]()
 [![Status](https://img.shields.io/badge/Status-قيد%20التطوير-yellow.svg)]()
 [![Last Updated](https://img.shields.io/badge/آخر%20تحديث-فبراير%202026-blue.svg)]()
 
-**📅 تاريخ التقرير: 6 فبراير 2026**
+**📅 تاريخ التقرير: 7 فبراير 2026**
 
 </div>
 
@@ -21,7 +21,7 @@
 - [الميزات الناقصة](#-الميزات-الناقصة-missing-features)
 - [مميزات تميزنا عن المنافسين](#-مميزات-تميزنا-عن-المنافسين-competitive-advantages)
 - [خريطة الطريق المقترحة](#-خريطة-الطريق-المقترحة)
-- [آخر التحديثات](#-آخر-التحديثات-v008)
+- [آخر التحديثات](#-آخر-التحديثات-v009)
 
 ---
 
@@ -31,24 +31,29 @@
 
 | المكون           | نسبة الإنجاز | الحالة         |
 | ---------------- | ------------ | -------------- |
-| 🖥️ Backend API   | 30%          | 🟡 قيد التطوير |
-| 🌐 Web Frontend  | 20%          | 🟡 قيد التطوير |
+| 🖥️ Backend API   | 55%          | 🟡 قيد التطوير |
+| 🌐 Web Frontend  | 45%          | 🟡 قيد التطوير |
 | 📱 Mobile App    | 0%           | 🔴 لم يبدأ     |
-| 🗄️ Database      | 35%          | 🟡 قيد التطوير |
-| 📚 Documentation | 70%          | 🟢 متقدم       |
-| 🧪 Testing       | 5%           | 🔴 ضعيف        |
+| 🗄️ Database      | 40%          | 🟡 قيد التطوير |
+| 📚 Documentation | 75%          | 🟢 متقدم       |
+| 🧪 Testing       | 10%          | 🔴 ضعيف        |
 
 ### ما تم إنجازه ✅
 
 | المكون   | التفاصيل                                                               |
 | -------- | ---------------------------------------------------------------------- |
 | Backend  | 5 وحدات (Admin Staff, Users, Support Tickets, Payments, Site Settings) |
+| Backend  | Restaurants + Restaurant Categories + Menu Items (CRUD + filtering)     |
+| Backend  | Orders (Cart) + Checkout (promoCode + discount)                         |
+| Backend  | Promotions (Validate + Redemption tracking)                              |
+| Backend  | Notifications (DB + Socket.IO realtime عبر namespace /notifications)     |
 | Backend  | 22 خدمة مشتركة (Security, Performance, Communication, etc.)            |
 | Backend  | إعداد PostgreSQL + TypeORM                                             |
 | Backend  | تكامل Stripe + Cloudinary                                              |
 | Frontend | 8 components + 11 services                                             |
 | Frontend | نظام المصادقة + لوحة تحكم الأدمن                                       |
 | Frontend | صفحة الهبوط (Landing Page) مع 7 لغات + تحسينات أداء (Skeleton/Lazy)    |
+| Frontend | صفحات المتجر (MVP): Restaurants List + Restaurant Details/Menu + Cart + Checkout |
 | Frontend | إدارة صور اللاندنج (Hero + 4 صور Why Choose Us) عبر Cloudinary         |
 | Frontend | صفحة About (Wolt-inspired) مع تقليل السكاشن + تحسينات UI/Contrast      |
 | Frontend | إدارة صور صفحة About عبر الأدمن (Slots مستقلة عن اللاندنج)             |
@@ -111,7 +116,7 @@
 | --- | -------------------------------- | ----------------- | -------- |
 | 1   | لا يوجد Error Handling موحد      | جميع الـ services | 🔴 عالي  |
 | 2   | لا يوجد Loading State عام        | App level         | 🟠 متوسط |
-| 3   | لا يوجد Lazy Loading للـ modules | `app.routes.ts`   | 🟠 متوسط |
+| 3   | لا يوجد HTTP Interceptor موحد (Auth/Errors/Retry) | App level | 🟠 متوسط |
 | 4   | لا يوجد PWA support              | -                 | 🟡 منخفض |
 | 5   | لا يوجد SEO optimization         | -                 | 🟡 منخفض |
 
@@ -179,14 +184,14 @@
 
 | #   | الوحدة                | الوصف                        | الأولوية | الحالة     |
 | --- | --------------------- | ---------------------------- | -------- | ---------- |
-| 1   | 🍴 **Restaurants**    | إدارة المطاعم والقوائم       | 🔴 حرج   | ❌ لم يبدأ |
-| 2   | 🛒 **Orders**         | نظام الطلبات والسلة          | 🔴 حرج   | ❌ لم يبدأ |
+| 1   | 🍴 **Restaurants**    | إدارة المطاعم والقوائم       | 🔴 حرج   | ✅ تم (Backend + Web MVP) |
+| 2   | 🛒 **Orders**         | نظام الطلبات والسلة          | 🔴 حرج   | ✅ تم (Cart + Checkout MVP) |
 | 3   | 🚗 **Drivers**        | إدارة السائقين والتوصيل      | 🔴 حرج   | ❌ لم يبدأ |
 | 4   | 📍 **Delivery Zones** | مناطق التوصيل والتغطية       | 🔴 حرج   | ❌ لم يبدأ |
-| 5   | 🏷️ **Categories**     | تصنيفات المطاعم والأطباق     | 🟠 عالي  | ❌ لم يبدأ |
+| 5   | 🏷️ **Categories**     | تصنيفات المطاعم والأطباق     | 🟠 عالي  | 🟡 جزئي (Restaurant Categories) |
 | 6   | ⭐ **Reviews**        | نظام التقييمات والمراجعات    | 🟠 عالي  | ❌ لم يبدأ |
-| 7   | 🎁 **Promotions**     | الكوبونات والعروض            | 🟠 عالي  | ❌ لم يبدأ |
-| 8   | 🔔 **Notifications**  | الإشعارات (Push, Email, SMS) | 🟠 عالي  | ❌ لم يبدأ |
+| 7   | 🎁 **Promotions**     | الكوبونات والعروض            | 🟠 عالي  | 🟡 تم (Validate + تطبيق الخصم في Checkout) |
+| 8   | 🔔 **Notifications**  | الإشعارات (Push, Email, SMS) | 🟠 عالي  | 🟡 Backend ✅ / Web UI ❌ |
 
 ### الميزات الإضافية (Additional Features)
 
@@ -208,17 +213,17 @@
 | #   | الصفحة/الميزة               | الوصف               | الأولوية |
 | --- | --------------------------- | ------------------- | -------- |
 | 1   | 🏠 **Landing Page**         | ✅ تم تنفيذها (MVP) | 🔴 حرج   |
-| 2   | 🍴 **Restaurant List**      | قائمة المطاعم       | 🔴 حرج   |
-| 3   | 📋 **Restaurant Menu**      | قائمة الطعام        | 🔴 حرج   |
-| 4   | 🛒 **Shopping Cart**        | سلة التسوق          | 🔴 حرج   |
-| 5   | 💳 **Checkout**             | إتمام الطلب والدفع  | 🔴 حرج   |
+| 2   | 🍴 **Restaurant List**      | ✅ تم تنفيذها (MVP) | 🔴 حرج   |
+| 3   | 📋 **Restaurant Menu**      | ✅ تم تنفيذها (MVP) | 🔴 حرج   |
+| 4   | 🛒 **Shopping Cart**        | ✅ تم تنفيذها (MVP) | 🔴 حرج   |
+| 5   | 💳 **Checkout**             | ✅ تم تنفيذها (MVP) | 🔴 حرج   |
 | 6   | 📍 **Order Tracking**       | تتبع الطلب          | 🔴 حرج   |
 | 7   | 📜 **Order History**        | سجل الطلبات         | 🟠 عالي  |
 | 8   | 👤 **User Profile**         | الملف الشخصي        | 🟠 عالي  |
 | 9   | 🏪 **Restaurant Dashboard** | لوحة تحكم المطعم    | 🟠 عالي  |
 | 10  | 🚗 **Driver Dashboard**     | لوحة تحكم السائق    | 🟠 عالي  |
 
-> ملاحظة: Landing Page مكتملة كـ MVP، وباقي صفحات المتجر ما زالت ضمن الميزات الناقصة.
+> ملاحظة: تم تنفيذ Flow أساسي للمتجر (Restaurants → Menu → Cart → Checkout)، وباقي صفحات المتجر ما زالت ضمن الميزات الناقصة.
 
 ### تطبيق الموبايل (Mobile App)
 
@@ -419,7 +424,7 @@
 
 ---
 
-## 🆕 آخر التحديثات (v0.0.8)
+## 🆕 آخر التحديثات (v0.0.9)
 
 ### Backend
 
@@ -431,6 +436,10 @@
 | **About Images API**     | API لإدارة صور صفحة About (5 Slots مستقلة)             |
 | **Site Settings Entity** | جدول جديد لتخزين إعدادات الموقع (key-value)            |
 | **WebSocket Updates**    | أحداث Socket.IO لتحديث صور اللاندنج لحظياً             |
+| **Restaurants API**      | CRUD للمطاعم + تصنيفات المطعم + عناصر القائمة           |
+| **Orders/Cart API**      | Cart كـ Order + عمليات الإضافة/التعديل + Checkout       |
+| **Promotions API**       | Endpoint للتحقق من الكوبونات + Tracking للاستخدام       |
+| **Notifications API**    | تخزين إشعارات + realtime عبر Socket.IO                  |
 
 ### Frontend Web
 
@@ -446,6 +455,10 @@
 | **Cute Navbar Tabs**          | أزرار الـ Cute Navbar تعمل كتبديل لعرض الصور والنصوص     |
 | **Skeleton + Toast Loading**  | Skeleton + Lazy loading للصور + Loading toast عند البطء  |
 | **About Page UI**             | صفحة About جديدة بألوان Landing v2 + تداخل سيكشنات       |
+| **Restaurants Listing (MVP)** | قائمة مطاعم حقيقية من الـ API + بحث + فلتر Open Only     |
+| **Restaurant Details (MVP)**  | تبويبات التصنيفات + عرض الـ menu + Add to cart           |
+| **Cart + Checkout (MVP)**     | تعديل الكميات + promo validate + Checkout                |
+| **Navbar Search/Cart Badge**  | البحث يفتح restaurants مع query + عداد السلة             |
 
 ### Technical Details
 
@@ -465,14 +478,21 @@ Backend:
 
 WebSocket:
   - Namespace: /site-settings
-  - Event: hero-image.updated { url: string | null }
-  - Event: landing-image.updated { slot: 'hero'|'whyFresh'|'whyFast'|'whySupport'|'whyQuality', url: string | null }
-  - Event: about-image.updated { slot: 'aboutHero'|'aboutStory'|'aboutFeature1'|'aboutFeature2'|'aboutFeature3', url: string | null }
+    - Event: hero-image.updated { url: string | null }
+    - Event: landing-image.updated { slot: 'hero'|'whyFresh'|'whyFast'|'whySupport'|'whyQuality', url: string | null }
+    - Event: about-image.updated { slot: 'aboutHero'|'aboutStory'|'aboutFeature1'|'aboutFeature2'|'aboutFeature3', url: string | null }
+  - Namespace: /notifications
+    - Event: notifications.created (NotificationEntity)
+    - Event: notifications.read { userId: string, id: string }
+    - Event: notifications.readAll { userId: string }
 
 Frontend:
   - /admin/hero-settings                            (صفحة الإدارة)
   - /admin/about-images                             (صفحة إدارة صور About)
   - /about-us                                       (صفحة About)
+  - /restaurants                                    (قائمة المطاعم)
+  - /restaurants/:id                                (تفاصيل المطعم + المنيو)
+  - /cart                                           (السلة + إتمام الطلب)
   - صفحة الإدارة تعرض 5 Slots (Hero + 4 صور Why Choose Us)
   - الهيرو يعرض صورة أو اللون الأحمر الافتراضي
   - تحديث لحظي عند رفع/حذف الصور من الأدمن
@@ -486,16 +506,17 @@ Build/Budgets:
 
 ## 📞 الخطوات القادمة
 
-1. **فوراً**: معالجة المشاكل الحرجة الأمنية
-2. **هذا الأسبوع**: إعداد Docker و CI/CD
-3. **الأسبوع القادم**: بدء العمل على Restaurants Module
-4. **هذا الشهر**: إنهاء المرحلة 1 من خريطة الطريق
+1. **فوراً**: معالجة المشاكل الحرجة الأمنية (Rate Limiting, CORS, Helmet, Refresh Tokens)
+2. **هذا الأسبوع**: Database migrations + seeding + indexes (لـ restaurants/orders)
+3. **التالي مباشرة**: Notifications UI في الويب (قائمة + badge + mark as read + realtime)
+4. **التالي**: Order History UI وربطه بـ Orders API + Tracking status (backend + UI)
+5. **بعدها**: Drivers/Delivery Zones + Real-time tracking (خريطة)
 
 ---
 
 <div align="center">
 
-**📝 آخر تحديث: 6 فبراير 2026**
+**📝 آخر تحديث: 7 فبراير 2026**
 
 [![Made with ❤️](https://img.shields.io/badge/Made%20with-❤️-red.svg)]()
 [![For Moien Delivery](https://img.shields.io/badge/For-Moien%20Delivery-blue.svg)]()
