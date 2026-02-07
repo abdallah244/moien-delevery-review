@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Version](https://img.shields.io/badge/Version-v0.0.12-orange.svg)]()
+[![Version](https://img.shields.io/badge/Version-v0.0.13-orange.svg)]()
 [![Status](https://img.shields.io/badge/Status-قيد%20التطوير-yellow.svg)]()
 [![Last Updated](https://img.shields.io/badge/آخر%20تحديث-فبراير%202026-blue.svg)]()
 
@@ -21,7 +21,7 @@
 - [الميزات الناقصة](#-الميزات-الناقصة-missing-features)
 - [مميزات تميزنا عن المنافسين](#-مميزات-تميزنا-عن-المنافسين-competitive-advantages)
 - [خريطة الطريق المقترحة](#-خريطة-الطريق-المقترحة)
-- [آخر التحديثات](#-آخر-التحديثات-v0012)
+- [آخر التحديثات](#-آخر-التحديثات-v0013)
 
 ---
 
@@ -31,11 +31,11 @@
 
 | المكون           | نسبة الإنجاز | الحالة         |
 | ---------------- | ------------ | -------------- |
-| 🖥️ Backend API   | 55%          | 🟡 قيد التطوير |
-| 🌐 Web Frontend  | 45%          | 🟡 قيد التطوير |
+| 🖥️ Backend API   | 65%          | 🟡 قيد التطوير |
+| 🌐 Web Frontend  | 50%          | 🟡 قيد التطوير |
 | 📱 Mobile App    | 0%           | 🔴 لم يبدأ     |
-| 🗄️ Database      | 55%          | 🟡 قيد التطوير |
-| 📚 Documentation | 75%          | 🟢 متقدم       |
+| 🗄️ Database      | 60%          | 🟡 قيد التطوير |
+| 📚 Documentation | 76%          | 🟢 متقدم       |
 | 🧪 Testing       | 10%          | 🔴 ضعيف        |
 
 ### ما تم إنجازه ✅
@@ -134,22 +134,22 @@
 
 ### 1. 🏗️ الهيكل والتنظيم (Architecture)
 
-| #   | التحسين                       | الوصف                                                  | الأولوية |
-| --- | ----------------------------- | ------------------------------------------------------ | -------- |
-| 1   | **فصل DTOs**                  | إنشاء DTOs منفصلة لكل عملية (Create, Update, Response) | 🔴 عالي  |
-| 2   | **Repository Pattern**        | فصل الـ data access logic عن الـ services              | 🟠 متوسط |
-| 3   | **Event-Driven Architecture** | استخدام events للتواصل بين الـ modules                 | 🟠 متوسط |
-| 4   | **Monorepo Tools**            | استخدام Nx أو Turborepo لإدارة المشروع                 | 🟡 منخفض |
+| #   | التحسين                       | الوصف                                                 | الأولوية |
+| --- | ----------------------------- | ----------------------------------------------------- | -------- |
+| 1   | **فصل DTOs**                  | ✅ تم جزئياً (Users module: Response DTOs في `dto/*`) | 🔴 عالي  |
+| 2   | **Repository Pattern**        | ✅ تم جزئياً (UsersRepository كمثال)                  | 🟠 متوسط |
+| 3   | **Event-Driven Architecture** | ✅ تم جزئياً (users.registered → welcome email)       | 🟠 متوسط |
+| 4   | **Monorepo Tools**            | ✅ تم (npm workspaces + root scripts)                 | 🟡 منخفض |
 
 ### 2. ⚡ الأداء (Performance)
 
-| #   | التحسين                         | الوصف                              | الأولوية |
-| --- | ------------------------------- | ---------------------------------- | -------- |
-| 1   | **Redis Caching**               | إضافة caching للـ queries المتكررة | 🔴 عالي  |
-| 2   | **Database Connection Pooling** | تحسين إدارة الاتصالات              | 🟠 متوسط |
-| 3   | **API Response Compression**    | ضغط الـ responses                  | 🟠 متوسط |
-| 4   | **Image Optimization**          | ضغط وتحسين الصور                   | 🟡 منخفض |
-| 5   | **CDN Integration**             | استخدام CDN للملفات الثابتة        | 🟡 منخفض |
+| #   | التحسين                         | الوصف                                                                       | الأولوية |
+| --- | ------------------------------- | --------------------------------------------------------------------------- | -------- |
+| 1   | **Redis Caching**               | ✅ تم (CacheModule + caching فعلي للمطاعم/القوائم/التصنيفات + invalidation) | 🔴 عالي  |
+| 2   | **Database Connection Pooling** | ✅ تم (pg pool عبر TypeORM `extra` + env `DB_POOL_*`)                       | 🟠 متوسط |
+| 3   | **API Response Compression**    | ✅ تم (express compression middleware)                                      | 🟠 متوسط |
+| 4   | **Image Optimization**          | 🟡 جزئي (Cloudinary transforms في الويب + جاهز للتوسيع)                     | 🟡 منخفض |
+| 5   | **CDN Integration**             | 🟡 جزئي (Cache-Control للـ uploads + جاهز لوضع CDN قدام /uploads)           | 🟡 منخفض |
 
 ### 3. 🧪 الاختبارات (Testing)
 
@@ -426,7 +426,7 @@
 
 ---
 
-## 🆕 آخر التحديثات (v0.0.12)
+## 🆕 آخر التحديثات (v0.0.13)
 
 ### Backend
 
@@ -453,31 +453,43 @@
 | **Monitoring Logs API**    | `/api/v1/monitoring/logs/*` (مقفولة في production إلا إذا `MONITORING_LOGS_PUBLIC=true`) |
 | **Response Envelope**      | Interceptor اختياري لتوحيد الردود `{ ok: true, data }` عبر `RESPONSE_ENVELOPE=true`      |
 | **Auth Smoke Test**        | تم اختبار login → me → sessions → refresh → logout → refresh fails (401)                 |
+| **Users DTO Split**        | نقل Response DTOs إلى `backend/src/modules/users/dto/*` (PublicUser/PublicSummary/...)   |
+| **Users Repository**       | إضافة `UsersRepository` لفصل data-access عن UsersService                                 |
+| **User Domain Events**     | حدث `users.registered` + listener لإرسال welcome email (best-effort)                     |
+| **Root Monorepo Scripts**  | إضافة root `package.json` مع npm workspaces (backend + wfrontend)                        |
+| **Redis-backed Cache**     | تفعيل Nest CacheModule مع Redis (اختياري) + fallback in-memory                           |
+| **Hot Endpoints Caching**  | caching فعلي لـ Restaurants/Categories/MenuItems مع namespace version invalidation       |
+| **HTTP Compression**       | تفعيل `compression` middleware لضغط responses (gzip/deflate)                             |
+| **DB Pool Tuning**         | إضافة env `DB_POOL_*` وتمريرها لـ pg pool عبر TypeORM                                    |
+| **Performance APIs**       | إضافة `/api/v1/performance/*` لعرض stats (cache/optimizer/response metrics/...)          |
+| **Uploads Cache Headers**  | إضافة Cache-Control/ETag لـ `/uploads` مع max-age قابل للضبط                             |
 
 ### Frontend Web
 
-| الميزة                        | الوصف                                                                  |
-| ----------------------------- | ---------------------------------------------------------------------- |
-| **HTTP Interceptors**         | Interceptors موحدة (Auth + Retry + Loading + Errors) على مستوى التطبيق |
-| **Global Loading State**      | Overlay عام يظهر أثناء أي HTTP request عبر LoadingService              |
-| **Unified Error Handling**    | ErrorInterceptor + GlobalErrorHandler مع Toast موحد للأخطاء            |
-| **Landing Images Admin**      | صفحة الأدمن أصبحت لإدارة صور اللاندنج (5 Slots)                        |
-| **About Images Admin**        | صفحة أدمن جديدة لإدارة صور صفحة About (5 Slots)                        |
-| **Landing Page Dynamic Hero** | الهيرو سيكشن يدعم صورة خلفية ديناميكية مع نفس التقوس                   |
-| **Drag & Drop Upload**        | رفع الصور بالسحب والإفلات أو الضغط للتصفح                              |
-| **Preview with Curve**        | معاينة الصورة مع نفس شكل التقوس السفلي                                 |
-| **7 Languages Support**       | صفحة الهبوط تدعم 7 لغات (en, fr, lb, de, it, pt, es)                   |
-| **WebSocket Real-time**       | تحديث فوري لصور اللاندنج (Hero + Why) باستخدام Socket.IO               |
-| **Cute Navbar Tabs**          | أزرار الـ Cute Navbar تعمل كتبديل لعرض الصور والنصوص                   |
-| **Skeleton + Toast Loading**  | Skeleton + Lazy loading للصور + Loading toast عند البطء                |
-| **About Page UI**             | صفحة About جديدة بألوان Landing v2 + تداخل سيكشنات                     |
-| **Restaurants Listing (MVP)** | قائمة مطاعم حقيقية من الـ API + بحث + فلتر Open Only                   |
-| **Restaurant Details (MVP)**  | تبويبات التصنيفات + عرض الـ menu + Add to cart                         |
-| **Cart + Checkout (MVP)**     | تعديل الكميات + promo validate + Checkout                              |
-| **Navbar Search/Cart Badge**  | البحث يفتح restaurants مع query + عداد السلة                           |
-| **Theme Fix (User Pages)**    | إصلاح الدارك مود ليشمل الصفحات (Profile/Legal/About/…)                 |
-| **Theme RGB Helpers**         | إضافة `--ink-rgb`/`--paper-rgb` وتطبيقها في CSS overlays               |
-| **Placeholder Pages Themed**  | صفحات Driver/Provider أصبحت تستخدم ألوان الثيم                         |
+| الميزة                        | الوصف                                                                         |
+| ----------------------------- | ----------------------------------------------------------------------------- |
+| **HTTP Interceptors**         | Interceptors موحدة (Auth + Retry + Loading + Errors) على مستوى التطبيق        |
+| **Global Loading State**      | Overlay عام يظهر أثناء أي HTTP request عبر LoadingService                     |
+| **Unified Error Handling**    | ErrorInterceptor + GlobalErrorHandler مع Toast موحد للأخطاء                   |
+| **Landing Images Admin**      | صفحة الأدمن أصبحت لإدارة صور اللاندنج (5 Slots)                               |
+| **About Images Admin**        | صفحة أدمن جديدة لإدارة صور صفحة About (5 Slots)                               |
+| **Landing Page Dynamic Hero** | الهيرو سيكشن يدعم صورة خلفية ديناميكية مع نفس التقوس                          |
+| **Drag & Drop Upload**        | رفع الصور بالسحب والإفلات أو الضغط للتصفح                                     |
+| **Preview with Curve**        | معاينة الصورة مع نفس شكل التقوس السفلي                                        |
+| **7 Languages Support**       | صفحة الهبوط تدعم 7 لغات (en, fr, lb, de, it, pt, es)                          |
+| **WebSocket Real-time**       | تحديث فوري لصور اللاندنج (Hero + Why) باستخدام Socket.IO                      |
+| **Cute Navbar Tabs**          | أزرار الـ Cute Navbar تعمل كتبديل لعرض الصور والنصوص                          |
+| **Skeleton + Toast Loading**  | Skeleton + Lazy loading للصور + Loading toast عند البطء                       |
+| **About Page UI**             | صفحة About جديدة بألوان Landing v2 + تداخل سيكشنات                            |
+| **Restaurants Listing (MVP)** | قائمة مطاعم حقيقية من الـ API + بحث + فلتر Open Only                          |
+| **Restaurant Details (MVP)**  | تبويبات التصنيفات + عرض الـ menu + Add to cart                                |
+| **Cart + Checkout (MVP)**     | تعديل الكميات + promo validate + Checkout                                     |
+| **Navbar Search/Cart Badge**  | البحث يفتح restaurants مع query + عداد السلة                                  |
+| **Theme Fix (User Pages)**    | إصلاح الدارك مود ليشمل الصفحات (Profile/Legal/About/…)                        |
+| **Theme RGB Helpers**         | إضافة `--ink-rgb`/`--paper-rgb` وتطبيقها في CSS overlays                      |
+| **Placeholder Pages Themed**  | صفحات Driver/Provider أصبحت تستخدم ألوان الثيم                                |
+| **User Tokens Flow**          | تسجيل دخول المستخدم أصبح عبر `/auth/user/login` + تخزين access/refresh tokens |
+| **User Logout Revocation**    | logout يعمل best-effort على `/auth/user/logout` ثم يمسح session + tokens      |
 
 ### Technical Details
 
