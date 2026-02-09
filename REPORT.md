@@ -433,39 +433,48 @@
 
 ### Backend
 
-| الميزة                     | الوصف                                                                                    |
-| -------------------------- | ---------------------------------------------------------------------------------------- |
-| **Site Settings Module**   | وحدة جديدة لإدارة إعدادات الموقع                                                         |
-| **Hero Image API**         | API لرفع وحذف صورة الهيرو سيكشن مع تخزين في Cloudinary                                   |
-| **Landing Images API**     | API لإدارة صور اللاندنج (Hero + 4 صور Why Choose Us)                                     |
-| **About Images API**       | API لإدارة صور صفحة About (5 Slots مستقلة)                                               |
-| **Site Settings Entity**   | جدول جديد لتخزين إعدادات الموقع (key-value)                                              |
-| **WebSocket Updates**      | أحداث Socket.IO لتحديث صور اللاندنج لحظياً                                               |
-| **Restaurants API**        | CRUD للمطاعم + تصنيفات المطعم + عناصر القائمة                                            |
-| **Orders/Cart API**        | Cart كـ Order + عمليات الإضافة/التعديل + Checkout                                        |
-| **Promotions API**         | Endpoint للتحقق من الكوبونات + Tracking للاستخدام                                        |
-| **Notifications API**      | تخزين إشعارات + realtime عبر Socket.IO                                                   |
-| **Security Hardening**     | Rate limiting + CORS whitelist + Helmet + Validation + CSRF (اختياري)                    |
-| **DB Migrations**          | TypeORM migrations + DataSource + scripts (`db:migrate:*`)                               |
-| **DB Seeding**             | Seed script (`db:seed`) لإنشاء بيانات تطوير جاهزة                                        |
-| **DB Indexes**             | Indexes أساسية على restaurants/menu/orders/notifications/...                             |
-| **Soft Delete**            | `deletedAt` columns + تحويل حذف كيانات رئيسية إلى soft delete                            |
-| **Common Platform Infra**  | CommonModule عالمي لتجميع وتصدير الـ shared services + DI جاهز                           |
-| **Unified Error Handling** | Global exception filter مع JSON موحد للأخطاء + requestId                                 |
-| **HTTP Logging**           | Global interceptor لتسجيل الطلبات والمدة + تجميع logs في LoggerService                   |
-| **Monitoring Logs API**    | `/api/v1/monitoring/logs/*` (مقفولة في production إلا إذا `MONITORING_LOGS_PUBLIC=true`) |
-| **Response Envelope**      | Interceptor اختياري لتوحيد الردود `{ ok: true, data }` عبر `RESPONSE_ENVELOPE=true`      |
-| **Auth Smoke Test**        | تم اختبار login → me → sessions → refresh → logout → refresh fails (401)                 |
-| **Users DTO Split**        | نقل Response DTOs إلى `backend/src/modules/users/dto/*` (PublicUser/PublicSummary/...)   |
-| **Users Repository**       | إضافة `UsersRepository` لفصل data-access عن UsersService                                 |
-| **User Domain Events**     | حدث `users.registered` + listener لإرسال welcome email (best-effort)                     |
-| **Root Monorepo Scripts**  | إضافة root `package.json` مع npm workspaces (backend + wfrontend)                        |
-| **Redis-backed Cache**     | تفعيل Nest CacheModule مع Redis (اختياري) + fallback in-memory                           |
-| **Hot Endpoints Caching**  | caching فعلي لـ Restaurants/Categories/MenuItems مع namespace version invalidation       |
-| **HTTP Compression**       | تفعيل `compression` middleware لضغط responses (gzip/deflate)                             |
-| **DB Pool Tuning**         | إضافة env `DB_POOL_*` وتمريرها لـ pg pool عبر TypeORM                                    |
-| **Performance APIs**       | إضافة `/api/v1/performance/*` لعرض stats (cache/optimizer/response metrics/...)          |
-| **Uploads Cache Headers**  | إضافة Cache-Control/ETag لـ `/uploads` مع max-age قابل للضبط                             |
+| الميزة                       | الوصف                                                                                                      |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| **Site Settings Module**     | وحدة جديدة لإدارة إعدادات الموقع                                                                           |
+| **Hero Image API**           | API لرفع وحذف صورة الهيرو سيكشن مع تخزين في Cloudinary                                                     |
+| **Landing Images API**       | API لإدارة صور اللاندنج (Hero + 4 صور Why Choose Us)                                                       |
+| **About Images API**         | API لإدارة صور صفحة About (5 Slots مستقلة)                                                                 |
+| **Site Settings Entity**     | جدول جديد لتخزين إعدادات الموقع (key-value)                                                                |
+| **WebSocket Updates**        | أحداث Socket.IO لتحديث صور اللاندنج لحظياً                                                                 |
+| **Restaurants API**          | CRUD للمطاعم + تصنيفات المطعم + عناصر القائمة                                                              |
+| **Orders/Cart API**          | Cart كـ Order + عمليات الإضافة/التعديل + Checkout                                                          |
+| **Orders (My Orders) API**   | Endpoints آمنة للمستخدم الحالي: `/orders/me` + `/orders/me/:id` + `/orders/me/:id/tracking`                |
+| **Promotions API**           | Endpoint للتحقق من الكوبونات + Tracking للاستخدام                                                          |
+| **Notifications API**        | تخزين إشعارات + realtime عبر Socket.IO                                                                     |
+| **Security Hardening**       | Rate limiting + CORS whitelist + Helmet + Validation + CSRF (اختياري)                                      |
+| **DB Migrations**            | TypeORM migrations + DataSource + scripts (`db:migrate:*`)                                                 |
+| **DB Seeding**               | Seed script (`db:seed`) لإنشاء بيانات تطوير جاهزة                                                          |
+| **DB Indexes**               | Indexes أساسية على restaurants/menu/orders/notifications/...                                               |
+| **Soft Delete**              | `deletedAt` columns + تحويل حذف كيانات رئيسية إلى soft delete                                              |
+| **Common Platform Infra**    | CommonModule عالمي لتجميع وتصدير الـ shared services + DI جاهز                                             |
+| **Unified Error Handling**   | Global exception filter مع JSON موحد للأخطاء + requestId                                                   |
+| **Exception Log Noise**      | تقليل الضوضاء: 401/403/404 تُسجل كـ info بدل warn + إضافة userId/message للـ metadata                      |
+| **HTTP Logging**             | Global interceptor لتسجيل الطلبات والمدة + تجميع logs في LoggerService                                     |
+| **Monitoring Logs API**      | `/api/v1/monitoring/logs/*` (مقفولة في production إلا إذا `MONITORING_LOGS_PUBLIC=true`)                   |
+| **Response Envelope**        | Interceptor اختياري لتوحيد الردود `{ ok: true, data }` عبر `RESPONSE_ENVELOPE=true`                        |
+| **Auth Smoke Test**          | تم اختبار login → me → sessions → refresh → logout → refresh fails (401)                                   |
+| **Users DTO Split**          | نقل Response DTOs إلى `backend/src/modules/users/dto/*` (PublicUser/PublicSummary/...)                     |
+| **Users Repository**         | إضافة `UsersRepository` لفصل data-access عن UsersService                                                   |
+| **User Domain Events**       | حدث `users.registered` + listener لإرسال welcome email (best-effort)                                       |
+| **Root Monorepo Scripts**    | إضافة root `package.json` مع npm workspaces (backend + wfrontend)                                          |
+| **Redis-backed Cache**       | تفعيل Nest CacheModule مع Redis (اختياري) + fallback in-memory                                             |
+| **Hot Endpoints Caching**    | caching فعلي لـ Restaurants/Categories/MenuItems مع namespace version invalidation                         |
+| **HTTP Compression**         | تفعيل `compression` middleware لضغط responses (gzip/deflate)                                               |
+| **DB Pool Tuning**           | إضافة env `DB_POOL_*` وتمريرها لـ pg pool عبر TypeORM                                                      |
+| **Performance APIs**         | إضافة `/api/v1/performance/*` لعرض stats (cache/optimizer/response metrics/...)                            |
+| **Uploads Cache Headers**    | إضافة Cache-Control/ETag لـ `/uploads` مع max-age قابل للضبط                                               |
+| **Root Homepage (UX)**       | تحسين صفحة `/` لتكون أكثر احترافية + إضافة Access Modal gate                                               |
+| **Access Gate Endpoints**    | إضافة endpoints خارج الـ prefix: `GET /__access/status`, `POST /__access/check`, `POST /__access/devtools` |
+| **Access Refresh Policy**    | كل refresh يُطلب إدخال الكود مرة أخرى (بدون حفظ unlock في المتصفح)                                         |
+| **Access Lockout**           | 3 محاولات خاطئة → حظر 5 دقائق مع countdown فعلي                                                            |
+| **DevTools Suspension**      | رصد فتح DevTools (best-effort) → حظر 10 دقائق برسالة إنجليزية + countdown                                  |
+| **Unusual Activity Monitor** | مراقبة نشاط غير طبيعي (rate window) → حظر ساعة برسالة إنجليزية + countdown                                 |
+| **CORS Same-Origin Fix**     | السماح لصفحة `/` بعمل fetch لـ `__access/*` عبر تضمين `http://localhost:${PORT}` ضمن whitelist             |
 
 ### Frontend Web
 
@@ -482,6 +491,7 @@
 | **7 Languages Support**       | صفحة الهبوط تدعم 7 لغات (en, fr, lb, de, it, pt, es)                          |
 | **WebSocket Real-time**       | تحديث فوري لصور اللاندنج (Hero + Why) باستخدام Socket.IO                      |
 | **Notifications UI (MVP)**    | صفحة `/notifications` + badge في navbar + Mark as read/all + realtime         |
+| **Orders UI (MVP)**           | داخل Profile: Order history + زر Track يفتح `/orders/:id/tracking` بخريطة     |
 | **Web Console Warning Fix**   | إصلاح تحذير DevTools (إضافة `id/name` لحقل البحث في Landing)                  |
 | **Perf Baseline (local)**     | LCP ~ 896ms، CLS ~ 0.23 (Needs improvement)                                   |
 | **Cute Navbar Tabs**          | أزرار الـ Cute Navbar تعمل كتبديل لعرض الصور والنصوص                          |
@@ -543,6 +553,19 @@ Security (Backend):
   - CORS whitelist: `CORS_ORIGINS` (comma-separated)
   - Helmet enabled (CSP disabled by default)
   - CSRF middleware (double-submit cookie): enable via `CSRF_ENABLED=true`
+  - Root access gate (in-memory): code gate + lockouts + DevTools/unusual bans (best-effort)
+
+Root Access Gate (Backend):
+  - GET  /__access/status
+  - POST /__access/check
+  - POST /__access/devtools
+  - Env:
+    - SERVER_ACCESS_CODE (default: 123456)
+    - SERVER_ACCESS_MAX_ATTEMPTS (default: 3)
+    - SERVER_ACCESS_BAN_MS (default: 300000)
+    - SERVER_ACCESS_DEVTOOLS_BAN_MS (default: 600000)
+    - SERVER_ACCESS_UNUSUAL_BAN_MS (default: 3600000)
+    - SERVER_ACCESS_UNUSUAL_WINDOW_MS, SERVER_ACCESS_UNUSUAL_MAX_REQUESTS
 
 Database (Backend):
   - Run migrations: `npm run db:migrate:run`
@@ -574,11 +597,11 @@ Theme notes:
 
 ## 📞 الخطوات القادمة
 
-1. **فوراً**: استكمال الأمان المتبقي في Auth (Refresh Tokens + Token revocation/blacklist + Session management)
-2. **هذا الأسبوع**: تشغيل migrations + seed على بيئة dev/staging والتأكد من عدم الاعتماد على `synchronize`
-3. **التالي مباشرة**: Order History UI وربطه بـ Orders API + Tracking status (backend + UI)
-4. **بعدها**: Drivers/Delivery Zones + Real-time tracking (خريطة)
-5. **تحسين سريع**: إضافة اختبارات integration/e2e أساسية لمسارات Cart/Checkout + مراجعة أي queries مخصصة مع soft delete
+1. **فوراً**: ضبط thresholds الخاصة بـ Unusual Activity في بيئة التطوير لتقليل false positives (env المذكورة أعلاه)
+2. **هذا الأسبوع**: إضافة اختبارات e2e بسيطة لمسارات Orders (me/tracking) + Notifications (read/readAll)
+3. **التالي مباشرة**: Drivers/Delivery Zones + Real-time tracking (خريطة)
+4. **تحسين سريع**: تحسين observability للـ bans (تجميع counters في Monitoring Logs stats)
+5. **اختياري لاحقاً**: جعل bans/attempts persistent (Redis/DB) بدل in-memory لو احتجنا سلوك ثابت بعد restart
 
 ---
 

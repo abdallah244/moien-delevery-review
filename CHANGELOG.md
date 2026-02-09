@@ -16,11 +16,63 @@
 - إعداد تطبيقات الموبايل باستخدام Flutter 3.10
 - إنشاء التوثيق الشامل
 
+- **Root Homepage Access Gate (Backend)**
+  - إضافة Access modal gate على `/` بكود دخول
+  - 3 محاولات خاطئة → حظر 5 دقائق مع countdown
+  - DevTools detection (best-effort) → حظر 10 دقائق
+  - Unusual activity monitoring → حظر ساعة
+  - Endpoints: `GET /__access/status`, `POST /__access/check`, `POST /__access/devtools`
+
+### 🔧 مُصلَح
+
+- إصلاح CORS لطلبات صفحة `/` نحو `__access/*` عبر السماح بالـ same-origin (localhost/127.0.0.1 على نفس PORT)
+- ضمان أن `__access/*` خارج الـ global prefix حتى تعمل من صفحة الجذر
+
 ### 🔄 قيد التطوير
 
 - نظام المطاعم
 - نظام الطلبات
 - تطبيق الموبايل
+
+---
+
+## [0.0.13] - 2026-02-07
+
+### ⚡ الأداء (Backend)
+
+- تفعيل CacheModule مع Redis (اختياري) + fallback in-memory
+- إضافة caching فعلي لـ Restaurants/Categories/MenuItems مع invalidation آمن عبر namespace versions
+- تفعيل HTTP response compression عبر `compression` middleware
+- إضافة Cache-Control/ETag للـ `/uploads` مع max-age قابل للضبط
+
+### 🔐 المصادقة (Backend)
+
+- اعتماد Auth module: `POST /api/v1/auth/user/login|refresh|logout` + `GET /api/v1/auth/me`
+- Sessions endpoints: `GET /api/v1/auth/*/sessions` + revoke
+
+---
+
+## [0.0.12] - 2026-02-07
+
+### 🗄️ قاعدة البيانات
+
+- إضافة TypeORM migrations + DataSource لتشغيلها عبر CLI
+- إضافة scripts:
+  - `db:migrate:run`, `db:migrate:show`, `db:migrate:revert`
+  - `db:seed`
+- إضافة indexes أساسية لتحسين الأداء
+- تفعيل soft delete (`deletedAt`) للكيانات الأساسية + تحويل عمليات الحذف الرئيسية إلى `softDelete`
+
+---
+
+## [0.0.11] - 2026-02-07
+
+### 🔐 أمان (Backend)
+
+- تفعيل Rate limiting فعلي (ThrottlerGuard) + إعدادات عبر env
+- تفعيل Helmet + CORS whitelist قابلة للضبط
+- تحسين Global ValidationPipe (whitelist/forbid/transform)
+- إضافة CSRF middleware (اختياري عبر `CSRF_ENABLED=true`)
 
 ---
 

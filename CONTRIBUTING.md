@@ -129,8 +129,8 @@ docker-compose up -d postgres redis
 
 # أو يدوياً
 createdb moien_delivery
-npm run migration:run
-npm run seed:run
+npm run db:migrate:run
+npm run db:seed
 ```
 
 ---

@@ -33,7 +33,7 @@
 | التطوير | `http://localhost:3000/api/v1`     |
 | الإنتاج | `https://api.moiendelivery.com/v1` |
 
-### ✅ Endpoints المتاحة حالياً (v0.0.5)
+### ✅ Endpoints المتاحة حالياً (v0.0.13)
 
 | المسار                  | الطريقة | الوصف                    | الحالة         |
 | ----------------------- | ------- | ------------------------ | -------------- |
@@ -53,22 +53,40 @@
 
 #### 👤 Users Module
 
-| المسار                                   | الطريقة | الوصف                    | الحالة  |
-| ---------------------------------------- | ------- | ------------------------ | ------- |
-| `/api/v1/users`                          | GET     | قائمة المستخدمين         | ✅ متاح |
-| `/api/v1/users/summary`                  | GET     | ملخص المستخدمين          | ✅ متاح |
-| `/api/v1/users/register`                 | POST    | تسجيل مستخدم جديد        | ✅ متاح |
-| `/api/v1/users/login`                    | POST    | تسجيل دخول مستخدم        | ✅ متاح |
-| `/api/v1/users/:id`                      | PATCH   | تحديث بيانات المستخدم    | ✅ متاح |
-| `/api/v1/users/:id`                      | DELETE  | حذف مستخدم (Admin)       | ✅ متاح |
-| `/api/v1/users/:id/photo`                | POST    | رفع صورة المستخدم        | ✅ متاح |
-| `/api/v1/users/:id/ban`                  | POST    | حظر مستخدم               | ✅ متاح |
-| `/api/v1/users/:id/unban`                | POST    | إلغاء حظر مستخدم         | ✅ متاح |
-| `/api/v1/users/:id/delete`               | POST    | حذف حساب المستخدم (Self) | ✅ متاح |
-| `/api/v1/users/:id/email/verify/send`    | POST    | إرسال كود تحقق الإيميل   | ✅ متاح |
-| `/api/v1/users/:id/email/verify/confirm` | POST    | تأكيد كود تحقق الإيميل   | ✅ متاح |
-| `/api/v1/users/:id/phone/verify/send`    | POST    | إرسال كود تحقق الهاتف    | ✅ متاح |
-| `/api/v1/users/:id/phone/verify/confirm` | POST    | تأكيد كود تحقق الهاتف    | ✅ متاح |
+| المسار                                   | الطريقة | الوصف                             | الحالة  |
+| ---------------------------------------- | ------- | --------------------------------- | ------- |
+| `/api/v1/users`                          | GET     | قائمة المستخدمين                  | ✅ متاح |
+| `/api/v1/users/summary`                  | GET     | ملخص المستخدمين                   | ✅ متاح |
+| `/api/v1/users/register`                 | POST    | تسجيل مستخدم جديد                 | ✅ متاح |
+| `/api/v1/users/login`                    | POST    | تسجيل دخول (Legacy - بدون Tokens) | ✅ متاح |
+| `/api/v1/users/:id`                      | PATCH   | تحديث بيانات المستخدم             | ✅ متاح |
+| `/api/v1/users/:id`                      | DELETE  | حذف مستخدم (Admin)                | ✅ متاح |
+| `/api/v1/users/:id/photo`                | POST    | رفع صورة المستخدم                 | ✅ متاح |
+| `/api/v1/users/:id/ban`                  | POST    | حظر مستخدم                        | ✅ متاح |
+| `/api/v1/users/:id/unban`                | POST    | إلغاء حظر مستخدم                  | ✅ متاح |
+| `/api/v1/users/:id/delete`               | POST    | حذف حساب المستخدم (Self)          | ✅ متاح |
+| `/api/v1/users/:id/email/verify/send`    | POST    | إرسال كود تحقق الإيميل            | ✅ متاح |
+| `/api/v1/users/:id/email/verify/confirm` | POST    | تأكيد كود تحقق الإيميل            | ✅ متاح |
+| `/api/v1/users/:id/phone/verify/send`    | POST    | إرسال كود تحقق الهاتف             | ✅ متاح |
+| `/api/v1/users/:id/phone/verify/confirm` | POST    | تأكيد كود تحقق الهاتف             | ✅ متاح |
+
+#### 🔑 Auth Module (JWT + Sessions)
+
+> هذه هي endpoints المعتمدة حالياً لتسجيل الدخول باستخدام JWT access token + refresh token (مع rotation عبر sessions في DB).
+
+| المسار                                   | الطريقة | الوصف                                  | الحالة  |
+| ---------------------------------------- | ------- | -------------------------------------- | ------- |
+| `/api/v1/auth/user/login`                | POST    | تسجيل دخول مستخدم + إصدار tokens       | ✅ متاح |
+| `/api/v1/auth/user/refresh`              | POST    | تجديد access token (refresh rotation)  | ✅ متاح |
+| `/api/v1/auth/user/logout`               | POST    | تسجيل خروج (إبطال refresh token)       | ✅ متاح |
+| `/api/v1/auth/me`                        | GET     | بيانات التوكن الحالي (Bearer required) | ✅ متاح |
+| `/api/v1/auth/user/sessions`             | GET     | قائمة الجلسات (Bearer required)        | ✅ متاح |
+| `/api/v1/auth/user/sessions/:id/revoke`  | POST    | إبطال جلسة (Bearer required)           | ✅ متاح |
+| `/api/v1/auth/admin/login`               | POST    | تسجيل دخول Admin + إصدار tokens        | ✅ متاح |
+| `/api/v1/auth/admin/refresh`             | POST    | تجديد tokens للأدمن                    | ✅ متاح |
+| `/api/v1/auth/admin/logout`              | POST    | تسجيل خروج الأدمن                      | ✅ متاح |
+| `/api/v1/auth/admin/sessions`            | GET     | جلسات الأدمن (Bearer required)         | ✅ متاح |
+| `/api/v1/auth/admin/sessions/:id/revoke` | POST    | إبطال جلسة أدمن (Bearer required)      | ✅ متاح |
 
 #### 💳 Users Payment Methods
 
@@ -169,8 +187,11 @@ GET /api/v1/health
 
 ### المصادقة
 
-> ملاحظة مهمة: حالياً **لا يوجد JWT / Bearer Token** في المشروع. نقاط النهاية الحالية تُعيد بيانات المستخدم فقط.
-> يمكن إضافة JWT لاحقاً (ومواءمة التوثيق عند اعتماد التوكن).
+> المشروع يدعم **JWT / Bearer Token** عبر Auth module (`/api/v1/auth/*`).
+>
+> - **Access token**: JWT قصير العمر (افتراضي 15m)
+> - **Refresh token**: opaque token يتم تخزينه **hashed** في جدول sessions مع **rotation**
+> - endpoint `POST /api/v1/users/login` ما زال موجوداً كـ **Legacy** لكنه لا يُصدر tokens (لا يُنصح به للواجهات الجديدة).
 
 ---
 
@@ -228,7 +249,7 @@ Content-Type: application/json
 ### تسجيل الدخول
 
 ```http
-POST /api/v1/users/login
+POST /api/v1/auth/user/login
 Content-Type: application/json
 ```
 
@@ -259,6 +280,11 @@ Content-Type: application/json
     "emailVerified": false,
     "photoUrl": null,
     "createdAt": "2026-02-01T12:00:00.000Z"
+  },
+  "tokens": {
+    "accessToken": "jwt_access_token",
+    "refreshToken": "opaque_refresh_token",
+    "expiresIn": 900
   }
 }
 ```
@@ -277,7 +303,48 @@ Content-Type: application/json
 
 ---
 
-> ملاحظة: `refresh` و `logout` بتوكن غير مُطبقين حالياً.
+### تجديد التوكن (Refresh)
+
+```http
+POST /api/v1/auth/user/refresh
+Content-Type: application/json
+```
+
+**Body:**
+
+```json
+{
+  "refreshToken": "opaque_refresh_token"
+}
+```
+
+**Response (200):**
+
+```json
+{
+  "ok": true,
+  "tokens": {
+    "accessToken": "jwt_access_token",
+    "refreshToken": "opaque_refresh_token_rotated",
+    "expiresIn": 900
+  }
+}
+```
+
+### تسجيل الخروج (Logout)
+
+```http
+POST /api/v1/auth/user/logout
+Content-Type: application/json
+```
+
+**Body:**
+
+```json
+{
+  "refreshToken": "opaque_refresh_token"
+}
+```
 
 ---
 

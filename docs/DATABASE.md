@@ -529,19 +529,22 @@ CREATE INDEX idx_reviews_user ON reviews(user_id);
 ### إنشاء هجرة جديدة
 
 ```bash
-npm run migration:generate -- -n CreateUsersTable
+# ملاحظة: المشروع يعتمد TypeORM CLI مباشرة لتوليد migrations.
+# مثال (بعد build):
+npm run build
+node ./node_modules/typeorm/cli.js -d dist/database/data-source.js migration:generate src/database/migrations/CreateUsersTable
 ```
 
 ### تشغيل الهجرات
 
 ```bash
-npm run migration:run
+npm run db:migrate:run
 ```
 
 ### التراجع عن آخر هجرة
 
 ```bash
-npm run migration:revert
+npm run db:migrate:revert
 ```
 
 ---

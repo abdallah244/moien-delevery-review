@@ -1,0 +1,16 @@
+{
+  "name": "moien-delivery",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "wfrontend"
+  ],
+  "scripts": {
+    "install:all": "npm install --workspaces",
+    "build": "npm run build --workspace backend && npm run build --workspace wfrontend",
+    "test": "npm run test --workspace backend",
+    "lint": "npm run lint --workspace backend",
+    "start:backend": "npm run start:dev --workspace backend",
+    "start:wfrontend": "npm run start --workspace wfrontend"
+  }
+}

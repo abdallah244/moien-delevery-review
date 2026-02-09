@@ -117,9 +117,25 @@ DATABASE_USER=postgres
 DATABASE_PASSWORD=your_password
 
 # Redis
+REDIS_URL=
 REDIS_HOST=localhost
 REDIS_PORT=6379
 REDIS_PASSWORD=
+REDIS_TLS=false
+
+# Cache
+CACHE_TTL_MS=60000
+CACHE_MAX_ITEMS=10000
+
+# Performance / HTTP
+COMPRESSION_ENABLED=true
+COMPRESSION_THRESHOLD_BYTES=1024
+UPLOADS_CACHE_MAXAGE_SECONDS=3600
+
+# Database Pooling (pg)
+DB_POOL_MAX=20
+DB_POOL_IDLE_TIMEOUT_MS=30000
+DB_POOL_CONNECTION_TIMEOUT_MS=2000
 
 # JWT
 JWT_SECRET=your_super_secret_key_here
@@ -188,14 +204,11 @@ LOG_LEVEL=debug
 ### 6. إعداد قاعدة البيانات
 
 ```bash
-# إنشاء قاعدة البيانات
-npm run db:create
-
-# تشغيل الهجرات
-npm run migration:run
+# تشغيل الهجرات (TypeORM)
+npm run db:migrate:run
 
 # تشغيل البذور (بيانات تجريبية)
-npm run seed:run
+npm run db:seed
 ```
 
 ### 7. تشغيل الخادم
