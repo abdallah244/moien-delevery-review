@@ -6,7 +6,7 @@
 [![Status](https://img.shields.io/badge/Status-قيد%20التطوير-yellow.svg)]()
 [![Last Updated](https://img.shields.io/badge/آخر%20تحديث-فبراير%202026-blue.svg)]()
 
-**📅 تاريخ التقرير: 7 فبراير 2026**
+**📅 تاريخ التقرير: 9 فبراير 2026**
 
 </div>
 
@@ -54,6 +54,7 @@
 | Frontend | نظام المصادقة + لوحة تحكم الأدمن                                                                      |
 | Frontend | صفحة الهبوط (Landing Page) مع 7 لغات + تحسينات أداء (Skeleton/Lazy)                                   |
 | Frontend | صفحات المتجر (MVP): Restaurants List + Restaurant Details/Menu + Cart + Checkout                      |
+| Frontend | Notifications UI (MVP): قائمة + badge + Mark as read + realtime                                       |
 | Frontend | إدارة صور اللاندنج (Hero + 4 صور Why Choose Us) عبر Cloudinary                                        |
 | Frontend | صفحة About (Wolt-inspired) مع تقليل السكاشن + تحسينات UI/Contrast                                     |
 | Frontend | إدارة صور صفحة About عبر الأدمن (Slots مستقلة عن اللاندنج)                                            |
@@ -110,6 +111,7 @@
 | 3   | Error handling غير موحد                            | جميع الـ controllers                     | ✅ تم           |
 | 4   | لا يوجد logging فعلي للأخطاء                       | `backend/src/common/services/monitoring` | ✅ تم           |
 | 5   | عدم وجود response interceptor موحد                 | `backend/src/common/interceptors`        | ✅ تم (اختياري) |
+| 6   | تحذير DevTools: `/favicon.ico` يرجع 404 (Noise)    | `backend/src/main.ts`                    | ✅ تم           |
 
 ### Frontend (Angular)
 
@@ -121,6 +123,7 @@
 | 4   | بعض الصفحات لا تتأثر بتغيير الثيم بسبب ألوان ثابتة | صفحات User/Store                                                                        | ✅ تم    |
 | 5   | لا يوجد PWA support                                | -                                                                                       | 🟡 منخفض |
 | 6   | لا يوجد SEO optimization                           | -                                                                                       | 🟡 منخفض |
+| 7   | تحذير DevTools: بعض حقول الإدخال بدون `id/name`    | `wfrontend/src/app/pages/landing/landing.v2.html`                                       | ✅ تم    |
 
 ### Mobile (Flutter)
 
@@ -193,7 +196,7 @@
 | 5   | 🏷️ **Categories**     | تصنيفات المطاعم والأطباق     | 🟠 عالي  | 🟡 جزئي (Restaurant Categories)            |
 | 6   | ⭐ **Reviews**        | نظام التقييمات والمراجعات    | 🟠 عالي  | ❌ لم يبدأ                                 |
 | 7   | 🎁 **Promotions**     | الكوبونات والعروض            | 🟠 عالي  | 🟡 تم (Validate + تطبيق الخصم في Checkout) |
-| 8   | 🔔 **Notifications**  | الإشعارات (Push, Email, SMS) | 🟠 عالي  | 🟡 Backend ✅ / Web UI ❌                  |
+| 8   | 🔔 **Notifications**  | الإشعارات (Push, Email, SMS) | 🟠 عالي  | ✅ Backend ✅ / Web UI ✅                  |
 
 ### الميزات الإضافية (Additional Features)
 
@@ -478,6 +481,9 @@
 | **Preview with Curve**        | معاينة الصورة مع نفس شكل التقوس السفلي                                        |
 | **7 Languages Support**       | صفحة الهبوط تدعم 7 لغات (en, fr, lb, de, it, pt, es)                          |
 | **WebSocket Real-time**       | تحديث فوري لصور اللاندنج (Hero + Why) باستخدام Socket.IO                      |
+| **Notifications UI (MVP)**    | صفحة `/notifications` + badge في navbar + Mark as read/all + realtime         |
+| **Web Console Warning Fix**   | إصلاح تحذير DevTools (إضافة `id/name` لحقل البحث في Landing)                  |
+| **Perf Baseline (local)**     | LCP ~ 896ms، CLS ~ 0.23 (Needs improvement)                                   |
 | **Cute Navbar Tabs**          | أزرار الـ Cute Navbar تعمل كتبديل لعرض الصور والنصوص                          |
 | **Skeleton + Toast Loading**  | Skeleton + Lazy loading للصور + Loading toast عند البطء                       |
 | **About Page UI**             | صفحة About جديدة بألوان Landing v2 + تداخل سيكشنات                            |
@@ -570,16 +576,15 @@ Theme notes:
 
 1. **فوراً**: استكمال الأمان المتبقي في Auth (Refresh Tokens + Token revocation/blacklist + Session management)
 2. **هذا الأسبوع**: تشغيل migrations + seed على بيئة dev/staging والتأكد من عدم الاعتماد على `synchronize`
-3. **التالي مباشرة**: Notifications UI في الويب (قائمة + badge + mark as read + realtime)
-4. **التالي**: Order History UI وربطه بـ Orders API + Tracking status (backend + UI)
-5. **بعدها**: Drivers/Delivery Zones + Real-time tracking (خريطة)
-6. **تحسين سريع**: إضافة اختبارات integration/e2e أساسية لمسارات Cart/Checkout + مراجعة أي queries مخصصة مع soft delete
+3. **التالي مباشرة**: Order History UI وربطه بـ Orders API + Tracking status (backend + UI)
+4. **بعدها**: Drivers/Delivery Zones + Real-time tracking (خريطة)
+5. **تحسين سريع**: إضافة اختبارات integration/e2e أساسية لمسارات Cart/Checkout + مراجعة أي queries مخصصة مع soft delete
 
 ---
 
 <div align="center">
 
-**📝 آخر تحديث: 7 فبراير 2026**
+**📝 آخر تحديث: 9 فبراير 2026**
 
 [![Made with ❤️](https://img.shields.io/badge/Made%20with-❤️-red.svg)]()
 [![For Moien Delivery](https://img.shields.io/badge/For-Moien%20Delivery-blue.svg)]()
