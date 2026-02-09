@@ -31,36 +31,38 @@
 
 | المكون           | نسبة الإنجاز | الحالة         |
 | ---------------- | ------------ | -------------- |
-| 🖥️ Backend API   | 65%          | 🟡 قيد التطوير |
-| 🌐 Web Frontend  | 50%          | 🟡 قيد التطوير |
+| 🖥️ Backend API   | 72%          | 🟡 قيد التطوير |
+| 🌐 Web Frontend  | 60%          | 🟡 قيد التطوير |
 | 📱 Mobile App    | 0%           | 🔴 لم يبدأ     |
-| 🗄️ Database      | 60%          | 🟡 قيد التطوير |
-| 📚 Documentation | 76%          | 🟢 متقدم       |
+| 🗄️ Database      | 66%          | 🟡 قيد التطوير |
+| 📚 Documentation | 78%          | 🟢 متقدم       |
 | 🧪 Testing       | 10%          | 🔴 ضعيف        |
 
 ### ما تم إنجازه ✅
 
-| المكون   | التفاصيل                                                                                              |
-| -------- | ----------------------------------------------------------------------------------------------------- |
-| Backend  | 5 وحدات (Admin Staff, Users, Support Tickets, Payments, Site Settings)                                |
-| Backend  | Restaurants + Restaurant Categories + Menu Items (CRUD + filtering)                                   |
-| Backend  | Orders (Cart) + Checkout (promoCode + discount)                                                       |
-| Backend  | Promotions (Validate + Redemption tracking)                                                           |
-| Backend  | Notifications (DB + Socket.IO realtime عبر namespace /notifications)                                  |
-| Backend  | 26 خدمة مشتركة (Security/Performance/Communication/Storage/Monitoring/...) + gating للـ stubs عبر env |
-| Backend  | إعداد PostgreSQL + TypeORM                                                                            |
-| Backend  | تكامل Stripe + Cloudinary                                                                             |
-| Frontend | 8 components + 11 services                                                                            |
-| Frontend | نظام المصادقة + لوحة تحكم الأدمن                                                                      |
-| Frontend | صفحة الهبوط (Landing Page) مع 7 لغات + تحسينات أداء (Skeleton/Lazy)                                   |
-| Frontend | صفحات المتجر (MVP): Restaurants List + Restaurant Details/Menu + Cart + Checkout                      |
-| Frontend | Notifications UI (MVP): قائمة + badge + Mark as read + realtime                                       |
-| Frontend | إدارة صور اللاندنج (Hero + 4 صور Why Choose Us) عبر Cloudinary                                        |
-| Frontend | صفحة About (Wolt-inspired) مع تقليل السكاشن + تحسينات UI/Contrast                                     |
-| Frontend | إدارة صور صفحة About عبر الأدمن (Slots مستقلة عن اللاندنج)                                            |
-| Frontend | أزرار الـ Cute Navbar تعمل كتبديل (Tabs) لعرض الصور والنصوص ديناميكياً                                |
-| Frontend | إصلاح الثيم (Dark/High-contrast) ليؤثر على صفحات المستخدم (بدون ألوان hardcoded)                      |
-| Docs     | توثيق شامل (8 ملفات markdown)                                                                         |
+| المكون   | التفاصيل                                                                                                            |
+| -------- | ------------------------------------------------------------------------------------------------------------------- |
+| Backend  | 5 وحدات (Admin Staff, Users, Support Tickets, Payments, Site Settings)                                              |
+| Backend  | Restaurants + Restaurant Categories + Menu Items (CRUD + filtering)                                                 |
+| Backend  | Orders (Cart) + Checkout (promoCode + discount)                                                                     |
+| Backend  | Promotions (Validate + Redemption tracking)                                                                         |
+| Backend  | Notifications (DB + Socket.IO realtime عبر namespace /notifications)                                                |
+| Backend  | 26 خدمة مشتركة (Security/Performance/Communication/Storage/Monitoring/...) + gating للـ stubs عبر env               |
+| Backend  | إعداد PostgreSQL + TypeORM                                                                                          |
+| Backend  | تكامل Stripe + Cloudinary                                                                                           |
+| Frontend | 8 components + 11 services                                                                                          |
+| Frontend | نظام المصادقة + لوحة تحكم الأدمن                                                                                    |
+| Frontend | صفحة الهبوط (Landing Page) مع 7 لغات + تحسينات أداء (Skeleton/Lazy)                                                 |
+| Frontend | صفحات المتجر (MVP): Restaurants List + Restaurant Details/Menu + Cart + Checkout                                    |
+| Frontend | Notifications UI (MVP): قائمة + badge + Mark as read + realtime                                                     |
+| Frontend | إدارة صور اللاندنج (Hero + 4 صور Why Choose Us) عبر Cloudinary                                                      |
+| Frontend | صفحة About (Wolt-inspired) مع تقليل السكاشن + تحسينات UI/Contrast                                                   |
+| Frontend | إدارة صور صفحة About عبر الأدمن (Slots مستقلة عن اللاندنج)                                                          |
+| Frontend | أزرار الـ Cute Navbar تعمل كتبديل (Tabs) لعرض الصور والنصوص ديناميكياً                                              |
+| Frontend | إصلاح الثيم (Dark/High-contrast) ليؤثر على صفحات المستخدم (بدون ألوان hardcoded)                                    |
+| Frontend | Partner Places (Admin): عرض الطلبات + Actions (Approve/Needs info/Reject/Message/Delete) + تحديث لحظي               |
+| Frontend | Partner Portal (Provider): تسجيل دخول + منع تعارض الجلسات (log out first) + ترجمة الرسالة + شارة Provider في navbar |
+| Docs     | توثيق شامل (8 ملفات markdown)                                                                                       |
 
 ---
 
@@ -79,6 +81,7 @@
 | **CSRF Protection**              | 🟡 اختياري      | Middleware (Double-submit cookie) عبر `CSRF_ENABLED=true` + لا يطبق مع Bearer auth       |
 | **SQL Injection Protection**     | 🟡 مغطى جزئياً  | TypeORM parameterization + ValidationPipe (مع استمرار المراجعة عند استخدام QueryBuilder) |
 | **Input Validation شامل**        | ✅ تم (أساسياً) | Global ValidationPipe (whitelist/forbid/transform) + DTOs موجودة لمعظم الـ modules       |
+| **Email Role Uniqueness**        | ✅ تم           | لا يمكن استخدام نفس البريد كـ User و Provider (حماية على approve + provider login)       |
 
 ### 2. 🗄️ قاعدة البيانات (Database)
 
@@ -222,11 +225,11 @@
 | 3   | 📋 **Restaurant Menu**      | ✅ تم تنفيذها (MVP) | 🔴 حرج   |
 | 4   | 🛒 **Shopping Cart**        | ✅ تم تنفيذها (MVP) | 🔴 حرج   |
 | 5   | 💳 **Checkout**             | ✅ تم تنفيذها (MVP) | 🔴 حرج   |
-| 6   | 📍 **Order Tracking**       | تتبع الطلب          | 🔴 حرج   |
-| 7   | 📜 **Order History**        | سجل الطلبات         | 🟠 عالي  |
-| 8   | 👤 **User Profile**         | الملف الشخصي        | 🟠 عالي  |
-| 9   | 🏪 **Restaurant Dashboard** | لوحة تحكم المطعم    | 🟠 عالي  |
-| 10  | 🚗 **Driver Dashboard**     | لوحة تحكم السائق    | 🟠 عالي  |
+| 6   | 📍 **Order Tracking**       | ✅ تم تنفيذها (MVP) | 🔴 حرج   |
+| 7   | 📜 **Order History**        | ✅ تم تنفيذها (MVP) | 🟠 عالي  |
+| 8   | 👤 **User Profile**         | ✅ تم تنفيذها (MVP) | 🟠 عالي  |
+| 9   | 🏪 **Restaurant Dashboard** | ✅ تم تنفيذها (MVP) | 🟠 عالي  |
+| 10  | 🚗 **Driver Dashboard**     | ✅ تم تنفيذها (MVP) | 🟠 عالي  |
 
 > ملاحظة: تم تنفيذ Flow أساسي للمتجر (Restaurants → Menu → Cart → Checkout)، وباقي صفحات المتجر ما زالت ضمن الميزات الناقصة.
 
@@ -433,79 +436,87 @@
 
 ### Backend
 
-| الميزة                       | الوصف                                                                                                      |
-| ---------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| **Site Settings Module**     | وحدة جديدة لإدارة إعدادات الموقع                                                                           |
-| **Hero Image API**           | API لرفع وحذف صورة الهيرو سيكشن مع تخزين في Cloudinary                                                     |
-| **Landing Images API**       | API لإدارة صور اللاندنج (Hero + 4 صور Why Choose Us)                                                       |
-| **About Images API**         | API لإدارة صور صفحة About (5 Slots مستقلة)                                                                 |
-| **Site Settings Entity**     | جدول جديد لتخزين إعدادات الموقع (key-value)                                                                |
-| **WebSocket Updates**        | أحداث Socket.IO لتحديث صور اللاندنج لحظياً                                                                 |
-| **Restaurants API**          | CRUD للمطاعم + تصنيفات المطعم + عناصر القائمة                                                              |
-| **Orders/Cart API**          | Cart كـ Order + عمليات الإضافة/التعديل + Checkout                                                          |
-| **Orders (My Orders) API**   | Endpoints آمنة للمستخدم الحالي: `/orders/me` + `/orders/me/:id` + `/orders/me/:id/tracking`                |
-| **Promotions API**           | Endpoint للتحقق من الكوبونات + Tracking للاستخدام                                                          |
-| **Notifications API**        | تخزين إشعارات + realtime عبر Socket.IO                                                                     |
-| **Security Hardening**       | Rate limiting + CORS whitelist + Helmet + Validation + CSRF (اختياري)                                      |
-| **DB Migrations**            | TypeORM migrations + DataSource + scripts (`db:migrate:*`)                                                 |
-| **DB Seeding**               | Seed script (`db:seed`) لإنشاء بيانات تطوير جاهزة                                                          |
-| **DB Indexes**               | Indexes أساسية على restaurants/menu/orders/notifications/...                                               |
-| **Soft Delete**              | `deletedAt` columns + تحويل حذف كيانات رئيسية إلى soft delete                                              |
-| **Common Platform Infra**    | CommonModule عالمي لتجميع وتصدير الـ shared services + DI جاهز                                             |
-| **Unified Error Handling**   | Global exception filter مع JSON موحد للأخطاء + requestId                                                   |
-| **Exception Log Noise**      | تقليل الضوضاء: 401/403/404 تُسجل كـ info بدل warn + إضافة userId/message للـ metadata                      |
-| **HTTP Logging**             | Global interceptor لتسجيل الطلبات والمدة + تجميع logs في LoggerService                                     |
-| **Monitoring Logs API**      | `/api/v1/monitoring/logs/*` (مقفولة في production إلا إذا `MONITORING_LOGS_PUBLIC=true`)                   |
-| **Response Envelope**        | Interceptor اختياري لتوحيد الردود `{ ok: true, data }` عبر `RESPONSE_ENVELOPE=true`                        |
-| **Auth Smoke Test**          | تم اختبار login → me → sessions → refresh → logout → refresh fails (401)                                   |
-| **Users DTO Split**          | نقل Response DTOs إلى `backend/src/modules/users/dto/*` (PublicUser/PublicSummary/...)                     |
-| **Users Repository**         | إضافة `UsersRepository` لفصل data-access عن UsersService                                                   |
-| **User Domain Events**       | حدث `users.registered` + listener لإرسال welcome email (best-effort)                                       |
-| **Root Monorepo Scripts**    | إضافة root `package.json` مع npm workspaces (backend + wfrontend)                                          |
-| **Redis-backed Cache**       | تفعيل Nest CacheModule مع Redis (اختياري) + fallback in-memory                                             |
-| **Hot Endpoints Caching**    | caching فعلي لـ Restaurants/Categories/MenuItems مع namespace version invalidation                         |
-| **HTTP Compression**         | تفعيل `compression` middleware لضغط responses (gzip/deflate)                                               |
-| **DB Pool Tuning**           | إضافة env `DB_POOL_*` وتمريرها لـ pg pool عبر TypeORM                                                      |
-| **Performance APIs**         | إضافة `/api/v1/performance/*` لعرض stats (cache/optimizer/response metrics/...)                            |
-| **Uploads Cache Headers**    | إضافة Cache-Control/ETag لـ `/uploads` مع max-age قابل للضبط                                               |
-| **Root Homepage (UX)**       | تحسين صفحة `/` لتكون أكثر احترافية + إضافة Access Modal gate                                               |
-| **Access Gate Endpoints**    | إضافة endpoints خارج الـ prefix: `GET /__access/status`, `POST /__access/check`, `POST /__access/devtools` |
-| **Access Refresh Policy**    | كل refresh يُطلب إدخال الكود مرة أخرى (بدون حفظ unlock في المتصفح)                                         |
-| **Access Lockout**           | 3 محاولات خاطئة → حظر 5 دقائق مع countdown فعلي                                                            |
-| **DevTools Suspension**      | رصد فتح DevTools (best-effort) → حظر 10 دقائق برسالة إنجليزية + countdown                                  |
-| **Unusual Activity Monitor** | مراقبة نشاط غير طبيعي (rate window) → حظر ساعة برسالة إنجليزية + countdown                                 |
-| **CORS Same-Origin Fix**     | السماح لصفحة `/` بعمل fetch لـ `__access/*` عبر تضمين `http://localhost:${PORT}` ضمن whitelist             |
+| الميزة                       | الوصف                                                                                                         |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| **Site Settings Module**     | وحدة جديدة لإدارة إعدادات الموقع                                                                              |
+| **Hero Image API**           | API لرفع وحذف صورة الهيرو سيكشن مع تخزين في Cloudinary                                                        |
+| **Landing Images API**       | API لإدارة صور اللاندنج (Hero + 4 صور Why Choose Us)                                                          |
+| **About Images API**         | API لإدارة صور صفحة About (5 Slots مستقلة)                                                                    |
+| **Site Settings Entity**     | جدول جديد لتخزين إعدادات الموقع (key-value)                                                                   |
+| **WebSocket Updates**        | أحداث Socket.IO لتحديث صور اللاندنج لحظياً                                                                    |
+| **Restaurants API**          | CRUD للمطاعم + تصنيفات المطعم + عناصر القائمة                                                                 |
+| **Orders/Cart API**          | Cart كـ Order + عمليات الإضافة/التعديل + Checkout                                                             |
+| **Orders (My Orders) API**   | Endpoints آمنة للمستخدم الحالي: `/orders/me` + `/orders/me/:id` + `/orders/me/:id/tracking`                   |
+| **Promotions API**           | Endpoint للتحقق من الكوبونات + Tracking للاستخدام                                                             |
+| **Notifications API**        | تخزين إشعارات + realtime عبر Socket.IO                                                                        |
+| **Partner Places Module**    | Workflow كامل: طلب إضافة مطعم + قائمة الأدمن + approve/needs info/reject + إنشاء حساب Provider + إرسال Emails |
+| **Partner Places WebSocket** | Namespace `/partner-places` + حدث `partner-places.changed` لتحديث صفحة الأدمن لحظياً                          |
+| **Enterprise Email Theme**   | توحيد تصميم الإيميلات بشكل احترافي متوافق مع ألوان الأدمن داش                                                 |
+| **Email Role Uniqueness**    | منع نفس الإيميل يكون User و Provider (حماية على approve + provider login)                                     |
+| **Security Hardening**       | Rate limiting + CORS whitelist + Helmet + Validation + CSRF (اختياري)                                         |
+| **DB Migrations**            | TypeORM migrations + DataSource + scripts (`db:migrate:*`)                                                    |
+| **DB Seeding**               | Seed script (`db:seed`) لإنشاء بيانات تطوير جاهزة                                                             |
+| **DB Indexes**               | Indexes أساسية على restaurants/menu/orders/notifications/...                                                  |
+| **Soft Delete**              | `deletedAt` columns + تحويل حذف كيانات رئيسية إلى soft delete                                                 |
+| **Common Platform Infra**    | CommonModule عالمي لتجميع وتصدير الـ shared services + DI جاهز                                                |
+| **Unified Error Handling**   | Global exception filter مع JSON موحد للأخطاء + requestId                                                      |
+| **Exception Log Noise**      | تقليل الضوضاء: 401/403/404 تُسجل كـ info بدل warn + إضافة userId/message للـ metadata                         |
+| **HTTP Logging**             | Global interceptor لتسجيل الطلبات والمدة + تجميع logs في LoggerService                                        |
+| **Monitoring Logs API**      | `/api/v1/monitoring/logs/*` (مقفولة في production إلا إذا `MONITORING_LOGS_PUBLIC=true`)                      |
+| **Response Envelope**        | Interceptor اختياري لتوحيد الردود `{ ok: true, data }` عبر `RESPONSE_ENVELOPE=true`                           |
+| **Auth Smoke Test**          | تم اختبار login → me → sessions → refresh → logout → refresh fails (401)                                      |
+| **Users DTO Split**          | نقل Response DTOs إلى `backend/src/modules/users/dto/*` (PublicUser/PublicSummary/...)                        |
+| **Users Repository**         | إضافة `UsersRepository` لفصل data-access عن UsersService                                                      |
+| **User Domain Events**       | حدث `users.registered` + listener لإرسال welcome email (best-effort)                                          |
+| **Root Monorepo Scripts**    | إضافة root `package.json` مع npm workspaces (backend + wfrontend)                                             |
+| **Redis-backed Cache**       | تفعيل Nest CacheModule مع Redis (اختياري) + fallback in-memory                                                |
+| **Hot Endpoints Caching**    | caching فعلي لـ Restaurants/Categories/MenuItems مع namespace version invalidation                            |
+| **HTTP Compression**         | تفعيل `compression` middleware لضغط responses (gzip/deflate)                                                  |
+| **DB Pool Tuning**           | إضافة env `DB_POOL_*` وتمريرها لـ pg pool عبر TypeORM                                                         |
+| **Performance APIs**         | إضافة `/api/v1/performance/*` لعرض stats (cache/optimizer/response metrics/...)                               |
+| **Uploads Cache Headers**    | إضافة Cache-Control/ETag لـ `/uploads` مع max-age قابل للضبط                                                  |
+| **Root Homepage (UX)**       | تحسين صفحة `/` لتكون أكثر احترافية + إضافة Access Modal gate                                                  |
+| **Access Gate Endpoints**    | إضافة endpoints خارج الـ prefix: `GET /__access/status`, `POST /__access/check`, `POST /__access/devtools`    |
+| **Access Refresh Policy**    | كل refresh يُطلب إدخال الكود مرة أخرى (بدون حفظ unlock في المتصفح)                                            |
+| **Access Lockout**           | 3 محاولات خاطئة → حظر 5 دقائق مع countdown فعلي                                                               |
+| **DevTools Suspension**      | رصد فتح DevTools (best-effort) → حظر 10 دقائق برسالة إنجليزية + countdown                                     |
+| **Unusual Activity Monitor** | مراقبة نشاط غير طبيعي (rate window) → حظر ساعة برسالة إنجليزية + countdown                                    |
+| **CORS Same-Origin Fix**     | السماح لصفحة `/` بعمل fetch لـ `__access/*` عبر تضمين `http://localhost:${PORT}` ضمن whitelist                |
 
 ### Frontend Web
 
-| الميزة                        | الوصف                                                                         |
-| ----------------------------- | ----------------------------------------------------------------------------- |
-| **HTTP Interceptors**         | Interceptors موحدة (Auth + Retry + Loading + Errors) على مستوى التطبيق        |
-| **Global Loading State**      | Overlay عام يظهر أثناء أي HTTP request عبر LoadingService                     |
-| **Unified Error Handling**    | ErrorInterceptor + GlobalErrorHandler مع Toast موحد للأخطاء                   |
-| **Landing Images Admin**      | صفحة الأدمن أصبحت لإدارة صور اللاندنج (5 Slots)                               |
-| **About Images Admin**        | صفحة أدمن جديدة لإدارة صور صفحة About (5 Slots)                               |
-| **Landing Page Dynamic Hero** | الهيرو سيكشن يدعم صورة خلفية ديناميكية مع نفس التقوس                          |
-| **Drag & Drop Upload**        | رفع الصور بالسحب والإفلات أو الضغط للتصفح                                     |
-| **Preview with Curve**        | معاينة الصورة مع نفس شكل التقوس السفلي                                        |
-| **7 Languages Support**       | صفحة الهبوط تدعم 7 لغات (en, fr, lb, de, it, pt, es)                          |
-| **WebSocket Real-time**       | تحديث فوري لصور اللاندنج (Hero + Why) باستخدام Socket.IO                      |
-| **Notifications UI (MVP)**    | صفحة `/notifications` + badge في navbar + Mark as read/all + realtime         |
-| **Orders UI (MVP)**           | داخل Profile: Order history + زر Track يفتح `/orders/:id/tracking` بخريطة     |
-| **Web Console Warning Fix**   | إصلاح تحذير DevTools (إضافة `id/name` لحقل البحث في Landing)                  |
-| **Perf Baseline (local)**     | LCP ~ 896ms، CLS ~ 0.23 (Needs improvement)                                   |
-| **Cute Navbar Tabs**          | أزرار الـ Cute Navbar تعمل كتبديل لعرض الصور والنصوص                          |
-| **Skeleton + Toast Loading**  | Skeleton + Lazy loading للصور + Loading toast عند البطء                       |
-| **About Page UI**             | صفحة About جديدة بألوان Landing v2 + تداخل سيكشنات                            |
-| **Restaurants Listing (MVP)** | قائمة مطاعم حقيقية من الـ API + بحث + فلتر Open Only                          |
-| **Restaurant Details (MVP)**  | تبويبات التصنيفات + عرض الـ menu + Add to cart                                |
-| **Cart + Checkout (MVP)**     | تعديل الكميات + promo validate + Checkout                                     |
-| **Navbar Search/Cart Badge**  | البحث يفتح restaurants مع query + عداد السلة                                  |
-| **Theme Fix (User Pages)**    | إصلاح الدارك مود ليشمل الصفحات (Profile/Legal/About/…)                        |
-| **Theme RGB Helpers**         | إضافة `--ink-rgb`/`--paper-rgb` وتطبيقها في CSS overlays                      |
-| **Placeholder Pages Themed**  | صفحات Driver/Provider أصبحت تستخدم ألوان الثيم                                |
-| **User Tokens Flow**          | تسجيل دخول المستخدم أصبح عبر `/auth/user/login` + تخزين access/refresh tokens |
-| **User Logout Revocation**    | logout يعمل best-effort على `/auth/user/logout` ثم يمسح session + tokens      |
+| الميزة                        | الوصف                                                                                         |
+| ----------------------------- | --------------------------------------------------------------------------------------------- |
+| **HTTP Interceptors**         | Interceptors موحدة (Auth + Retry + Loading + Errors) على مستوى التطبيق                        |
+| **Global Loading State**      | Overlay عام يظهر أثناء أي HTTP request عبر LoadingService                                     |
+| **Unified Error Handling**    | ErrorInterceptor + GlobalErrorHandler مع Toast موحد للأخطاء                                   |
+| **Landing Images Admin**      | صفحة الأدمن أصبحت لإدارة صور اللاندنج (5 Slots)                                               |
+| **About Images Admin**        | صفحة أدمن جديدة لإدارة صور صفحة About (5 Slots)                                               |
+| **Landing Page Dynamic Hero** | الهيرو سيكشن يدعم صورة خلفية ديناميكية مع نفس التقوس                                          |
+| **Drag & Drop Upload**        | رفع الصور بالسحب والإفلات أو الضغط للتصفح                                                     |
+| **Preview with Curve**        | معاينة الصورة مع نفس شكل التقوس السفلي                                                        |
+| **7 Languages Support**       | صفحة الهبوط تدعم 7 لغات (en, fr, lb, de, it, pt, es)                                          |
+| **WebSocket Real-time**       | تحديث فوري لصور اللاندنج (Hero + Why) باستخدام Socket.IO                                      |
+| **Notifications UI (MVP)**    | صفحة `/notifications` + badge في navbar + Mark as read/all + realtime                         |
+| **Orders UI (MVP)**           | داخل Profile: Order history + زر Track يفتح `/orders/:id/tracking` بخريطة                     |
+| **Web Console Warning Fix**   | إصلاح تحذير DevTools (إضافة `id/name` لحقل البحث في Landing)                                  |
+| **Perf Baseline (local)**     | LCP ~ 896ms، CLS ~ 0.23 (Needs improvement)                                                   |
+| **Cute Navbar Tabs**          | أزرار الـ Cute Navbar تعمل كتبديل لعرض الصور والنصوص                                          |
+| **Skeleton + Toast Loading**  | Skeleton + Lazy loading للصور + Loading toast عند البطء                                       |
+| **About Page UI**             | صفحة About جديدة بألوان Landing v2 + تداخل سيكشنات                                            |
+| **Restaurants Listing (MVP)** | قائمة مطاعم حقيقية من الـ API + بحث + فلتر Open Only                                          |
+| **Restaurant Details (MVP)**  | تبويبات التصنيفات + عرض الـ menu + Add to cart                                                |
+| **Cart + Checkout (MVP)**     | تعديل الكميات + promo validate + Checkout                                                     |
+| **Navbar Search/Cart Badge**  | البحث يفتح restaurants مع query + عداد السلة                                                  |
+| **Theme Fix (User Pages)**    | إصلاح الدارك مود ليشمل الصفحات (Profile/Legal/About/…)                                        |
+| **Theme RGB Helpers**         | إضافة `--ink-rgb`/`--paper-rgb` وتطبيقها في CSS overlays                                      |
+| **Placeholder Pages Themed**  | صفحات Driver/Provider أصبحت تستخدم ألوان الثيم                                                |
+| **User Tokens Flow**          | تسجيل دخول المستخدم أصبح عبر `/auth/user/login` + تخزين access/refresh tokens                 |
+| **User Logout Revocation**    | logout يعمل best-effort على `/auth/user/logout` ثم يمسح session + tokens                      |
+| **Partner Places Admin**      | صفحة `/admin/partner-places` لإدارة الطلبات + Actions (Approve/Details/Reject/Message/Delete) |
+| **Partner Places Real-time**  | تحديث لحظي لجدول Partner Places عبر Socket.IO (listen `partner-places.changed` ثم reload)     |
+| **Provider Portal UX**        | منع تسجيل Provider أثناء وجود جلسة User + رسالة إنجليزية ضمن نظام ترجمة 7 لغات                |
+| **Provider Navbar Label**     | شارة “Provider” تظهر في navbar عند وجود جلسة Provider                                         |
 
 ### Technical Details
 
@@ -519,6 +530,14 @@ Backend:
   - POST   /api/v1/site-settings/landing-images/:slot/upload      (رفع صورة slot)
   - DELETE /api/v1/site-settings/landing-images/:slot             (حذف صورة slot)
 
+  - GET    /api/v1/partner-places/requests                        (Admin: list)
+  - POST   /api/v1/partner-places/requests                         (Public: create request)
+  - POST   /api/v1/partner-places/requests/:id/approve            (Admin)
+  - POST   /api/v1/partner-places/requests/:id/request-details    (Admin)
+  - POST   /api/v1/partner-places/requests/:id/reject             (Admin)
+  - POST   /api/v1/partner-places/requests/:id/message            (Admin)
+  - DELETE /api/v1/partner-places/requests/:id                    (Admin: delete provider/request)
+
   - GET    /api/v1/site-settings/about-images                     (جلب كل صور About)
   - POST   /api/v1/site-settings/about-images/:slot/upload        (رفع صورة About slot)
   - DELETE /api/v1/site-settings/about-images/:slot               (حذف صورة About slot)
@@ -528,6 +547,8 @@ WebSocket:
     - Event: hero-image.updated { url: string | null }
     - Event: landing-image.updated { slot: 'hero'|'whyFresh'|'whyFast'|'whySupport'|'whyQuality', url: string | null }
     - Event: about-image.updated { slot: 'aboutHero'|'aboutStory'|'aboutFeature1'|'aboutFeature2'|'aboutFeature3', url: string | null }
+  - Namespace: /partner-places
+    - Event: partner-places.changed { kind: 'created'|'approved'|'needs_info'|'rejected'|'updated'|'deleted', id?: string, at: string }
   - Namespace: /notifications
     - Event: notifications.created (NotificationEntity)
     - Event: notifications.read { userId: string, id: string }
@@ -536,6 +557,7 @@ WebSocket:
 Frontend:
   - /admin/hero-settings                            (صفحة الإدارة)
   - /admin/about-images                             (صفحة إدارة صور About)
+  - /admin/partner-places                           (صفحة إدارة Partner Places)
   - /about-us                                       (صفحة About)
   - /restaurants                                    (قائمة المطاعم)
   - /restaurants/:id                                (تفاصيل المطعم + المنيو)
