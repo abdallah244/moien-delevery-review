@@ -6,7 +6,7 @@
 [![Status](https://img.shields.io/badge/Status-قيد%20التطوير-yellow.svg)]()
 [![Last Updated](https://img.shields.io/badge/آخر%20تحديث-فبراير%202026-blue.svg)]()
 
-**📅 تاريخ التقرير: 10 فبراير 2026**
+**📅 تاريخ التقرير: 11 فبراير 2026**
 
 </div>
 
@@ -34,10 +34,10 @@
 | المكون           | نسبة الإنجاز | الحالة         |
 | ---------------- | ------------ | -------------- |
 | 🖥️ Backend API   | 74%          | 🟡 قيد التطوير |
-| 🌐 Web Frontend  | 62%          | 🟡 قيد التطوير |
+| 🌐 Web Frontend  | 64%          | 🟡 قيد التطوير |
 | 📱 Mobile App    | 0%           | 🔴 لم يبدأ     |
 | 🗄️ Database      | 66%          | 🟡 قيد التطوير |
-| 📚 Documentation | 65%          | 🟡 متوسط       |
+| 📚 Documentation | 68%          | 🟡 متوسط       |
 | 🧪 Testing       | 10%          | 🔴 ضعيف        |
 
 ### ما تم إنجازه ✅
@@ -61,7 +61,8 @@
 | Frontend | صفحة About (Wolt-inspired) مع تقليل السكاشن + تحسينات UI/Contrast                                                                                                                     |
 | Frontend | إدارة صور صفحة About عبر الأدمن (Slots مستقلة عن اللاندنج)                                                                                                                            |
 | Frontend | أزرار الـ Cute Navbar تعمل كتبديل (Tabs) لعرض الصور والنصوص ديناميكياً                                                                                                                |
-| Frontend | إصلاح الثيم (Dark/High-contrast) ليؤثر على صفحات المستخدم (بدون ألوان hardcoded)                                                                                                      |
+| Frontend | تحسين نظام الثيم: Dark افتراضي + منع `prefers-color-scheme` من تجاوز اختيار المستخدم + تعيين `data-theme` على عنصر `html`                                                             |
+| Frontend | توحيد ستايل المتجر (Restaurants list/details): إزالة gradients + ربط الألوان بـ tokens الثيم (accent cyan)                                                                            |
 | Frontend | Partner Places (Admin): عرض الطلبات + Actions (Approve/Needs info/Reject/Message/Delete) + تحديث لحظي                                                                                 |
 | Frontend | Partner Portal (Provider): تسجيل دخول + منع تعارض الجلسات (log out first) + ترجمة الرسالة + شارة Provider في navbar                                                                   |
 | Docs     | توثيق موجود (ملفات في الجذر + مجلد `docs/`) لكن يحتاج مراجعة/توحيد مع الواقع الحالي                                                                                                   |
@@ -115,7 +116,7 @@
 | الجزء             | نسبة الإنجاز | ملاحظات مختصرة                                           |
 | ----------------- | ------------ | -------------------------------------------------------- |
 | Landing/About     | 90%          | UI قوي + i18n؛ بعض اللغات تحتوي سلاسل غير مترجمة بالكامل |
-| Restaurants/Store | 75%          | Browse + details/menu + cart                             |
+| Restaurants/Store | 78%          | Browse + details/menu + cart + تحسينات Theme/UI          |
 | Checkout          | 65%          | MVP checkout + promo؛ يحتاج hardening و حالات فشل أكثر   |
 | User Profile      | 70%          | بيانات + عناوين + payment methods (Stripe)               |
 | Admin             | 65%          | إدارة صور + Partner Places admin؛ يحتاج coverage أوسع    |
@@ -255,7 +256,7 @@
 | SMS (Provider)                     | `backend/src/common/services/communication/sms.service.ts`        | 🔴 غير مكتمل للإنتاج                                   | `SMS_PROVIDER!=mock` يرجع خطأ “not implemented”، والـ mock مرفوض في الإنتاج إلا لو `SMS_ALLOW_MOCK_IN_PROD=true` |
 | Driver Web Pages                   | `wfrontend/src/app/pages/driver/*`                                | 🔴 Placeholder                                         | صفحات “coming soon/MVP” بدون مهام توصيل/تتبع/أرباح حقيقية                                                        |
 | Mobile App                         | `mfrontend/`                                                      | 🔴 Skeleton                                            | مشروع Flutter موجود (platforms + build) لكن بدون features فعلية                                                  |
-| Docs Consistency                   | `CATALOG.md` + `ARCHITECTURE.md`                                  | 🟡 يحتاج مراجعة                                        | `CATALOG.md` قديم (v0.0.5) وغير مطابق للوحدات الحالية؛ بعض أقسام `ARCHITECTURE.md` أوسع من الواقع الحالي         |
+| Docs Consistency                   | `CATALOG.md` + `ARCHITECTURE.md`                                  | 🟡 يحتاج مراجعة                                        | تم تحديثهما ليعكسا الواقع الحالي (v0.0.13) لكن يحتاجان مراجعة دورية مع كل إصدار جديد                             |
 
 ## 📦 الميزات الناقصة (Missing Features)
 
@@ -559,6 +560,16 @@
 | **Unusual Activity Monitor**    | مراقبة نشاط غير طبيعي (rate window) → حظر ساعة برسالة إنجليزية + countdown                                         |
 | **CORS Same-Origin Fix**        | السماح لصفحة `/` بعمل fetch لـ `__access/*` عبر تضمين `http://localhost:${PORT}` ضمن whitelist                     |
 
+### Web Frontend
+
+| التحديث                    | الوصف                                                                                                               |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| **Default Dark Theme**     | جعل الدارك مود هو الوضع الافتراضي على أول تحميل (First paint) + حفظ/تطبيق اختيار المستخدم بشكل واضح                 |
+| **Theme Override Fix**     | تعديل CSS بحيث `prefers-color-scheme: dark` لا يتجاوز اختيار المستخدم عند تفعيل Light/Dark/High-contrast            |
+| **Wolt-like Single Color** | إزالة الخلفيات gradients في صفحات المتجر (Restaurants list/details) واستبدالها بخلفية سادة + accent cyan عبر tokens |
+| **About/Landing Polish**   | إزالة بقايا gradients وتحسين التباين وربط الألوان بـ tokens بدل ألوان hardcoded                                     |
+| **Build Verified**         | `wfrontend` build ناجح؛ يوجد تحذير واحد معروف (Leaflet CommonJS) بدون تأثير على التشغيل                             |
+
 ### Frontend Web
 
 | الميزة                          | الوصف                                                                                                          |
@@ -708,7 +719,7 @@ Theme notes:
 
 <div align="center">
 
-**📝 آخر تحديث: 10 فبراير 2026**
+**📝 آخر تحديث: 11 فبراير 2026**
 
 [![Made with ❤️](https://img.shields.io/badge/Made%20with-❤️-red.svg)]()
 [![For Moien Delivery](https://img.shields.io/badge/For-Moien%20Delivery-blue.svg)]()

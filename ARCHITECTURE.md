@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Architecture](https://img.shields.io/badge/Architecture-Microservices-blue.svg)]()
+[![Architecture](https://img.shields.io/badge/Architecture-Monorepo%20%2B%20Modular-blue.svg)]()
 [![Pattern](https://img.shields.io/badge/Pattern-Clean%20Architecture-green.svg)]()
 [![API](https://img.shields.io/badge/API-RESTful-orange.svg)]()
 
@@ -35,7 +35,7 @@
 - ✅ **قابلية الاختبار** - تغطية اختبارات شاملة
 - ✅ **الاستقلالية** - فصل الاهتمامات بين الطبقات
 
-### المكونات الرئيسية
+### المكونات الرئيسية (الواقع الحالي)
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -47,17 +47,16 @@
          │                 │                  │
          ▼                 ▼                  ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                      API Gateway                                 │
-│                    (Load Balancer)                               │
+│                      Backend (NestJS)                            │
+│                  Modular Monolith (Modules)                      │
 └────────────────────────────┬────────────────────────────────────┘
                              │
                              ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                     Backend Services                             │
-├─────────┬─────────┬─────────┬─────────┬─────────┬──────────────┤
-│  Auth   │  User   │  Order  │Restaurant│ Driver │  Payment     │
-│ Service │ Service │ Service │ Service  │ Service│  Service     │
-└────┬────┴────┬────┴────┬────┴────┬─────┴────┬───┴──────┬───────┘
+│                API Layer (/api/v1) + WebSockets                  │
+├─────────┬─────────┬─────────┬────────────┬─────────┬────────────┤
+│  Auth   │  Users  │ Orders  │ Restaurants│ Payments│ SiteSettings│
+└─────────┴─────────┴─────────┴────────────┴─────────┴────────────┘
      │         │         │         │          │          │
      ▼         ▼         ▼         ▼          ▼          ▼
 ┌─────────────────────────────────────────────────────────────────┐

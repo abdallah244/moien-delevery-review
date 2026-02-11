@@ -2,10 +2,12 @@
 
 <div align="center">
 
-[![Docs](https://img.shields.io/badge/Documentation-Complete-success.svg)]()
+[![Docs](https://img.shields.io/badge/Documentation-In%20Progress-yellow.svg)]()
 [![Languages](https://img.shields.io/badge/Languages-Web%207%20|%20Admin%20AR-blue.svg)]()
 
 **مرحباً بك في مركز توثيق Moien Delivery**
+
+> المصدر الأحدث لحالة التنفيذ والنِّسَب: [REPORT.md](../REPORT.md).
 
 </div>
 

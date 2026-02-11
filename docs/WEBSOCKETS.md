@@ -18,7 +18,9 @@
 - **Server**: NestJS Socket.IO Gateways
 - **Namespaces الحالية**:
   - `/users` (تحديثات المستخدمين)
+  - `/notifications` (إشعارات المستخدمين realtime)
   - `/site-settings` (تحديثات صور اللاندنج/الأبوت)
+  - `/partner-places` (تحديثات طلبات Partner Places في الأدمن)
 
 > ملاحظة: الـ WebSocket لا يمر عبر `api/v1` (هو مسار Socket.IO مستقل على نفس الـ host/port).
 
@@ -30,6 +32,7 @@
 
 - Users: `http://localhost:3000/users`
 - Site Settings: `http://localhost:3000/site-settings`
+- Partner Places: `http://localhost:3000/partner-places`
 
 ### مثال (TypeScript)
 
@@ -41,6 +44,10 @@ const socket = io("http://localhost:3000/users", {
 });
 
 const siteSettingsSocket = io("http://localhost:3000/site-settings", {
+  transports: ["websocket"],
+});
+
+const partnerPlacesSocket = io("http://localhost:3000/partner-places", {
   transports: ["websocket"],
 });
 
@@ -196,6 +203,33 @@ socket.on("connect_error", () => {
 
 - `kind` قد تكون `banned` أو `deleted`.
 - بعد إرسال الحدث، يقوم السيرفر بعمل `disconnect(true)` لكل sockets الخاصة بالمستخدم.
+
+---
+
+## 🏪 Partner Places Namespace
+
+**Namespace:** `/partner-places`
+
+> الهدف: إشعار لوحة الأدمن أن القائمة تغيّرت (بدون إرسال القائمة كاملة).
+
+### `partner-places.changed`
+
+يبث عند حدوث تغيير في طلبات Partner Places (create/approve/needs_info/reject/message/delete).
+
+**Payload:**
+
+```json
+{ "kind": "created", "id": "uuid", "at": "2026-02-09T12:00:00.000Z" }
+```
+
+**kind:**
+
+- `created`
+- `approved`
+- `needs_info`
+- `rejected`
+- `updated`
+- `deleted`
 
 ---
 
