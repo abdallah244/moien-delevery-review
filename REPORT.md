@@ -6,7 +6,7 @@
 [![Status](https://img.shields.io/badge/Status-قيد%20التطوير-yellow.svg)]()
 [![Last Updated](https://img.shields.io/badge/آخر%20تحديث-فبراير%202026-blue.svg)]()
 
-**📅 تاريخ التقرير: 11 فبراير 2026**
+**📅 تاريخ التقرير: 12 فبراير 2026**
 
 </div>
 
@@ -33,10 +33,10 @@
 
 | المكون           | نسبة الإنجاز | الحالة         |
 | ---------------- | ------------ | -------------- |
-| 🖥️ Backend API   | 74%          | 🟡 قيد التطوير |
-| 🌐 Web Frontend  | 64%          | 🟡 قيد التطوير |
+| 🖥️ Backend API   | 78%          | 🟡 قيد التطوير |
+| 🌐 Web Frontend  | 68%          | 🟡 قيد التطوير |
 | 📱 Mobile App    | 0%           | 🔴 لم يبدأ     |
-| 🗄️ Database      | 66%          | 🟡 قيد التطوير |
+| 🗄️ Database      | 70%          | 🟡 قيد التطوير |
 | 📚 Documentation | 68%          | 🟡 متوسط       |
 | 🧪 Testing       | 10%          | 🔴 ضعيف        |
 
@@ -65,6 +65,9 @@
 | Frontend | توحيد ستايل المتجر (Restaurants list/details): إزالة gradients + ربط الألوان بـ tokens الثيم (accent cyan)                                                                            |
 | Frontend | Partner Places (Admin): عرض الطلبات + Actions (Approve/Needs info/Reject/Message/Delete) + تحديث لحظي                                                                                 |
 | Frontend | Partner Portal (Provider): تسجيل دخول + منع تعارض الجلسات (log out first) + ترجمة الرسالة + شارة Provider في navbar                                                                   |
+| Frontend | Provider System Settings: صفحة إعدادات (General/Hours/Branches/Danger Zone) محمية بإعادة إدخال كلمة المرور + Unlock قصير عبر sessionStorage                                           |
+| Frontend | Provider Dashboard: إضافة إدارة الأصناف (Categories) وعناصر المنيو (Menu Items) (Add/Edit/Delete) مع رفع صورة العنصر + Availability + ربط Category + عرض السعر باليورو                |
+| Backend  | Provider/Partner APIs: `GET /partner-places/me` + تحديثات `PATCH /partner-places/me/request` + رفع صورة المطعم + CRUD للأصناف/المنيو scoped على مطعم الـ Provider                     |
 | Docs     | توثيق موجود (ملفات في الجذر + مجلد `docs/`) لكن يحتاج مراجعة/توحيد مع الواقع الحالي                                                                                                   |
 
 ---
@@ -97,31 +100,31 @@
 
 #### Backend Modules
 
-| الوحدة          | نسبة الإنجاز | ملاحظات مختصرة                                                                        |
-| --------------- | ------------ | ------------------------------------------------------------------------------------- |
-| Auth            | 80%          | Login/Refresh/Logout/Sessions موجودة؛ OAuth غير موجود                                 |
-| Users           | 75%          | CRUD أساسي + تحقق email/phone + عناوين + وسائل دفع (تعتمد على Stripe)                 |
-| Restaurants     | 80%          | CRUD + categories + menu items (MVP)                                                  |
-| Orders          | 70%          | Cart + Checkout + Tracking للمستخدم؛ لا يوجد Driver assignment/status lifecycle كامل  |
-| Payments        | 55%          | publishable key + setup intent؛ لا يوجد Webhooks/settlement flow كامل                 |
-| Promotions      | 60%          | Validate + تطبيق خصم؛ يحتاج توسيع (قواعد/قيود/لوحة إدارة كاملة)                       |
-| Notifications   | 65%          | DB + Socket.IO؛ Push غير موجود و SMS غير إنتاجي                                       |
-| Partner Places  | 85%          | Workflow كامل (request/review/provider login) + realtime + حماية حذف بالـ master code |
-| Site Settings   | 80%          | صور landing/about + CRUD إعدادات أساسي                                                |
-| Support Tickets | 60%          | إنشاء/عرض/رد؛ يحتاج SLA/attachments/workflow متقدم                                    |
-| Admin Staff     | 60%          | Login + CRUD؛ صلاحيات/roles متقدمة غير موجودة                                         |
+| الوحدة          | نسبة الإنجاز | ملاحظات مختصرة                                                                                                 |
+| --------------- | ------------ | -------------------------------------------------------------------------------------------------------------- |
+| Auth            | 80%          | Login/Refresh/Logout/Sessions موجودة؛ OAuth غير موجود                                                          |
+| Users           | 75%          | CRUD أساسي + تحقق email/phone + عناوين + وسائل دفع (تعتمد على Stripe)                                          |
+| Restaurants     | 80%          | CRUD + categories + menu items (MVP)                                                                           |
+| Orders          | 70%          | Cart + Checkout + Tracking للمستخدم؛ لا يوجد Driver assignment/status lifecycle كامل                           |
+| Payments        | 55%          | publishable key + setup intent؛ لا يوجد Webhooks/settlement flow كامل                                          |
+| Promotions      | 60%          | Validate + تطبيق خصم؛ يحتاج توسيع (قواعد/قيود/لوحة إدارة كاملة)                                                |
+| Notifications   | 65%          | DB + Socket.IO؛ Push غير موجود و SMS غير إنتاجي                                                                |
+| Partner Places  | 92%          | Workflow كامل + Provider Portal (Me endpoints) + فروع + حذف الحساب + إدارة المنيو/الأصناف + رفع صور Cloudinary |
+| Site Settings   | 80%          | صور landing/about + CRUD إعدادات أساسي                                                                         |
+| Support Tickets | 60%          | إنشاء/عرض/رد؛ يحتاج SLA/attachments/workflow متقدم                                                             |
+| Admin Staff     | 60%          | Login + CRUD؛ صلاحيات/roles متقدمة غير موجودة                                                                  |
 
 #### Web Areas
 
-| الجزء             | نسبة الإنجاز | ملاحظات مختصرة                                           |
-| ----------------- | ------------ | -------------------------------------------------------- |
-| Landing/About     | 90%          | UI قوي + i18n؛ بعض اللغات تحتوي سلاسل غير مترجمة بالكامل |
-| Restaurants/Store | 78%          | Browse + details/menu + cart + تحسينات Theme/UI          |
-| Checkout          | 65%          | MVP checkout + promo؛ يحتاج hardening و حالات فشل أكثر   |
-| User Profile      | 70%          | بيانات + عناوين + payment methods (Stripe)               |
-| Admin             | 65%          | إدارة صور + Partner Places admin؛ يحتاج coverage أوسع    |
-| Provider Portal   | 80%          | Login + request + dashboard navigation                   |
-| Driver            | 10%          | Placeholder فقط                                          |
+| الجزء             | نسبة الإنجاز | ملاحظات مختصرة                                                  |
+| ----------------- | ------------ | --------------------------------------------------------------- |
+| Landing/About     | 90%          | UI قوي + i18n؛ بعض اللغات تحتوي سلاسل غير مترجمة بالكامل        |
+| Restaurants/Store | 78%          | Browse + details/menu + cart + تحسينات Theme/UI                 |
+| Checkout          | 65%          | MVP checkout + promo؛ يحتاج hardening و حالات فشل أكثر          |
+| User Profile      | 70%          | بيانات + عناوين + payment methods (Stripe)                      |
+| Admin             | 65%          | إدارة صور + Partner Places admin؛ يحتاج coverage أوسع           |
+| Provider Portal   | 88%          | Login + System Settings gate + Dashboard + إدارة المنيو/الأصناف |
+| Driver            | 10%          | Placeholder فقط                                                 |
 
 ---
 
@@ -189,6 +192,7 @@
 | 7   | تحذير DevTools: بعض حقول الإدخال بدون `id/name`       | `wfrontend/src/app/pages/landing/landing.v2.html`                                       | ✅ تم    |
 | 8   | بعض الترجمات غير مكتملة (سلاسل EN داخل لغات أخرى)     | `wfrontend/src/app/services/language.ts`                                                | 🟡 متوسط |
 | 9   | إضافة وسيلة دفع تعتمد على إعداد Stripe في الـ backend | `wfrontend/src/app/pages/user/profile/user-profile.ts`                                  | 🟡 متوسط |
+| 10  | اختبار واجهة الويب يفشل بسبب توقع وجود `h1`           | `wfrontend/src/app/app.spec.ts`                                                         | 🟡 متوسط |
 
 ### Mobile (Flutter)
 
@@ -290,18 +294,18 @@
 
 ### واجهة الويب (Web Frontend) — الحالة الحالية
 
-| #   | الصفحة/الميزة               | الوصف                    | الأولوية |
-| --- | --------------------------- | ------------------------ | -------- |
-| 1   | 🏠 **Landing Page**         | ✅ تم تنفيذها (MVP)      | 🔴 حرج   |
-| 2   | 🍴 **Restaurant List**      | ✅ تم تنفيذها (MVP)      | 🔴 حرج   |
-| 3   | 📋 **Restaurant Menu**      | ✅ تم تنفيذها (MVP)      | 🔴 حرج   |
-| 4   | 🛒 **Shopping Cart**        | ✅ تم تنفيذها (MVP)      | 🔴 حرج   |
-| 5   | 💳 **Checkout**             | ✅ تم تنفيذها (MVP)      | 🔴 حرج   |
-| 6   | 📍 **Order Tracking**       | ✅ تم تنفيذها (MVP)      | 🔴 حرج   |
-| 7   | 📜 **Order History**        | ✅ تم تنفيذها (MVP)      | 🟠 عالي  |
-| 8   | 👤 **User Profile**         | ✅ تم تنفيذها (MVP)      | 🟠 عالي  |
-| 9   | 🏪 **Restaurant Dashboard** | ❌ غير موجودة حالياً     | 🟠 عالي  |
-| 10  | 🚗 **Driver Dashboard**     | 🟡 صفحات placeholder فقط | 🟠 عالي  |
+| #   | الصفحة/الميزة             | الوصف                    | الأولوية |
+| --- | ------------------------- | ------------------------ | -------- |
+| 1   | 🏠 **Landing Page**       | ✅ تم تنفيذها (MVP)      | 🔴 حرج   |
+| 2   | 🍴 **Restaurant List**    | ✅ تم تنفيذها (MVP)      | 🔴 حرج   |
+| 3   | 📋 **Restaurant Menu**    | ✅ تم تنفيذها (MVP)      | 🔴 حرج   |
+| 4   | 🛒 **Shopping Cart**      | ✅ تم تنفيذها (MVP)      | 🔴 حرج   |
+| 5   | 💳 **Checkout**           | ✅ تم تنفيذها (MVP)      | 🔴 حرج   |
+| 6   | 📍 **Order Tracking**     | ✅ تم تنفيذها (MVP)      | 🔴 حرج   |
+| 7   | 📜 **Order History**      | ✅ تم تنفيذها (MVP)      | 🟠 عالي  |
+| 8   | 👤 **User Profile**       | ✅ تم تنفيذها (MVP)      | 🟠 عالي  |
+| 9   | 🏪 **Provider Dashboard** | ✅ تم تنفيذها (MVP)      | 🟠 عالي  |
+| 10  | 🚗 **Driver Dashboard**   | 🟡 صفحات placeholder فقط | 🟠 عالي  |
 
 > ملاحظة: تم تنفيذ Flow أساسي للمتجر (Restaurants → Menu → Cart → Checkout)، وباقي صفحات المتجر ما زالت ضمن الميزات الناقصة.
 
@@ -559,16 +563,22 @@
 | **DevTools Suspension**         | رصد فتح DevTools (best-effort) → حظر 10 دقائق برسالة إنجليزية + countdown                                          |
 | **Unusual Activity Monitor**    | مراقبة نشاط غير طبيعي (rate window) → حظر ساعة برسالة إنجليزية + countdown                                         |
 | **CORS Same-Origin Fix**        | السماح لصفحة `/` بعمل fetch لـ `__access/*` عبر تضمين `http://localhost:${PORT}` ضمن whitelist                     |
+| **Provider Me API**             | إضافة `GET /api/v1/partner-places/me` لقراءة بيانات الـ Provider الحالية مع request/branches                       |
+| **Provider Request Update**     | إضافة `PATCH /api/v1/partner-places/me/request` لحفظ بيانات editable (ومنها opening hours)                         |
+| **Provider Image Upload**       | رفع/تغيير صورة المطعم للـ Provider (Cloudinary) مع انعكاسها على الداشبورد                                          |
+| **Provider Menu Management**    | CRUD للأصناف/المنيو scoped على مطعم الـ Provider + رفع صورة عنصر المنيو                                            |
 
 ### Web Frontend
 
-| التحديث                    | الوصف                                                                                                               |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| **Default Dark Theme**     | جعل الدارك مود هو الوضع الافتراضي على أول تحميل (First paint) + حفظ/تطبيق اختيار المستخدم بشكل واضح                 |
-| **Theme Override Fix**     | تعديل CSS بحيث `prefers-color-scheme: dark` لا يتجاوز اختيار المستخدم عند تفعيل Light/Dark/High-contrast            |
-| **Wolt-like Single Color** | إزالة الخلفيات gradients في صفحات المتجر (Restaurants list/details) واستبدالها بخلفية سادة + accent cyan عبر tokens |
-| **About/Landing Polish**   | إزالة بقايا gradients وتحسين التباين وربط الألوان بـ tokens بدل ألوان hardcoded                                     |
-| **Build Verified**         | `wfrontend` build ناجح؛ يوجد تحذير واحد معروف (Leaflet CommonJS) بدون تأثير على التشغيل                             |
+| التحديث                      | الوصف                                                                                                               |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| **Default Dark Theme**       | جعل الدارك مود هو الوضع الافتراضي على أول تحميل (First paint) + حفظ/تطبيق اختيار المستخدم بشكل واضح                 |
+| **Theme Override Fix**       | تعديل CSS بحيث `prefers-color-scheme: dark` لا يتجاوز اختيار المستخدم عند تفعيل Light/Dark/High-contrast            |
+| **Wolt-like Single Color**   | إزالة الخلفيات gradients في صفحات المتجر (Restaurants list/details) واستبدالها بخلفية سادة + accent cyan عبر tokens |
+| **About/Landing Polish**     | إزالة بقايا gradients وتحسين التباين وربط الألوان بـ tokens بدل ألوان hardcoded                                     |
+| **Build Verified**           | `wfrontend` build ناجح؛ يوجد تحذير واحد معروف (Leaflet CommonJS) بدون تأثير على التشغيل                             |
+| **Provider System Settings** | صفحة `/provider/system-settings` محمية بإعادة إدخال كلمة المرور + i18n كامل                                         |
+| **Provider Dashboard Menu**  | إدارة الأصناف والمنيو داخل الداشبورد (مودالات Add/Edit/Delete + صور + Availability + سعر EUR)                       |
 
 ### Frontend Web
 
@@ -719,7 +729,7 @@ Theme notes:
 
 <div align="center">
 
-**📝 آخر تحديث: 11 فبراير 2026**
+**📝 آخر تحديث: 12 فبراير 2026**
 
 [![Made with ❤️](https://img.shields.io/badge/Made%20with-❤️-red.svg)]()
 [![For Moien Delivery](https://img.shields.io/badge/For-Moien%20Delivery-blue.svg)]()
