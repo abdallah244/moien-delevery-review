@@ -35,12 +35,21 @@
 
 ## 🧩 الوحدات (Modules)
 
-| الوحدة      | Base route (API)                 | ملاحظات                                                         |
-| ----------- | -------------------------------- | --------------------------------------------------------------- |
-| Admin Staff | `/admin-staff`                   | CRUD أساسي + تسجيل دخول أدمن legacy (يوجد أيضاً JWT admin auth) |
-| `GET`       | `/admin/reports/revenue`         | تقارير الإيرادات                                                |
-| `POST`      | `/admin/promotions`              | إنشاء عرض                                                       |
-| `POST`      | `/admin/notifications/broadcast` | إشعار جماعي                                                     |
+| الوحدة          | Base route (API)         | ملاحظات                                                                            |
+| --------------- | ------------------------ | ---------------------------------------------------------------------------------- |
+| Auth            | `/auth`                  | JWT (User/Admin) + refresh sessions                                                |
+| Users           | `/users`                 | تسجيل/دخول + Email/Phone verification (SMS/WhatsApp) + Payment methods + Addresses |
+| Restaurants     | `/restaurants`           | البحث/القائمة/التفاصيل                                                             |
+| Categories      | `/restaurant-categories` | تصنيفات المطاعم                                                                    |
+| Menu Items      | `/menu-items`            | عناصر المنيو                                                                       |
+| Orders          | `/orders`                | إنشاء الطلب + تتبع                                                                 |
+| Payments        | `/payments`              | Stripe publishable key + webhook signature verification                            |
+| Promotions      | `/promotions`            | CRUD للأدمن + `POST /promotions/validate` + `POST /promotions/:id/notify`          |
+| Notifications   | `/notifications`         | قائمة/قراءة/حذف إشعارات المستخدم                                                   |
+| Site Settings   | `/site-settings`         | إعدادات صور/محتوى الـ Landing + تحديثات realtime                                   |
+| Partner Places  | `/partner-places`        | إدارة الـ providers (المطاعم/الفروع)                                               |
+| Support Tickets | `/support-tickets`       | نظام الدعم                                                                         |
+| Admin Staff     | `/admin-staff`           | CRUD أساسي + تسجيل دخول legacy                                                     |
 
 ---
 

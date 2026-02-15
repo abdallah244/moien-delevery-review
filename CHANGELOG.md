@@ -10,6 +10,25 @@
 
 ### 🚀 مضاف
 
+- **Phone OTP (SMS/WhatsApp via Twilio)**
+  - دعم إرسال كود التحقق عبر `sms` أو `whatsapp` (مع hardening لرسائل أخطاء Twilio وملاحظات sandbox)
+
+- **Stripe: Add Card + Webhook**
+  - إضافة Stripe webhook receiver مع التحقق من التوقيع (raw body)
+  - تحسين تجربة إضافة بطاقة (Add Card) في الويب عبر Stripe Setup Intent / Payment Element
+
+- **Promotions (Admin)**
+  - CRUD كامل للعروض عبر `/promotions` للأدمن (JWT role=admin)
+  - ربط العرض بمطاعم محددة + دعم `startsAt/endsAt` + فلترة `isActive`
+  - إرسال إشعارات لمستخدمين محددين من العرض: `POST /promotions/:id/notify`
+
+- **Notifications (User)**
+  - إضافة عمليات مساعدة لإدارة الإشعارات: mark-all-read, delete-selected, clear-all-read
+
+- **Web UX**
+  - تحويل مسار `/` ليعيد التوجيه إلى `/restaurants` (واللاندنج على `/home`)
+  - توحيد عرض إجمالي السلة/الفاتورة بعملة EUR
+
 - إنشاء البنية الأساسية للمشروع
 - إعداد الخادم الخلفي باستخدام NestJS 11
 - إعداد واجهة الويب باستخدام Angular 21
@@ -24,6 +43,9 @@
   - Endpoints: `GET /__access/status`, `POST /__access/check`, `POST /__access/devtools`
 
 ### 🔧 مُصلَح
+
+- **Auth (Web)**
+  - إصلاح مشكلة تداخل توكن الأدمن مع مسارات المستخدم (حصر استخدام admin token على `/admin/*` فقط)
 
 - **Theme/UI (Web)**
   - جعل الوضع الداكن هو الافتراضي عند أول تحميل (First paint) + تحسين تطبيق/تثبيت الثيم عبر `theme-*` classes و `data-theme`

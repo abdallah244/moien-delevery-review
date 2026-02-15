@@ -447,22 +447,15 @@ wfrontend/
 ### الصفحة الرئيسية (Landing Page)
 
 ```typescript
-// src/app/features/landing/landing.component.ts
+// src/app/pages/landing/landing.ts
 
 @Component({
   selector: "app-landing",
-  standalone: true,
-  imports: [HeroComponent, FeaturesComponent, HowItWorksComponent, RestaurantsShowcaseComponent, DownloadAppComponent, ContactComponent],
-  template: `
-    <app-hero />
-    <app-features />
-    <app-how-it-works />
-    <app-restaurants-showcase />
-    <app-download-app />
-    <app-contact />
-  `,
+  imports: [CommonModule],
+  templateUrl: "./landing.v2.html",
+  styleUrl: "./landing.v2.css",
 })
-export class LandingComponent {}
+export class Landing {}
 ```
 
 ### لوحة التحكم الإدارية (Admin Dashboard)
@@ -574,36 +567,51 @@ export class AdminStore {
 // src/app/app.routes.ts
 
 export const routes: Routes = [
-  // صفحات المستخدمين مع Navbar/Footer
-  {
-    path: "",
-    component: UserLayoutComponent,
-    children: [
-      { path: "", component: LandingComponent },
-      { path: "about", component: AboutComponent },
-      { path: "contact", component: ContactComponent },
-      {
-        path: "profile",
-        loadComponent: () => import("./pages/user/profile/user-profile").then((m) => m.UserProfileComponent),
-      },
-    ],
-  },
-
-  // صفحات المسؤول بدون User Navbar/Footer
+  // Admin Routes - No User Navbar/Footer
   {
     path: "admin",
-    component: AdminLayoutComponent,
     children: [
-      { path: "", redirectTo: "login", pathMatch: "full" },
       {
         path: "login",
-        loadComponent: () => import("./pages/admin/login/login").then((m) => m.AdminLoginComponent),
-        canActivate: [loginGuard], // يمنع الوصول إذا كان مسجل دخول
+        loadComponent: () => import("./pages/admin/login/admin-login").then((m) => m.AdminLoginComponent),
+        canActivate: [loginGuard],
       },
       {
         path: "dashboard",
-        loadComponent: () => import("./pages/admin/dashboard/dashboard").then((m) => m.AdminDashboardComponent),
-        canActivate: [authGuard], // يتطلب تسجيل الدخول
+        loadComponent: () => import("./pages/admin/dashboard/admin-dashboard").then((m) => m.AdminDashboardComponent),
+        canActivate: [authGuard],
+      },
+      {
+        path: "promotions",
+        loadComponent: () => import("./pages/admin/promotions/admin-promotions").then((m) => m.AdminPromotionsComponent),
+        canActivate: [authGuard],
+      },
+      { path: "", redirectTo: "login", pathMatch: "full" },
+    ],
+  },
+
+  // User Routes
+  {
+    path: "",
+    loadComponent: () => import("./layouts/user-layout/user-layout").then((m) => m.UserLayoutComponent),
+    children: [
+      {
+        path: "",
+        redirectTo: "restaurants",
+        pathMatch: "full",
+      },
+      {
+        path: "home",
+        loadComponent: () => import("./pages/landing/landing").then((m) => m.Landing),
+      },
+      {
+        path: "restaurants",
+        loadComponent: () => import("./pages/restaurants/restaurants").then((m) => m.RestaurantsPageComponent),
+      },
+      {
+        path: "profile",
+        loadComponent: () => import("./pages/user/profile/user-profile").then((m) => m.UserProfileComponent),
+        canActivate: [userAuthGuard],
       },
     ],
   },

@@ -119,9 +119,35 @@
 
 #### 💰 Payments Module
 
-| المسار                                    | الطريقة | الوصف              | الحالة  |
-| ----------------------------------------- | ------- | ------------------ | ------- |
-| `/api/v1/payments/stripe/publishable-key` | GET     | مفتاح Stripe العام | ✅ متاح |
+| المسار                                    | الطريقة | الوصف                               | الحالة  |
+| ----------------------------------------- | ------- | ----------------------------------- | ------- |
+| `/api/v1/payments/stripe/publishable-key` | GET     | مفتاح Stripe العام                  | ✅ متاح |
+| `/api/v1/payments/stripe/webhook`         | POST    | Stripe webhook (signature verified) | ✅ متاح |
+
+#### 🏷️ Promotions Module
+
+> ملاحظة: Endpoints الـ CRUD محمية بتوكن Admin (JWT) على نفس المسار `/promotions`.
+
+| المسار                          | الطريقة | الوصف                                   | الحالة  |
+| ------------------------------- | ------- | --------------------------------------- | ------- |
+| `/api/v1/promotions`            | POST    | إنشاء عرض (Admin)                       | ✅ متاح |
+| `/api/v1/promotions`            | GET     | قائمة العروض + فلترة `isActive` (Admin) | ✅ متاح |
+| `/api/v1/promotions/:id`        | GET     | تفاصيل عرض (Admin)                      | ✅ متاح |
+| `/api/v1/promotions/:id`        | PATCH   | تعديل عرض (Admin)                       | ✅ متاح |
+| `/api/v1/promotions/validate`   | POST    | التحقق من promo code وحساب الخصم (User) | ✅ متاح |
+| `/api/v1/promotions/:id/notify` | POST    | إرسال إشعار لمستخدمين محددين (Admin)    | ✅ متاح |
+
+#### 🔔 Notifications Module
+
+| المسار                                             | الطريقة | الوصف                        | الحالة  |
+| -------------------------------------------------- | ------- | ---------------------------- | ------- |
+| `/api/v1/notifications`                            | POST    | إنشاء إشعار (داخلي/خدمة)     | ✅ متاح |
+| `/api/v1/notifications?userId=...`                 | GET     | قائمة إشعارات المستخدم       | ✅ متاح |
+| `/api/v1/notifications/:id/read?userId=...`        | PATCH   | تعليم إشعار كمقروء           | ✅ متاح |
+| `/api/v1/notifications/read-all?userId=...`        | POST    | تعليم كل الإشعارات كمقروءة   | ✅ متاح |
+| `/api/v1/notifications?userId=...`                 | DELETE  | حذف كل الإشعارات المقروءة    | ✅ متاح |
+| `/api/v1/notifications/:id?userId=...`             | DELETE  | حذف إشعار واحد (لو مقروء)    | ✅ متاح |
+| `/api/v1/notifications/delete-selected?userId=...` | POST    | حذف مجموعة محددة (لو مقروءة) | ✅ متاح |
 
 #### ⚙️ Site Settings Module
 

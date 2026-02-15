@@ -159,18 +159,15 @@ TWILIO_ACCOUNT_SID=your_sid
 TWILIO_AUTH_TOKEN=your_token
 TWILIO_PHONE_NUMBER=+1234567890
 
-# WhatsApp (Meta Cloud API)
-# Important: WhatsApp messages are sent from the WhatsApp Business number connected to your Meta app.
-# You cannot force a random sender number unless it is the verified business number linked to WHATSAPP_PHONE_NUMBER_ID.
-WHATSAPP_ENABLED=true
-WHATSAPP_TOKEN=your_meta_whatsapp_token
-WHATSAPP_PHONE_NUMBER_ID=your_phone_number_id
-WHATSAPP_API_VERSION=v19.0
-# Optional: send using a WhatsApp template instead of a free-form text message
-WHATSAPP_TEMPLATE_NAME=
-WHATSAPP_TEMPLATE_LANG=en_US
+# WhatsApp (Twilio)
+# Notes:
+# - WhatsApp messages must be sent from a WhatsApp-enabled sender in Twilio.
+# - For testing, use the Twilio WhatsApp Sandbox sender and have recipients join the sandbox.
+TWILIO_WHATSAPP_ENABLED=true
+# Can be either "whatsapp:+<number>" or "+<number>". If empty, backend falls back to TWILIO_PHONE_NUMBER.
+TWILIO_WHATSAPP_FROM=
 # Optional: if you store phone numbers locally like 011..., set a default calling code (Egypt = 20)
-WHATSAPP_DEFAULT_COUNTRY_CALLING_CODE=20
+TWILIO_DEFAULT_COUNTRY_CALLING_CODE=20
 
 # Payment (Stripe)
 STRIPE_SECRET_KEY=sk_test_xxx
@@ -526,18 +523,18 @@ docker-compose down
 
 ### ملخص المتغيرات المطلوبة
 
-| المتغير         | الوصف              | مطلوب |
-| --------------- | ------------------ | ----- |
-| `NODE_ENV`      | بيئة التشغيل       | ✅    |
-| `DATABASE_*`    | إعدادات PostgreSQL | ✅    |
-| `REDIS_*`       | إعدادات Redis      | ✅    |
-| `JWT_*`         | إعدادات المصادقة   | ✅    |
-| `MAIL_*`        | إعدادات البريد     | ❌    |
-| `TWILIO_*`      | إعدادات SMS        | ❌    |
-| `STRIPE_*`      | إعدادات الدفع      | ❌    |
-| `GOOGLE_MAPS_*` | إعدادات الخرائط    | ❌    |
-| `FIREBASE_*`    | إعدادات الإشعارات  | ❌    |
-| `AWS_*`         | إعدادات التخزين    | ❌    |
+| المتغير         | الوصف                | مطلوب |
+| --------------- | -------------------- | ----- |
+| `NODE_ENV`      | بيئة التشغيل         | ✅    |
+| `DATABASE_*`    | إعدادات PostgreSQL   | ✅    |
+| `REDIS_*`       | إعدادات Redis        | ✅    |
+| `JWT_*`         | إعدادات المصادقة     | ✅    |
+| `MAIL_*`        | إعدادات البريد       | ❌    |
+| `TWILIO_*`      | إعدادات SMS/WhatsApp | ❌    |
+| `STRIPE_*`      | إعدادات الدفع        | ❌    |
+| `GOOGLE_MAPS_*` | إعدادات الخرائط      | ❌    |
+| `FIREBASE_*`    | إعدادات الإشعارات    | ❌    |
+| `AWS_*`         | إعدادات التخزين      | ❌    |
 
 ---
 

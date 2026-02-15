@@ -6,7 +6,7 @@
 [![Status](https://img.shields.io/badge/Status-قيد%20التطوير-yellow.svg)]()
 [![Last Updated](https://img.shields.io/badge/آخر%20تحديث-فبراير%202026-blue.svg)]()
 
-**📅 تاريخ التقرير: 12 فبراير 2026**
+**📅 تاريخ التقرير: 15 فبراير 2026**
 
 </div>
 
@@ -33,12 +33,12 @@
 
 | المكون           | نسبة الإنجاز | الحالة         |
 | ---------------- | ------------ | -------------- |
-| 🖥️ Backend API   | 78%          | 🟡 قيد التطوير |
-| 🌐 Web Frontend  | 68%          | 🟡 قيد التطوير |
+| 🖥️ Backend API   | 85%          | 🟡 قيد التطوير |
+| 🌐 Web Frontend  | 76%          | 🟡 قيد التطوير |
 | 📱 Mobile App    | 0%           | 🔴 لم يبدأ     |
-| 🗄️ Database      | 70%          | 🟡 قيد التطوير |
-| 📚 Documentation | 68%          | 🟡 متوسط       |
-| 🧪 Testing       | 10%          | 🔴 ضعيف        |
+| 🗄️ Database      | 78%          | 🟡 قيد التطوير |
+| 📚 Documentation | 72%          | 🟡 متوسط       |
+| 🧪 Testing       | 12%          | 🔴 ضعيف        |
 
 ### ما تم إنجازه ✅
 
@@ -67,6 +67,8 @@
 | Frontend | Partner Portal (Provider): تسجيل دخول + منع تعارض الجلسات (log out first) + ترجمة الرسالة + شارة Provider في navbar                                                                   |
 | Frontend | Provider System Settings: صفحة إعدادات (General/Hours/Branches/Danger Zone) محمية بإعادة إدخال كلمة المرور + Unlock قصير عبر sessionStorage                                           |
 | Frontend | Provider Dashboard: إضافة إدارة الأصناف (Categories) وعناصر المنيو (Menu Items) (Add/Edit/Delete) مع رفع صورة العنصر + Availability + ربط Category + عرض السعر باليورو                |
+| Frontend | Admin Promotions: إنشاء Promo codes + ربطها بمطاعم محددة + صلاحية (start/end) + إرسال إشعارات لمستخدمين محددين + عرض قائمة Active (غير منتهية)                                        |
+| Frontend | Store UX: جعل الصفحة الرئيسية للمستخدم تفتح `/restaurants` تلقائياً + عرض إجمالي/فاتورة الكارت بعملة EUR                                                                              |
 | Backend  | Provider/Partner APIs: `GET /partner-places/me` + تحديثات `PATCH /partner-places/me/request` + رفع صورة المطعم + CRUD للأصناف/المنيو scoped على مطعم الـ Provider                     |
 | Docs     | توثيق موجود (ملفات في الجذر + مجلد `docs/`) لكن يحتاج مراجعة/توحيد مع الواقع الحالي                                                                                                   |
 
@@ -102,13 +104,13 @@
 
 | الوحدة          | نسبة الإنجاز | ملاحظات مختصرة                                                                                                 |
 | --------------- | ------------ | -------------------------------------------------------------------------------------------------------------- |
-| Auth            | 80%          | Login/Refresh/Logout/Sessions موجودة؛ OAuth غير موجود                                                          |
-| Users           | 75%          | CRUD أساسي + تحقق email/phone + عناوين + وسائل دفع (تعتمد على Stripe)                                          |
+| Auth            | 82%          | Login/Refresh/Logout/Sessions موجودة؛ OAuth غير موجود                                                          |
+| Users           | 80%          | CRUD أساسي + تحقق Email/Phone (OTP عبر SMS/WhatsApp) + عناوين + وسائل دفع (Stripe)                             |
 | Restaurants     | 80%          | CRUD + categories + menu items (MVP)                                                                           |
-| Orders          | 70%          | Cart + Checkout + Tracking للمستخدم؛ لا يوجد Driver assignment/status lifecycle كامل                           |
-| Payments        | 55%          | publishable key + setup intent؛ لا يوجد Webhooks/settlement flow كامل                                          |
-| Promotions      | 60%          | Validate + تطبيق خصم؛ يحتاج توسيع (قواعد/قيود/لوحة إدارة كاملة)                                                |
-| Notifications   | 65%          | DB + Socket.IO؛ Push غير موجود و SMS غير إنتاجي                                                                |
+| Orders          | 72%          | Cart + Checkout + Tracking للمستخدم؛ لا يوجد Driver assignment/status lifecycle كامل                           |
+| Payments        | 75%          | publishable key + setup intent + webhook receiver (signature verify)؛ لا يوجد settlement flow كامل             |
+| Promotions      | 75%          | Admin CRUD + صلاحية start/end + ربط بمطاعم محددة + Validate + تطبيق الخصم + إرسال إشعارات للمستخدمين           |
+| Notifications   | 70%          | DB + Socket.IO + Delete/Clear للـ read + TTL cleanup للـ read؛ Push غير موجود                                  |
 | Partner Places  | 92%          | Workflow كامل + Provider Portal (Me endpoints) + فروع + حذف الحساب + إدارة المنيو/الأصناف + رفع صور Cloudinary |
 | Site Settings   | 80%          | صور landing/about + CRUD إعدادات أساسي                                                                         |
 | Support Tickets | 60%          | إنشاء/عرض/رد؛ يحتاج SLA/attachments/workflow متقدم                                                             |
@@ -116,15 +118,15 @@
 
 #### Web Areas
 
-| الجزء             | نسبة الإنجاز | ملاحظات مختصرة                                                  |
-| ----------------- | ------------ | --------------------------------------------------------------- |
-| Landing/About     | 90%          | UI قوي + i18n؛ بعض اللغات تحتوي سلاسل غير مترجمة بالكامل        |
-| Restaurants/Store | 78%          | Browse + details/menu + cart + تحسينات Theme/UI                 |
-| Checkout          | 65%          | MVP checkout + promo؛ يحتاج hardening و حالات فشل أكثر          |
-| User Profile      | 70%          | بيانات + عناوين + payment methods (Stripe)                      |
-| Admin             | 65%          | إدارة صور + Partner Places admin؛ يحتاج coverage أوسع           |
-| Provider Portal   | 88%          | Login + System Settings gate + Dashboard + إدارة المنيو/الأصناف |
-| Driver            | 10%          | Placeholder فقط                                                 |
+| الجزء             | نسبة الإنجاز | ملاحظات مختصرة                                                                          |
+| ----------------- | ------------ | --------------------------------------------------------------------------------------- |
+| Landing/About     | 90%          | UI قوي + i18n؛ بعض اللغات تحتوي سلاسل غير مترجمة بالكامل                                |
+| Restaurants/Store | 82%          | Browse + details/menu + cart + تحسينات Theme/UI + homepage redirect to restaurants      |
+| Checkout          | 68%          | MVP checkout + promo + add card via Stripe Payment Element                              |
+| User Profile      | 70%          | بيانات + عناوين + payment methods (Stripe)                                              |
+| Admin             | 72%          | إدارة صور + Partner Places admin + Promotions admin (create/scope/notify + active list) |
+| Provider Portal   | 88%          | Login + System Settings gate + Dashboard + إدارة المنيو/الأصناف                         |
+| Driver            | 10%          | Placeholder فقط                                                                         |
 
 ---
 
@@ -147,12 +149,12 @@
 
 ### 2. 🗄️ قاعدة البيانات (Database)
 
-| المشكلة                 | الخطورة | الوصف                                                                         |
-| ----------------------- | ------- | ----------------------------------------------------------------------------- |
-| **Database Migrations** | ✅ تم   | إضافة TypeORM migrations + DataSource + scripts لتشغيلها بأمان                |
-| **Database Seeding**    | ✅ تم   | سكربت `db:seed` لإضافة بيانات تجريبية (users/restaurants/menu/promo)          |
-| **Database Indexes**    | ✅ تم   | إضافة indexes أساسية عبر migration لتحسين الأداء على الجداول الأكثر استخداماً |
-| **Soft Delete**         | ✅ تم   | إضافة `deletedAt` + تحويل عمليات الحذف الأساسية إلى `softDelete`              |
+| المشكلة                 | الخطورة | الوصف                                                                                                              |
+| ----------------------- | ------- | ------------------------------------------------------------------------------------------------------------------ |
+| **Database Migrations** | ✅ تم   | إضافة TypeORM migrations + DataSource + scripts لتشغيلها بأمان                                                     |
+| **Database Seeding**    | ✅ تم   | سكربت `db:seed` لإضافة بيانات تجريبية (users/restaurants/menu/promo)                                               |
+| **Database Indexes**    | ✅ تم   | إضافة indexes أساسية عبر migration لتحسين الأداء على الجداول الأكثر استخداماً                                      |
+| **Delete Policy**       | ✅ تم   | تحويل الحذف في أجزاء واسعة إلى **Hard Delete** عند طلب المستخدم، مع الحفاظ على سجلات تاريخية (مثل Orders/Payments) |
 
 ### 3. 🔑 المصادقة (Authentication)
 
@@ -181,18 +183,18 @@
 
 ### Frontend (Angular)
 
-| #   | المشكلة                                               | الملف/الموقع                                                                            | الأولوية |
-| --- | ----------------------------------------------------- | --------------------------------------------------------------------------------------- | -------- |
-| 1   | لا يوجد Error Handling موحد                           | `wfrontend/src/app/interceptors/error.interceptor.ts` + `utils/global-error-handler.ts` | ✅ تم    |
-| 2   | لا يوجد Loading State عام                             | `wfrontend/src/app/services/loading.ts` + `components/global-loading/*`                 | ✅ تم    |
-| 3   | لا يوجد HTTP Interceptor موحد (Auth/Errors/Retry)     | `wfrontend/src/app/app.config.ts` + `wfrontend/src/app/interceptors/*`                  | ✅ تم    |
-| 4   | بعض الصفحات لا تتأثر بتغيير الثيم بسبب ألوان ثابتة    | صفحات User/Store                                                                        | ✅ تم    |
-| 5   | لا يوجد PWA support                                   | -                                                                                       | 🟡 منخفض |
-| 6   | لا يوجد SEO optimization                              | -                                                                                       | 🟡 منخفض |
-| 7   | تحذير DevTools: بعض حقول الإدخال بدون `id/name`       | `wfrontend/src/app/pages/landing/landing.v2.html`                                       | ✅ تم    |
-| 8   | بعض الترجمات غير مكتملة (سلاسل EN داخل لغات أخرى)     | `wfrontend/src/app/services/language.ts`                                                | 🟡 متوسط |
-| 9   | إضافة وسيلة دفع تعتمد على إعداد Stripe في الـ backend | `wfrontend/src/app/pages/user/profile/user-profile.ts`                                  | 🟡 متوسط |
-| 10  | اختبار واجهة الويب يفشل بسبب توقع وجود `h1`           | `wfrontend/src/app/app.spec.ts`                                                         | 🟡 متوسط |
+| #   | المشكلة                                            | الملف/الموقع                                                                                    | الأولوية |
+| --- | -------------------------------------------------- | ----------------------------------------------------------------------------------------------- | -------- |
+| 1   | لا يوجد Error Handling موحد                        | `wfrontend/src/app/interceptors/error.interceptor.ts` + `utils/global-error-handler.ts`         | ✅ تم    |
+| 2   | لا يوجد Loading State عام                          | `wfrontend/src/app/services/loading.ts` + `components/global-loading/*`                         | ✅ تم    |
+| 3   | لا يوجد HTTP Interceptor موحد (Auth/Errors/Retry)  | `wfrontend/src/app/app.config.ts` + `wfrontend/src/app/interceptors/*`                          | ✅ تم    |
+| 4   | بعض الصفحات لا تتأثر بتغيير الثيم بسبب ألوان ثابتة | صفحات User/Store                                                                                | ✅ تم    |
+| 5   | لا يوجد PWA support                                | -                                                                                               | 🟡 منخفض |
+| 6   | لا يوجد SEO optimization                           | -                                                                                               | 🟡 منخفض |
+| 7   | تحذير DevTools: بعض حقول الإدخال بدون `id/name`    | `wfrontend/src/app/pages/landing/landing.v2.html`                                               | ✅ تم    |
+| 8   | بعض الترجمات غير مكتملة (سلاسل EN داخل لغات أخرى)  | `wfrontend/src/app/services/language.ts`                                                        | 🟡 متوسط |
+| 9   | إضافة وسيلة دفع (Add Card)                         | `wfrontend/src/app/pages/user/profile/*` + `backend/src/modules/users/users-billing.service.ts` | ✅ تم    |
+| 10  | اختبار واجهة الويب يفشل بسبب توقع وجود `h1`        | `wfrontend/src/app/app.spec.ts`                                                                 | 🟡 متوسط |
 
 ### Mobile (Flutter)
 
@@ -254,28 +256,30 @@
 
 ## 🧩 أجزاء موجودة لكن غير مستخدمة/غير مكتملة
 
-| الجزء                              | أين موجود                                                         | الحالة الحالية                                         | ملاحظات عملية                                                                                                    |
-| ---------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- | --------- | ----- | ---------------- |
-| Search/Analytics/Queue/Backup APIs | `backend/src/common/services/*` + صفحات status في `AppController` | 🟡 موجودة كـ services لكن **غير مكشوفة كـ APIs فعلية** | يوجد `GET /api/v1/*/status` كصفحات HTML فقط، لكن لا توجد Controllers لـ `/api/v1/search                          | analytics | queue | backup` حتى الآن |
-| SMS (Provider)                     | `backend/src/common/services/communication/sms.service.ts`        | 🔴 غير مكتمل للإنتاج                                   | `SMS_PROVIDER!=mock` يرجع خطأ “not implemented”، والـ mock مرفوض في الإنتاج إلا لو `SMS_ALLOW_MOCK_IN_PROD=true` |
-| Driver Web Pages                   | `wfrontend/src/app/pages/driver/*`                                | 🔴 Placeholder                                         | صفحات “coming soon/MVP” بدون مهام توصيل/تتبع/أرباح حقيقية                                                        |
-| Mobile App                         | `mfrontend/`                                                      | 🔴 Skeleton                                            | مشروع Flutter موجود (platforms + build) لكن بدون features فعلية                                                  |
-| Docs Consistency                   | `CATALOG.md` + `ARCHITECTURE.md`                                  | 🟡 يحتاج مراجعة                                        | تم تحديثهما ليعكسا الواقع الحالي (v0.0.13) لكن يحتاجان مراجعة دورية مع كل إصدار جديد                             |
+| الجزء                         | أين موجود                                                         | الحالة الحالية                                     | ملاحظات عملية                                                                                                     |
+| ----------------------------- | ----------------------------------------------------------------- | -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Search/Analytics/Queue/Backup | `backend/src/common/services/*` + صفحات status في `AppController` | 🟡 موجودة كـ services لكن غير مكشوفة كـ APIs فعلية | يوجد صفحات status فقط، ولا توجد Controllers عامة لـ search/analytics/queue/backup حتى الآن.                       |
+| SMS/WhatsApp (Twilio)         | `backend/src/common/services/communication/*`                     | 🟡 تكامل موجود ويعتمد على إعداد الحساب             | SMS/WhatsApp يعملان عبر Twilio؛ WhatsApp يتطلب sender مُفعّل (أو Sandbox). SMS قد يتطلب Geo Permissions لكل دولة. |
+| Driver Web Pages              | `wfrontend/src/app/pages/driver/*`                                | 🔴 Placeholder                                     | صفحات “coming soon/MVP” بدون مهام توصيل/تتبع/أرباح حقيقية.                                                        |
+| Mobile App                    | `mfrontend/`                                                      | 🔴 Skeleton                                        | مشروع Flutter موجود (platforms + build) لكن بدون features فعلية.                                                  |
+| Docs Consistency              | `CATALOG.md` + `ARCHITECTURE.md`                                  | 🟡 يحتاج مراجعة                                    | تم تحديثهما ليعكسا الواقع الحالي (v0.0.13) لكن يحتاجان مراجعة دورية مع كل إصدار جديد.                             |
 
 ## 📦 الميزات الناقصة (Missing Features)
 
 ### الوحدات الأساسية (Core Modules)
 
-| #   | الوحدة                | الوصف                        | الأولوية | الحالة                                          |
-| --- | --------------------- | ---------------------------- | -------- | ----------------------------------------------- |
-| 1   | 🍴 **Restaurants**    | إدارة المطاعم والقوائم       | 🔴 حرج   | ✅ تم (Backend + Web MVP)                       |
-| 2   | 🛒 **Orders**         | نظام الطلبات والسلة          | 🔴 حرج   | ✅ تم (Cart + Checkout MVP)                     |
-| 3   | 🚗 **Drivers**        | إدارة السائقين والتوصيل      | 🔴 حرج   | 🟡 Web placeholder فقط (بدون Backend/Workflow)  |
-| 4   | 📍 **Delivery Zones** | مناطق التوصيل والتغطية       | 🔴 حرج   | ❌ لم يبدأ                                      |
-| 5   | 🏷️ **Categories**     | تصنيفات المطاعم والأطباق     | 🟠 عالي  | 🟡 جزئي (Restaurant Categories)                 |
-| 6   | ⭐ **Reviews**        | نظام التقييمات والمراجعات    | 🟠 عالي  | ❌ لم يبدأ                                      |
-| 7   | 🎁 **Promotions**     | الكوبونات والعروض            | 🟠 عالي  | 🟡 تم (Validate + تطبيق الخصم في Checkout)      |
-| 8   | 🔔 **Notifications**  | الإشعارات (Push, Email, SMS) | 🟠 عالي  | 🟡 DB + Socket.IO ✅ / Push ❌ / SMS (mock فقط) |
+| #   | الوحدة                | الوصف                        | الأولوية | الحالة                                                                            |
+| --- | --------------------- | ---------------------------- | -------- | --------------------------------------------------------------------------------- |
+| 1   | 🍴 **Restaurants**    | إدارة المطاعم والقوائم       | 🔴 حرج   | ✅ تم (Backend + Web MVP)                                                         |
+| 2   | 🛒 **Orders**         | نظام الطلبات والسلة          | 🔴 حرج   | ✅ تم (Cart + Checkout MVP)                                                       |
+| 3   | 🚗 **Drivers**        | إدارة السائقين والتوصيل      | 🔴 حرج   | 🟡 Web placeholder فقط (بدون Backend/Workflow)                                    |
+| 4   | 📍 **Delivery Zones** | مناطق التوصيل والتغطية       | 🔴 حرج   | ❌ لم يبدأ                                                                        |
+| 5   | 🏷️ **Categories**     | تصنيفات المطاعم والأطباق     | 🟠 عالي  | 🟡 جزئي (Restaurant Categories)                                                   |
+| 6   | ⭐ **Reviews**        | نظام التقييمات والمراجعات    | 🟠 عالي  | ❌ لم يبدأ                                                                        |
+| 7   | 🎁 **Promotions**     | الكوبونات والعروض            | 🟠 عالي  | ✅ تم (Admin CRUD + صلاحية start/end + ربط مطاعم + validate/apply + notify users) |
+| 8   | 🔔 **Notifications**  | الإشعارات (Push, Email, SMS) | 🟠 عالي  | 🟡 DB + Socket.IO ✅ / Push ❌ / SMS/WhatsApp (Twilio) ✅\*                       |
+
+\* ملاحظة: التكامل موجود، لكن يحتاج إعداد Twilio (sender/geo permissions) حسب الدولة.
 
 ### الميزات الإضافية (Additional Features)
 
@@ -516,57 +520,100 @@
 
 ### Backend
 
-| الميزة                          | الوصف                                                                                                              |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| **Site Settings Module**        | وحدة جديدة لإدارة إعدادات الموقع                                                                                   |
-| **Hero Image API**              | API لرفع وحذف صورة الهيرو سيكشن مع تخزين في Cloudinary                                                             |
-| **Landing Images API**          | API لإدارة صور اللاندنج (Hero + 4 صور Why Choose Us)                                                               |
-| **About Images API**            | API لإدارة صور صفحة About (5 Slots مستقلة)                                                                         |
-| **Site Settings Entity**        | جدول جديد لتخزين إعدادات الموقع (key-value)                                                                        |
-| **WebSocket Updates**           | أحداث Socket.IO لتحديث صور اللاندنج لحظياً                                                                         |
-| **Restaurants API**             | CRUD للمطاعم + تصنيفات المطعم + عناصر القائمة                                                                      |
-| **Orders/Cart API**             | Cart كـ Order + عمليات الإضافة/التعديل + Checkout                                                                  |
-| **Orders (My Orders) API**      | Endpoints آمنة للمستخدم الحالي: `/orders/me` + `/orders/me/:id` + `/orders/me/:id/tracking`                        |
-| **Promotions API**              | Endpoint للتحقق من الكوبونات + Tracking للاستخدام                                                                  |
-| **Notifications API**           | تخزين إشعارات + realtime عبر Socket.IO                                                                             |
-| **Partner Places Module**       | Workflow كامل: طلب إضافة مطعم + قائمة الأدمن + approve/needs info/reject + إنشاء حساب Provider + إرسال Emails      |
-| **Partner Places WebSocket**    | Namespace `/partner-places` + حدث `partner-places.changed` لتحديث صفحة الأدمن لحظياً                               |
-| **Delete Provider Master Code** | تأكيد حذف Provider/Request من الأدمن عبر Master Code + 3 محاولات خاطئة → حظر مؤقت مع countdown (عبر `/__access/*`) |
-| **Enterprise Email Theme**      | توحيد تصميم الإيميلات بشكل احترافي متوافق مع ألوان الأدمن داش                                                      |
-| **Email Role Uniqueness**       | منع نفس الإيميل يكون User و Provider (حماية على approve + provider login)                                          |
-| **Security Hardening**          | Rate limiting + CORS whitelist + Helmet + Validation + CSRF (اختياري)                                              |
-| **DB Migrations**               | TypeORM migrations + DataSource + scripts (`db:migrate:*`)                                                         |
-| **DB Seeding**                  | Seed script (`db:seed`) لإنشاء بيانات تطوير جاهزة                                                                  |
-| **DB Indexes**                  | Indexes أساسية على restaurants/menu/orders/notifications/...                                                       |
-| **Soft Delete**                 | `deletedAt` columns + تحويل حذف كيانات رئيسية إلى soft delete                                                      |
-| **Common Platform Infra**       | CommonModule عالمي لتجميع وتصدير الـ shared services + DI جاهز                                                     |
-| **Unified Error Handling**      | Global exception filter مع JSON موحد للأخطاء + requestId                                                           |
-| **Exception Log Noise**         | تقليل الضوضاء: 401/403/404 تُسجل كـ info بدل warn + إضافة userId/message للـ metadata                              |
-| **HTTP Logging**                | Global interceptor لتسجيل الطلبات والمدة + تجميع logs في LoggerService                                             |
-| **Monitoring Logs API**         | `/api/v1/monitoring/logs/*` (مقفولة في production إلا إذا `MONITORING_LOGS_PUBLIC=true`)                           |
-| **Response Envelope**           | Interceptor اختياري لتوحيد الردود `{ ok: true, data }` عبر `RESPONSE_ENVELOPE=true`                                |
-| **Auth Smoke Test**             | تم اختبار login → me → sessions → refresh → logout → refresh fails (401)                                           |
-| **Users DTO Split**             | نقل Response DTOs إلى `backend/src/modules/users/dto/*` (PublicUser/PublicSummary/...)                             |
-| **Users Repository**            | إضافة `UsersRepository` لفصل data-access عن UsersService                                                           |
-| **User Domain Events**          | حدث `users.registered` + listener لإرسال welcome email (best-effort)                                               |
-| **Root Monorepo Scripts**       | إضافة root `package.json` مع npm workspaces (backend + wfrontend)                                                  |
-| **Redis-backed Cache**          | تفعيل Nest CacheModule مع Redis (اختياري) + fallback in-memory                                                     |
-| **Hot Endpoints Caching**       | caching فعلي لـ Restaurants/Categories/MenuItems مع namespace version invalidation                                 |
-| **HTTP Compression**            | تفعيل `compression` middleware لضغط responses (gzip/deflate)                                                       |
-| **DB Pool Tuning**              | إضافة env `DB_POOL_*` وتمريرها لـ pg pool عبر TypeORM                                                              |
-| **Performance APIs**            | إضافة `/api/v1/performance/*` لعرض stats (cache/optimizer/response metrics/...)                                    |
-| **Uploads Cache Headers**       | إضافة Cache-Control/ETag لـ `/uploads` مع max-age قابل للضبط                                                       |
-| **Root Homepage (UX)**          | تحسين صفحة `/` لتكون أكثر احترافية + إضافة Access Modal gate                                                       |
-| **Access Gate Endpoints**       | إضافة endpoints خارج الـ prefix: `GET /__access/status`, `POST /__access/check`, `POST /__access/devtools`         |
-| **Access Refresh Policy**       | كل refresh يُطلب إدخال الكود مرة أخرى (بدون حفظ unlock في المتصفح)                                                 |
-| **Access Lockout**              | 3 محاولات خاطئة → حظر 5 دقائق مع countdown فعلي                                                                    |
-| **DevTools Suspension**         | رصد فتح DevTools (best-effort) → حظر 10 دقائق برسالة إنجليزية + countdown                                          |
-| **Unusual Activity Monitor**    | مراقبة نشاط غير طبيعي (rate window) → حظر ساعة برسالة إنجليزية + countdown                                         |
-| **CORS Same-Origin Fix**        | السماح لصفحة `/` بعمل fetch لـ `__access/*` عبر تضمين `http://localhost:${PORT}` ضمن whitelist                     |
-| **Provider Me API**             | إضافة `GET /api/v1/partner-places/me` لقراءة بيانات الـ Provider الحالية مع request/branches                       |
-| **Provider Request Update**     | إضافة `PATCH /api/v1/partner-places/me/request` لحفظ بيانات editable (ومنها opening hours)                         |
-| **Provider Image Upload**       | رفع/تغيير صورة المطعم للـ Provider (Cloudinary) مع انعكاسها على الداشبورد                                          |
-| **Provider Menu Management**    | CRUD للأصناف/المنيو scoped على مطعم الـ Provider + رفع صورة عنصر المنيو                                            |
+| الميزة                          | الوصف                                                                                                                    |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Site Settings Module**        | وحدة جديدة لإدارة إعدادات الموقع                                                                                         |
+| **Hero Image API**              | API لرفع وحذف صورة الهيرو سيكشن مع تخزين في Cloudinary                                                                   |
+| **Landing Images API**          | API لإدارة صور اللاندنج (Hero + 4 صور Why Choose Us)                                                                     |
+| **About Images API**            | API لإدارة صور صفحة About (5 Slots مستقلة)                                                                               |
+| **Site Settings Entity**        | جدول جديد لتخزين إعدادات الموقع (key-value)                                                                              |
+| **WebSocket Updates**           | أحداث Socket.IO لتحديث صور اللاندنج لحظياً                                                                               |
+| **Restaurants API**             | CRUD للمطاعم + تصنيفات المطعم + عناصر القائمة                                                                            |
+| **Orders/Cart API**             | Cart كـ Order + عمليات الإضافة/التعديل + Checkout                                                                        |
+| **Orders (My Orders) API**      | Endpoints آمنة للمستخدم الحالي: `/orders/me` + `/orders/me/:id` + `/orders/me/:id/tracking`                              |
+| **Promotions API**              | Endpoint للتحقق من الكوبونات + Tracking للاستخدام                                                                        |
+| **Notifications API**           | تخزين إشعارات + realtime عبر Socket.IO                                                                                   |
+| **Partner Places Module**       | Workflow كامل: طلب إضافة مطعم + قائمة الأدمن + approve/needs info/reject + إنشاء حساب Provider + إرسال Emails            |
+| **Partner Places WebSocket**    | Namespace `/partner-places` + حدث `partner-places.changed` لتحديث صفحة الأدمن لحظياً                                     |
+| **Delete Provider Master Code** | تأكيد حذف Provider/Request من الأدمن عبر Master Code + 3 محاولات خاطئة → حظر مؤقت مع countdown (عبر `/__access/*`)       |
+| **Enterprise Email Theme**      | توحيد تصميم الإيميلات بشكل احترافي متوافق مع ألوان الأدمن داش                                                            |
+| **Email Role Uniqueness**       | منع نفس الإيميل يكون User و Provider (حماية على approve + provider login)                                                |
+| **Security Hardening**          | Rate limiting + CORS whitelist + Helmet + Validation + CSRF (اختياري)                                                    |
+| **DB Migrations**               | TypeORM migrations + DataSource + scripts (`db:migrate:*`)                                                               |
+| **DB Seeding**                  | Seed script (`db:seed`) لإنشاء بيانات تطوير جاهزة                                                                        |
+| **DB Indexes**                  | Indexes أساسية على restaurants/menu/orders/notifications/...                                                             |
+| **Hard Delete Migration**       | تحويل حذف كيانات/لوحات معينة إلى حذف نهائي (Hard Delete) حسب متطلبات المنتج، مع استثناءات لحفظ التاريخ (Orders/Payments) |
+| **Common Platform Infra**       | CommonModule عالمي لتجميع وتصدير الـ shared services + DI جاهز                                                           |
+| **Unified Error Handling**      | Global exception filter مع JSON موحد للأخطاء + requestId                                                                 |
+| **Exception Log Noise**         | تقليل الضوضاء: 401/403/404 تُسجل كـ info بدل warn + إضافة userId/message للـ metadata                                    |
+| **HTTP Logging**                | Global interceptor لتسجيل الطلبات والمدة + تجميع logs في LoggerService                                                   |
+| **Monitoring Logs API**         | `/api/v1/monitoring/logs/*` (مقفولة في production إلا إذا `MONITORING_LOGS_PUBLIC=true`)                                 |
+| **Response Envelope**           | Interceptor اختياري لتوحيد الردود `{ ok: true, data }` عبر `RESPONSE_ENVELOPE=true`                                      |
+| **Auth Smoke Test**             | تم اختبار login → me → sessions → refresh → logout → refresh fails (401)                                                 |
+| **Users DTO Split**             | نقل Response DTOs إلى `backend/src/modules/users/dto/*` (PublicUser/PublicSummary/...)                                   |
+| **Users Repository**            | إضافة `UsersRepository` لفصل data-access عن UsersService                                                                 |
+| **User Domain Events**          | حدث `users.registered` + listener لإرسال welcome email (best-effort)                                                     |
+| **Root Monorepo Scripts**       | إضافة root `package.json` مع npm workspaces (backend + wfrontend)                                                        |
+| **Redis-backed Cache**          | تفعيل Nest CacheModule مع Redis (اختياري) + fallback in-memory                                                           |
+| **Hot Endpoints Caching**       | caching فعلي لـ Restaurants/Categories/MenuItems مع namespace version invalidation                                       |
+| **HTTP Compression**            | تفعيل `compression` middleware لضغط responses (gzip/deflate)                                                             |
+| **DB Pool Tuning**              | إضافة env `DB_POOL_*` وتمريرها لـ pg pool عبر TypeORM                                                                    |
+| **Performance APIs**            | إضافة `/api/v1/performance/*` لعرض stats (cache/optimizer/response metrics/...)                                          |
+| **Uploads Cache Headers**       | إضافة Cache-Control/ETag لـ `/uploads` مع max-age قابل للضبط                                                             |
+| **Root Homepage (UX)**          | تحسين صفحة `/` لتكون أكثر احترافية + إضافة Access Modal gate                                                             |
+| **Access Gate Endpoints**       | إضافة endpoints خارج الـ prefix: `GET /__access/status`, `POST /__access/check`, `POST /__access/devtools`               |
+| **Access Refresh Policy**       | كل refresh يُطلب إدخال الكود مرة أخرى (بدون حفظ unlock في المتصفح)                                                       |
+| **Access Lockout**              | 3 محاولات خاطئة → حظر 5 دقائق مع countdown فعلي                                                                          |
+| **DevTools Suspension**         | رصد فتح DevTools (best-effort) → حظر 10 دقائق برسالة إنجليزية + countdown                                                |
+| **Unusual Activity Monitor**    | مراقبة نشاط غير طبيعي (rate window) → حظر ساعة برسالة إنجليزية + countdown                                               |
+| **CORS Same-Origin Fix**        | السماح لصفحة `/` بعمل fetch لـ `__access/*` عبر تضمين `http://localhost:${PORT}` ضمن whitelist                           |
+| **Provider Me API**             | إضافة `GET /api/v1/partner-places/me` لقراءة بيانات الـ Provider الحالية مع request/branches                             |
+| **Provider Request Update**     | إضافة `PATCH /api/v1/partner-places/me/request` لحفظ بيانات editable (ومنها opening hours)                               |
+| **Provider Image Upload**       | رفع/تغيير صورة المطعم للـ Provider (Cloudinary) مع انعكاسها على الداشبورد                                                |
+| **Provider Menu Management**    | CRUD للأصناف/المنيو scoped على مطعم الـ Provider + رفع صورة عنصر المنيو                                                  |
+
+### تحديثات إضافية بعد v0.0.13 (حتى 15 فبراير 2026)
+
+#### Backend
+
+| التحديث                           | الوصف                                                                                                                     |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| **Phone OTP Channel Routing**     | إرسال كود تحقق الهاتف عبر **SMS** أو **WhatsApp** حسب اختيار المستخدم (`channel=sms                                       | whatsapp`) مع قوالب رسائل احترافية. |
+| **Twilio SMS/WhatsApp Hardening** | تحسين قراءة متغيرات البيئة (منع مشاكل cwd) + تحسين رسائل الخطأ (خصوصاً Geo Permissions و WhatsApp sender غير مُفعّل).     |
+| **Sender Branding Options**       | دعم استخدام Twilio **Messaging Service SID** و/أو Sender ID (حسب البلد/المشغل) لإظهار اسم مرسل مناسب بدل رقم عند الإمكان. |
+| **Auth/Register Robustness**      | معالجة تعارضات التسجيل/الدخول الناتجة عن بيانات محذوفة سابقاً + تحويل تعارض الـ unique إلى 409 بشكل واضح.                 |
+| **API Prefix From ENV**           | جعل `API_PREFIX` من `.env` هو المصدر الفعلي للـ global prefix بدل hardcode.                                               |
+| **Stripe Webhook Receiver**       | إضافة Webhook endpoint للتحقق من `stripe-signature` باستخدام raw body.                                                    |
+
+**Stripe webhook endpoint (Production):**
+
+- `POST https://<DOMAIN>/{API_PREFIX}/payments/stripe/webhook`
+- مثال شائع: `POST https://<DOMAIN>/api/v1/payments/stripe/webhook`
+
+#### Web Frontend
+
+| التحديث                  | الوصف                                                                                                                                                         |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Phone Verify UX**      | عند تحقق رقم الهاتف يظهر خيارين: SMS أو WhatsApp، والواجهات/الـ toasts تم توحيدها لتكون channel-agnostic.                                                     |
+| **Add Card UX (Stripe)** | بدل إعادة توجيه المستخدم لصفحة Stripe Hosted، تم اعتماد **Stripe Payment Element داخل الموقع** بتصميم مطابق للثيم واستخدام نفس لوجو الفافيكون (`/LOGOM.png`). |
+
+#### تحديثات إضافية (Store + Admin)
+
+| التحديث                                    | الوصف                                                                                                     |
+| ------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| **Admin Promotions (Restaurants scope)**   | إنشاء promo code وربطه بمطاعم محددة عبر `restaurantIds` + تطبيق التحقق/الخصم في الـ checkout حسب المطعم.  |
+| **Promo Validity (Start/End)**             | دعم `startsAt/endsAt` في إنشاء البرومو، وعرضها في الأدمن، مع فلترة “شغال ولسا مش منتهي”.                  |
+| **Promo Notifications (English defaults)** | الافتراضي لإشعار البرومو أصبح بالإنجليزي (مع إمكانية تخصيص title/body من الأدمن).                         |
+| **Admin Promotions Active List UI**        | إضافة جدول “Active promotions” في صفحة الأدمن يعرض البروموهات الفعالة غير المنتهية + حالات loading/empty. |
+| **Auth Token Scoping Fix**                 | منع إرسال admin token على مسارات المستخدم لتجنب Unauthorized في صفحات المطاعم (خصوصاً cart preload).      |
+| **Cart Invoice Currency**                  | عرض إجمالي/فاتورة الكارت باليورو EUR باستخدام `Intl.NumberFormat`.                                        |
+| **Home Redirect**                          | جعل `/` يفتح صفحة المطاعم `/restaurants` افتراضياً، مع إبقاء صفحة الهبوط متاحة على `/home`.               |
+
+#### ملاحظات تشغيل مهمة
+
+- **WhatsApp عبر Twilio** يتطلب sender مُفعّل للواتساب (أو sandbox). عدم تفعيل الرقم/المسار سيؤدي لأخطاء من Twilio حتى لو المفاتيح صحيحة.
+- **Twilio Geo Permissions** قد تمنع إرسال SMS لبعض الدول حتى لو الكود صحيح.
+- لا تضع أسرار Stripe/Twilio داخل التقرير؛ استخدم `.env` و `.env.example` فقط.
 
 ### Web Frontend
 
@@ -729,7 +776,7 @@ Theme notes:
 
 <div align="center">
 
-**📝 آخر تحديث: 12 فبراير 2026**
+**📝 آخر تحديث: 15 فبراير 2026**
 
 [![Made with ❤️](https://img.shields.io/badge/Made%20with-❤️-red.svg)]()
 [![For Moien Delivery](https://img.shields.io/badge/For-Moien%20Delivery-blue.svg)]()
