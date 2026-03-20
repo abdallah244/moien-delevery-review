@@ -3,7 +3,7 @@
 <div align="center">
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]()
-[![Contributors](https://img.shields.io/badge/Contributors-Welcome-blue.svg)]()
+[![Contributors](https://img.shields.io/badge/Contributors-Welcome-orange.svg)]()
 
 **شكراً لاهتمامك بالمساهمة في Moien Delivery! 🎉**
 

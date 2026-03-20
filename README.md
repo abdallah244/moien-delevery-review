@@ -1,659 +1,268 @@
 <div align="center">
 
-# 🍽️ Moien Delivery | موين دليفري
+# Moien Delivery
 
-### منصة توصيل الطعام الذكية | Smart Food Delivery Platform
+### Food Delivery Platform — Luxembourg
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![NestJS](https://img.shields.io/badge/NestJS-11.0-ea2845.svg)](https://nestjs.com/)
-[![Angular](https://img.shields.io/badge/Angular-21.0-dd0031.svg)](https://angular.io/)
-[![Flutter](https://img.shields.io/badge/Flutter-3.10-02569B.svg)](https://flutter.dev/)
+[![NestJS](https://img.shields.io/badge/NestJS-11-ea2845.svg)](https://nestjs.com/)
+[![Angular](https://img.shields.io/badge/Angular-21-dd0031.svg)](https://angular.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6.svg)](https://www.typescriptlang.org/)
-[![Dart](https://img.shields.io/badge/Dart-3.10-0175C2.svg)](https://dart.dev/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-[![Stars](https://img.shields.io/github/stars/moien-delivery/moien-delivery?style=social)](https://github.com/moien-delivery/moien-delivery)
-
-<p align="center">
-  <img src="docs/assets/logo.png" alt="Moien Delivery Logo" width="200"/>
-</p>
-
-**🌍 متوفر باللغة العربية | 🇱🇺 Verfügbar op Lëtzebuergesch**
-
-[العربية](#العربية) • [Lëtzebuergesch](#lëtzebuergesch) • [Documentation](docs/) • [API Reference](docs/API.md) • [📊 Project Report](REPORT.md)
-
----
-
-<p align="center">
-  <img src="docs/assets/hero-banner.png" alt="Moien Delivery Banner" width="100%"/>
-</p>
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791.svg)]()
+[![License](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
 
 </div>
 
 ---
 
-## العربية
+## Overview
 
-### 📋 نظرة عامة
+Moien Delivery is a full-stack food delivery platform for Luxembourg with four user roles: **customers**, **restaurant partners**, **delivery drivers**, and **admins**.
 
-**موين دليفري** هي منصة متكاملة لتوصيل الطعام مستوحاة من أفضل التطبيقات العالمية مثل **Uber Eats** و **Wolt** و **طلبات** و **Deliveroo**. تقدم المنصة تجربة سلسة للمستخدمين والمطاعم وسائقي التوصيل من خلال نظام بيئي متكامل يشمل:
+| Component      | Stack                                      | Status         |
+| -------------- | ------------------------------------------ | -------------- |
+| Backend API    | NestJS 11, TypeORM 0.3.28, PostgreSQL 16   | ✅ Production  |
+| Web Frontend   | Angular 21, Standalone Components, Signals | ✅ Production  |
+| Mobile App     | Flutter (planned)                          | ❌ Not started |
+| Infrastructure | Hostinger VPS, Nginx, PM2, UFW             | ✅ Production  |
 
-- 🌐 **موقع ويب** - صفحة رئيسية جذابة + لوحة تحكم إدارية متكاملة
-- 📱 **تطبيق العملاء والمطاعم** - تطبيق موحد للطلب وإدارة المطاعم
-- 🚗 **تطبيق السائقين** - تطبيق مخصص لسائقي التوصيل
-
----
-
-### ✨ المميزات الرئيسية
-
-<table>
-<tr>
-<td width="50%">
-
-#### 👤 للمستخدمين
-
-- 🔍 البحث الذكي عن المطاعم والأطباق
-- 📍 تحديد الموقع الجغرافي بدقة عالية
-- 🛒 سلة تسوق متعددة المطاعم
-- 💳 طرق دفع متنوعة (نقدي، بطاقات، محافظ إلكترونية)
-- ⏱️ تتبع الطلب مباشرة على الخريطة
-- ⭐ نظام التقييمات والمراجعات
-- 🎁 برنامج الولاء والمكافآت
-- 📜 سجل الطلبات وإعادة الطلب بضغطة واحدة
-- 💬 دردشة مباشرة مع السائق والمطعم
-- 🔔 إشعارات فورية لحالة الطلب
-
-</td>
-<td width="50%">
-
-#### 🍴 للمطاعم
-
-- 📊 لوحة تحكم شاملة للإحصائيات
-- 📝 إدارة القوائم والأصناف بسهولة
-- ⏰ إدارة أوقات العمل والتوفر
-- 📸 رفع صور احترافية للأطباق
-- 💰 تقارير مالية مفصلة
-- 📈 تحليلات المبيعات والأداء
-- 🏷️ إدارة العروض والخصومات
-- 🔔 إشعارات الطلبات الجديدة
-- ⚡ قبول/رفض الطلبات بسرعة
-- 📱 تطبيق موبايل لإدارة الطلبات
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-#### 🚴 للسائقين
-
-- 🗺️ نظام ملاحة متكامل
-- 💵 حساب الأرباح اليومية والأسبوعية
-- 📊 إحصائيات الأداء الشخصي
-- 🔄 اختيار الطلبات المناسبة
-- 💰 نظام البقشيش الإلكتروني
-- 📍 تحديد مناطق العمل المفضلة
-- ⏱️ جدولة أوقات العمل
-- 🏆 نظام التصنيف والمكافآت
-- 📞 التواصل مع العملاء والدعم
-- 🚨 زر الطوارئ للسلامة
-
-</td>
-<td width="50%">
-
-#### 🔧 لوحة التحكم الإدارية
-
-- 👥 إدارة المستخدمين والصلاحيات
-- 🏪 إدارة المطاعم والموافقات
-- 🚗 إدارة السائقين والتحقق
-- 📊 تقارير شاملة ومفصلة
-- 💳 إدارة المدفوعات والتسويات
-- 🎫 نظام الكوبونات والعروض
-- 📍 إدارة المناطق والتغطية
-- 🔔 نظام الإشعارات الجماعية
-- 📈 لوحة معلومات تفاعلية
-- ⚙️ إعدادات النظام المتقدمة
-
-</td>
-</tr>
-</table>
+**Live:** [moiendelivery.lu](https://moiendelivery.lu) · **API:** [api.moiendelivery.lu](https://api.moiendelivery.lu)
 
 ---
 
-### 🏗️ هيكل المشروع
+## Quick Start
+
+```bash
+# Install (npm workspaces)
+npm install
+
+# Backend
+cd backend
+cp .env.example .env          # Fill DB credentials, JWT secrets
+npm run db:migrate:run         # 25 migrations
+npm run db:seed                # Optional sample data
+npm run start:dev              # http://localhost:3000
+
+# Frontend (new terminal)
+cd wfrontend
+npm start                      # http://localhost:4200
+```
+
+**Admin:** `admin@moien.com` / `123456`
+
+---
+
+## Tech Stack
+
+| Layer       | Technology                                          | Version               |
+| ----------- | --------------------------------------------------- | --------------------- |
+| Backend     | NestJS + TypeORM                                    | 11.x / 0.3.28         |
+| Frontend    | Angular (standalone, signals, OnPush)               | 21.0.0                |
+| Database    | PostgreSQL                                          | 16                    |
+| Cache/Queue | Redis (ioredis) + Bull                              | 5.9.2                 |
+| Realtime    | Socket.IO                                           | 4.8.3                 |
+| Payments    | Stripe + PayPal                                     | 17.7.0 / REST v2      |
+| SMS         | Twilio                                              | 5.12.1                |
+| Images      | Cloudinary                                          | 2.9.0                 |
+| Maps        | Google Maps JS API                                  | AdvancedMarkerElement |
+| Auth        | JWT (bcrypt) + Google OAuth                         | —                     |
+| i18n        | 7 languages (EN, FR, LB, DE, IT, PT, ES) + AR admin | —                     |
+| Themes      | 4 CSS Variable themes                               | —                     |
+| Testing     | Jest 30 (backend) / Vitest 4 (frontend)             | —                     |
+| Export      | ExcelJS                                             | 4.4.0                 |
+
+---
+
+## Project Structure
 
 ```
 moien-delivery/
-├── 📁 backend/                 # الخادم الخلفي (NestJS)
+├── package.json                  # npm workspaces ["backend", "wfrontend"]
+│
+├── backend/                      # NestJS 11 API
 │   ├── src/
-│   │   ├── config/            # ✅ إعدادات التطبيق (مكتمل)
-│   │   │   ├── database.config.ts
-│   │   │   ├── app.config.ts
-│   │   │   ├── jwt.config.ts
-│   │   │   ├── stripe.config.ts
-│   │   │   ├── cloudinary.config.ts
-│   │   │   └── index.ts
-│   │   ├── common/            # ✅ الأدوات المشتركة (مكتمل)
-│   │   │   └── services/      # ✅ 22 خدمة متكاملة
-│   │   │       ├── security/      # 🔐 5 خدمات أمان
-│   │   │       ├── performance/   # ⚡ 5 خدمات أداء
-│   │   │       ├── realtime/      # 🔄 WebSocket
-│   │   │       ├── ui/            # 🎨 Loading, Toast, Validation
-│   │   │       ├── communication/ # 📧 Email, SMS, Notifications
-│   │   │       ├── storage/       # 📁 File Upload
-│   │   │       ├── monitoring/    # 📊 Logger
-│   │   │       ├── location/      # 📍 Geolocation
-│   │   │       ├── search/        # 🔍 Full-text Search
-│   │   │       ├── analytics/     # 📈 Analytics
-│   │   │       ├── queue/         # 📬 Background Jobs
-│   │   │       ├── backup/        # 💾 Database Backup
-│   │   │       └── cloudinary.service.ts  # ☁️ Cloudinary
-│   │   ├── modules/           # ✅ الوحدات (مكتمل)
-│   │   │   ├── admin-staff/       # 👥 إدارة الموظفين
-│   │   │   ├── users/             # 👤 إدارة المستخدمين
-│   │   │   ├── support-tickets/   # 🎫 تذاكر الدعم
-│   │   │   └── payments/          # 💳 المدفوعات
-│   │   └── database/          # قاعدة البيانات
-│   ├── .env                   # ✅ متغيرات البيئة (مكتمل)
-│   ├── .env.example           # ✅ نموذج متغيرات البيئة
-│   └── test/                  # الاختبارات
+│   │   ├── main.ts               # rawBody, CORS, Helmet, ValidationPipe
+│   │   ├── app.module.ts         # 13 feature modules + CommonModule + ThrottlerGuard
+│   │   ├── app.controller.ts     # Health checks, access gate, docs
+│   │   ├── config/               # app, database, jwt, stripe, paypal, cloudinary
+│   │   ├── common/               # 26 services, 3 controllers, middleware, interceptors, filters
+│   │   ├── modules/
+│   │   │   ├── admin-staff/      # 6 controllers, analytics gateway
+│   │   │   ├── auth/             # User/Admin/Driver JWT, Google OAuth, forgot-password
+│   │   │   ├── users/            # CRUD, addresses, Stripe PMs, Moien Coins, OTP
+│   │   │   ├── restaurants/      # Restaurants, categories, menu items (addons)
+│   │   │   ├── orders/           # Cart, checkout (cash/Stripe/PayPal/Coins), tracking
+│   │   │   ├── drivers/          # Registration, applications, dispatch, messaging
+│   │   │   ├── payments/         # Stripe webhook, PayPal client-id
+│   │   │   ├── promotions/       # Promo codes + promotional offer banners
+│   │   │   ├── ratings/          # Platform + restaurant reviews
+│   │   │   ├── notifications/    # User notifications (DB + Socket.IO)
+│   │   │   ├── partner-places/   # Partner lifecycle, orders, analytics, menu CRUD
+│   │   │   ├── site-settings/    # Landing CMS (hero, about, coins images)
+│   │   │   └── support-tickets/  # Customer support
+│   │   └── database/
+│   │       ├── migrations/       # 25 migrations (Feb 7 – Mar 10, 2026)
+│   │       ├── data-source.ts
+│   │       └── seed.ts
+│   └── test/
 │
-├── 📁 wfrontend/               # واجهة الويب (Angular)
-│   ├── src/
-│   │   ├── app/
-│   │   │   ├── components/    # ✅ المكونات (مكتمل)
-│   │   │   │   ├── navbar/           # شريط التنقل (User)
-│   │   │   │   ├── footer/           # التذييل (User)
-│   │   │   │   ├── admin-navbar/     # شريط التنقل (Admin)
-│   │   │   │   ├── admin-footer/     # التذييل (Admin)
-│   │   │   │   ├── language-modal/   # نافذة اللغات
-│   │   │   │   ├── theme-modal/      # نافذة الثيمات
-│   │   │   │   └── toast-container/  # إشعارات Toast
-│   │   │   ├── services/      # ✅ الخدمات (مكتمل)
-│   │   │   │   ├── auth.ts           # المصادقة
-│   │   │   │   ├── user-auth.ts      # مصادقة المستخدم
-│   │   │   │   ├── user-session.ts   # جلسة المستخدم
-│   │   │   │   ├── admin-staff.ts    # إدارة الموظفين
-│   │   │   │   ├── admin-language.ts # لغة الأدمن
-│   │   │   │   ├── admin-master-code.ts # كود التحكم
-│   │   │   │   ├── language.ts       # إدارة اللغات (7 لغات)
-│   │   │   │   ├── theme.ts          # إدارة الثيمات (4 ثيمات)
-│   │   │   │   ├── toast.ts          # إشعارات Toast
-│   │   │   │   └── supportTickets.ts # تذاكر الدعم
-│   │   │   ├── guards/        # ✅ الحماية (مكتمل)
-│   │   │   │   └── auth.guard.ts     # حماية صفحات الـ Admin
-│   │   │   ├── layouts/       # ✅ التخطيطات (مكتمل)
-│   │   │   │   ├── user-layout/      # تخطيط المستخدم
-│   │   │   │   └── admin-layout/     # تخطيط المسؤول
-│   │   │   ├── pages/         # ✅ الصفحات (مكتمل)
-│   │   │   │   ├── admin/
-│   │   │   │   │   ├── login/        # تسجيل الدخول
-│   │   │   │   │   ├── dashboard/    # لوحة التحكم
-│   │   │   │   │   ├── users/        # إدارة المستخدمين
-│   │   │   │   │   └── system-settings/ # إعدادات النظام
-│   │   │   │   └── user/
-│   │   │   │       ├── profile/      # الملف الشخصي
-│   │   │   │       └── legal/        # صفحات قانونية
-│   │   │   └── utils/         # أدوات مساعدة
-│   │   └── assets/            # الملفات الثابتة
-│   └── public/                # الملفات العامة
+├── wfrontend/                    # Angular 21
+│   ├── src/app/
+│   │   ├── pages/
+│   │   │   ├── admin/            # 13 sub-pages
+│   │   │   ├── provider/         # login, dashboard, analyst-settings, system-settings
+│   │   │   ├── driver/           # login/register, dashboard
+│   │   │   ├── landing/          # Marketing page
+│   │   │   ├── restaurants/      # List + details
+│   │   │   ├── cart/             # Cart + checkout
+│   │   │   └── user/             # Profile, orders, notifications, coins, about, legal
+│   │   ├── services/             # 38 services
+│   │   ├── guards/               # 11 route guards
+│   │   ├── interceptors/         # 4 HTTP interceptors
+│   │   ├── components/           # 12 shared components
+│   │   └── layouts/              # user-layout, admin-layout
+│   └── src/environments/
 │
-├── 📁 mfrontend/               # تطبيقات الموبايل (Flutter)
-│   ├── lib/
-│   │   └── main.dart          # نقطة الدخول (قيد التطوير)
-│   └── test/                  # الاختبارات
-│
-└── 📁 docs/                    # التوثيق
-    ├── API.md                 # توثيق API
-    ├── DATABASE.md            # قاعدة البيانات
-    ├── FRONTEND-WEB.md        # واجهة الويب
-    ├── FRONTEND-MOBILE.md     # تطبيقات الموبايل
-    ├── SETUP.md               # دليل الإعداد
-    ├── QUICKSTART.md          # البداية السريعة
-    ├── DEPLOYMENT.md          # دليل النشر
-    ├── WEBSOCKETS.md          # WebSocket
-    ├── i18n.md                # الترجمة
-    └── README.md              # فهرس التوثيق
+├── docs/                         # Technical docs
+├── markdown/                     # Project-level docs
+├── ops/                          # Nginx + PM2 configs
+└── uploads/
 ```
 
 ---
 
-### 🛠️ التقنيات المستخدمة
+## Key Features
 
-<table>
-<tr>
-<td align="center" width="20%">
+### Customers
 
-**Backend**
+- Browse restaurants (search, category carousel, promotional offer banners)
+- Multi-restaurant cart, per-restaurant checkout
+- **4 payment methods:** Stripe, PayPal, Cash on delivery, **Moien Coins wallet**
+- Moien Coins: top-up via Stripe, **1% cashback** on every order, admin can add coins
+- **Free delivery for first 30 days** after registration
+- **Promotional offers auto-applied** at checkout (best matching offer)
+- Promo codes (percent/fixed, start/end dates, per-user limits)
+- Real-time order tracking (Google Maps AdvancedMarkerElement, 10s polling)
+- Short order IDs (e.g. "012A") for easy reference
+- Email + SMS order confirmation with tracking URL
+- Notification center (real-time via Socket.IO, 10-day TTL)
+- Password reset (3-step: email or SMS)
+- 7 languages, 4 themes
 
-<img src="https://nestjs.com/img/logo-small.svg" width="50" height="50"/>
+### Restaurant Partners
 
-NestJS 11
+- Partner onboarding workflow (request → approve/reject)
+- Dashboard: KPI cards (orders, revenue, pending, avg prep time, rating)
+- **Sales analytics:** hourly (today) + daily (month) breakdown
+- Accept/reject orders directly from dashboard
+- Menu management: categories + items with **addon groups** (multi-select, price per addon)
+- **Audio alerts:** `order-ringtone.wav` loops until accepted; Web Audio sine tone for admin messages
+- **Thermal receipt printing** (80mm, hidden iframe, Courier New monospace)
+- Invoice modal: logo, customer details, items, totals, delivery address, tracking URL
+- Live order tracking (Google Maps, driver location)
+- Cloudinary image upload for restaurant + menu items
+- Branches management
+- System settings (password-protected)
+- **Test orders** (dev environment only)
 
-</td>
-<td align="center" width="20%">
+### Drivers
 
-**Web**
+- Driver application system (`POST drivers/apply`)
+- Login + dashboard (online/offline toggle, GPS location)
+- Order dispatch: nearest available driver (Haversine distance)
+- Order lifecycle: accept → pick up → deliver (with cancel + reason)
+- Admin messaging: Redis-backed inbox with 3-day TTL
+- Real-time updates via Socket.IO
 
-<img src="https://angular.io/assets/images/logos/angular/angular.svg" width="50" height="50"/>
+### Admins
 
-Angular 21
-
-</td>
-<td align="center" width="20%">
-
-**Mobile**
-
-<img src="https://storage.googleapis.com/cms-storage-bucket/0dbfcc7a59cd1cf16282.png" width="50" height="50"/>
-
-Flutter 3.10
-
-</td>
-<td align="center" width="20%">
-
-**Database**
-
-<img src="https://www.postgresql.org/media/img/about/press/elephant.png" width="50" height="50"/>
-
-PostgreSQL
-
-</td>
-<td align="center" width="20%">
-
-**Cache**
-
-<img src="https://redis.io/images/redis-white.png" width="50" height="50"/>
-
-Redis
-
-</td>
-</tr>
-</table>
-
-#### المزيد من التقنيات:
-
-| الفئة        | التقنيات                              |
-| ------------ | ------------------------------------- |
-| 🔐 المصادقة  | JWT, OAuth 2.0, Firebase Auth         |
-| 🗺️ الخرائط   | Google Maps API, Mapbox               |
-| 💳 المدفوعات | Stripe, PayPal, Apple Pay, Google Pay |
-| 📨 الإشعارات | Firebase Cloud Messaging, OneSignal   |
-| 📊 التحليلات | Google Analytics, Mixpanel            |
-| 🔍 البحث     | Elasticsearch, Algolia                |
-| 📁 التخزين   | AWS S3, Cloudinary                    |
-| 🚀 النشر     | Docker, Kubernetes, AWS/GCP           |
-| 🔄 CI/CD     | GitHub Actions, GitLab CI             |
-| 📝 التوثيق   | Swagger/OpenAPI, Compodoc             |
+- Dashboard: counts (restaurants, orders, users, drivers), pending actions
+- User management: CRUD, ban/unban, **add Moien Coins**
+- **11 permissions:** ADMIN_DASHBOARD, ADMIN_USERS, ADMIN_DRIVERS, ADMIN_PROVIDERS, ADMIN_PROMOTIONS, ADMIN_SYSTEM_SETTINGS, ADMIN_HERO_SETTINGS, ADMIN_ABOUT_IMAGES, ADMIN_COINS_IMAGES, ADMIN_ADD_COINS, ADMIN_CAN_DELETE
+- Restaurant partner lifecycle (approve, reject, needs_info, message, delete)
+- Driver management (create, activate/deactivate, force logout, message)
+- Promotions: promo codes + promotional offer banners (bilingual, time-limited, condition-based)
+- CMS: hero images, landing images, about images, **coins images**
+- Analytics dashboard
+- Support ticket management
+- Real-time WebSocket updates
 
 ---
 
-### 🔧 الخدمات الخلفية (22 خدمة متكاملة)
+## API Modules (13)
 
-#### 🔐 خدمات الأمان (Security Services)
-
-| الخدمة           | الوصف                                                           |
-| ---------------- | --------------------------------------------------------------- |
-| **Rate Limiter** | حماية من هجمات DDoS والـ Brute Force مع خوارزمية Sliding Window |
-| **Encryption**   | تشفير AES-256-GCM، هاش كلمات المرور PBKDF2، توليد OTP           |
-| **JWT Auth**     | إدارة الـ Tokens (Access/Refresh)، القائمة السوداء              |
-| **IP Guard**     | القوائم البيضاء/السوداء، كشف الأنماط المشبوهة                   |
-| **Sanitizer**    | منع XSS وSQL Injection، تنظيف HTML                              |
-
-#### ⚡ خدمات الأداء (Performance Services)
-
-| الخدمة                 | الوصف                                 |
-| ---------------------- | ------------------------------------- |
-| **Cache**              | تخزين مؤقت عالي الأداء مع TTL         |
-| **Compression**        | ضغط Gzip و Brotli للاستجابات          |
-| **Query Optimizer**    | تحليل وتحسين استعلامات قاعدة البيانات |
-| **Connection Pool**    | إدارة ومراقبة اتصالات قاعدة البيانات  |
-| **Response Optimizer** | مراقبة وتحسين أوقات الاستجابة         |
-
-#### 🔄 خدمات الوقت الحقيقي (Real-time Services)
-
-| الخدمة        | الوصف                                             |
-| ------------- | ------------------------------------------------- |
-| **WebSocket** | اتصالات في الوقت الحقيقي للطلبات والتتبع والدردشة |
-
-#### 🎨 خدمات واجهة المستخدم (UI Services)
-
-| الخدمة         | الوصف                                            |
-| -------------- | ------------------------------------------------ |
-| **Loading**    | إدارة حالات التحميل (Skeleton, Spinner, Shimmer) |
-| **Toast**      | إشعارات Toast مع أنماط متعددة                    |
-| **Validation** | التحقق الشامل من المدخلات                        |
-
-#### 📧 خدمات التواصل (Communication Services)
-
-| الخدمة           | الوصف                                 |
-| ---------------- | ------------------------------------- |
-| **Email**        | إرسال البريد الإلكتروني مع قوالب HTML |
-| **SMS**          | إرسال الرسائل القصيرة وأكواد OTP      |
-| **Notification** | إشعارات الـ Push والـ In-App          |
-
-#### 🛠️ خدمات إضافية (Utility Services)
-
-| الخدمة          | الوصف                               |
-| --------------- | ----------------------------------- |
-| **File Upload** | رفع الملفات والصور مع التحقق        |
-| **Logger**      | تسجيل متقدم مع بحث وتحليلات         |
-| **Geolocation** | حساب المسافات ومناطق التوصيل        |
-| **Search**      | بحث نصي كامل في المطاعم والأطباق    |
-| **Analytics**   | تتبع سلوك المستخدم وتحليلات الأعمال |
-| **Queue**       | معالجة المهام في الخلفية            |
-| **Backup**      | نسخ احتياطي واستعادة قاعدة البيانات |
+| Module         | Base Route         | Entities                                                | Key Features                                                                                      |
+| -------------- | ------------------ | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Auth           | `/auth`            | AuthSession                                             | User/Admin/Driver JWT + refresh, Google OAuth, forgot-password (3-step)                           |
+| Users          | `/users`           | User, UserAddress, UserPaymentMethod                    | CRUD, addresses, Stripe PMs, OTP, **Moien Coins**, ban                                            |
+| Restaurants    | `/restaurants`     | Restaurant, RestaurantCategory, MenuItem                | CRUD, search/filter, categories, items with **addons** (JSONB)                                    |
+| Orders         | `/orders`          | Order, OrderItem                                        | Cart, checkout (cash/Stripe/PayPal/**Coins**), tracking, **cashback**, **auto-offers**, email+SMS |
+| Drivers        | `/drivers`         | Driver, DriverApplication                               | CRUD, applications, online/location, dispatch, order lifecycle                                    |
+| Payments       | `/payments`        | —                                                       | Stripe key, Stripe webhook, PayPal client-id                                                      |
+| Promotions     | `/promotions`      | Promotion, PromotionalOffer, + join tables              | Codes validate/redeem, offer banners, auto-apply                                                  |
+| Ratings        | `/ratings`         | PlatformRating, RestaurantRating                        | Restaurant + platform reviews                                                                     |
+| Notifications  | `/notifications`   | Notification                                            | User notifications, 10-day TTL                                                                    |
+| PartnerPlaces  | `/partner-places`  | PartnerAccount, PartnerPlaceRequest, PartnerPlaceBranch | Full lifecycle, menu CRUD, **orders accept/reject**, **sales analytics**, branches                |
+| SiteSettings   | `/site-settings`   | SiteSettings                                            | CMS (hero, landing, about, **coins** images)                                                      |
+| SupportTickets | `/support-tickets` | SupportTicket                                           | Public create, admin manage                                                                       |
+| AdminStaff     | `/admin-staff`     | AdminStaff                                              | 6 controllers, dashboard overview, analytics                                                      |
 
 ---
 
-### 🌐 واجهة الويب (Angular Frontend)
+## WebSocket (8 Namespaces)
 
-#### 🧭 شريط التنقل (Navbar)
-
-تصميم احترافي مشابه لـ **Wolt** و **Uber Eats**:
-
-- 🎨 لوجو المنصة على اليسار
-- 📍 محدد الموقع مع أيقونة
-- 🔍 خانة بحث متوسعة مع Animation سلسة
-- 🔐 أزرار تسجيل الدخول والتسجيل
-- 🎭 دعم كامل للـ Themes عبر CSS Variables
-
-#### 🦶 التذييل (Footer)
-
-تذييل شامل بتصميم متعدد الأعمدة:
-
-- 📲 روابط App Store و Google Play
-- 🤝 Partner with us قسم
-- 🏢 Company قسم (About, Jobs, Contact)
-- 📦 Products قسم
-- ❓ Support قسم
-- 📱 Follow Us (روابط التواصل الاجتماعي)
-- 🌍 محددات الموقع واللغة والثيم
-
-#### 🌍 نظام الترجمة (i18n System)
-
-نظام ترجمة متكامل يدعم **7 لغات**:
-
-| اللغة          | الكود | العلم |
-| -------------- | ----- | ----- |
-| English        | `en`  | 🇬🇧    |
-| Français       | `fr`  | 🇫🇷    |
-| Lëtzebuergesch | `lb`  | 🇱🇺    |
-| Deutsch        | `de`  | 🇩🇪    |
-| Italiano       | `it`  | 🇮🇹    |
-| Português      | `pt`  | 🇵🇹    |
-| Español        | `es`  | 🇪🇸    |
-
-**مميزات:**
-
-- 🔄 تغيير اللغة فوري بدون إعادة تحميل
-- 💾 حفظ اللغة في localStorage
-- 🎯 Language Modal احترافي
-
-#### 🎨 نظام الثيمات (Theme System)
-
-**4 ثيمات متاحة:**
-
-| الثيم         | الأيقونة                                       | الوصف               |
-| ------------- | ---------------------------------------------- | ------------------- |
-| Auto          | <i class="fa-solid fa-circle-half-stroke"></i> | يتبع إعدادات النظام |
-| Light         | <i class="fa-solid fa-sun"></i>                | الوضع الفاتح        |
-| Dark          | <i class="fa-solid fa-moon"></i>               | الوضع الداكن        |
-| High Contrast | <i class="fa-solid fa-eye"></i>                | تباين عالي للوصولية |
-
-**CSS Variables المستخدمة:**
-
-```css
-/* الألوان الأساسية */
---bg-primary      /* خلفية رئيسية */
---bg-secondary    /* خلفية ثانوية */
---bg-tertiary     /* خلفية ثالثية */
---bg-hover        /* خلفية عند التمرير */
---text-primary    /* نص رئيسي */
---text-secondary  /* نص ثانوي */
---border-color    /* لون الحدود */
---primary-color   /* اللون الأساسي للعلامة */
---primary-hover   /* اللون الأساسي عند التمرير */
-```
-
-**مميزات:**
-
-- 🔄 تطبيق فوري على كل المكونات
-- 💾 حفظ الثيم في localStorage
-- 🎭 دعم prefers-color-scheme للنظام
-- ✨ أيقونات Font Awesome 6.5.1
+| Namespace                | Auth    | Key Events                                                                       |
+| ------------------------ | ------- | -------------------------------------------------------------------------------- |
+| `/users`                 | Admin   | `users.created/updated/deleted`, `account.banned`                                |
+| `/notifications`         | User    | `notifications.created/read/readAll`                                             |
+| `/site-settings`         | None    | `hero-image.updated`, `landing/about-image(s).updated`                           |
+| `/partner-places`        | Admin   | `partner-places.changed`                                                         |
+| `/admin-drivers`         | Admin   | `adminDrivers.snapshot` (10s)                                                    |
+| `/driver`                | Driver  | `driver.orders`, `driver.orderAssigned`, `driver.message`, `driver.forcedLogout` |
+| `/user-orders`           | User    | `userOrders.orders`, `userOrders.order.tracking`                                 |
+| `/partner-orders`        | Partner | `partner-orders.created/updated`                                                 |
+| `/partner-notifications` | Partner | `partner-notifications.created`                                                  |
 
 ---
 
-### � لوحة تحكم المسؤول (Admin Panel)
+## Database (25 Migrations, 16 Entities)
 
-#### صفحة تسجيل الدخول
+Migrations cover: admin staff, auth sessions, partner system (requests, branches, hours, payouts, descriptions), restaurants (with addons), orders + items, promotions (codes + offers), ratings, drivers (+ applications + dispatch + lifecycle), notifications (user + partner), site settings, **Moien Coins** (user wallet), **password reset fields**.
 
-- تصميم Split Screen احترافي
-- قسم برتقالي يشرح مميزات لوحة التحكم
-- دعم اللغتين العربية والإنجليزية
-- Rate Limiting للحماية
+---
 
-**بيانات الدخول الافتراضية:**
+## Deployment
 
 ```
-Email: admin@moien.com
-Password: 123456
+Hostinger VPS (Ubuntu)
+├── Nginx       → SSL, SPA routing, proxy :3000, WebSocket upgrade
+├── PM2         → NestJS process manager (moiendelivery-api, fork mode)
+├── PostgreSQL  → localhost only
+├── Redis       → Cache + queues
+└── UFW         → 22/80/443 ALLOW, 5432 DENY
 ```
 
-#### لوحة التحكم
-
-- Admin Navbar مخصص مع روابط التنقل
-- Admin Footer مخصص
-- إحصائيات سريعة
-- دعم كامل للـ Themes
-
-#### نظام الحماية
-
-- Auth Guard لحماية صفحات الـ Admin
-- Login Guard لمنع الوصول لصفحة Login بعد تسجيل الدخول
-- Rate Limiting (5 محاولات / 15 دقيقة)
+**Deploy scripts:** `c:\tmp\deploy_now.py` (frontend), `c:\tmp\deploy_backend.py` (backend), `c:\tmp\deploy_all.py` (both), `c:\tmp\run_migration.py` (migrations)
 
 ---
 
-### �🚀 البدء السريع
+## Documentation
 
-#### المتطلبات الأساسية
-
-```bash
-# Node.js 20+
-node --version
-
-# npm 10+
-npm --version
-
-# Flutter 3.10+
-flutter --version
-
-# PostgreSQL 15+
-psql --version
-```
-
-#### التثبيت
-
-```bash
-# استنساخ المشروع
-git clone https://github.com/moien-delivery/moien-delivery.git
-cd moien-delivery
-
-# تثبيت تبعيات الخادم
-cd backend
-npm install
-
-# تثبيت تبعيات الويب
-cd ../wfrontend
-npm install
-
-# تثبيت تبعيات الموبايل
-cd ../mfrontend
-flutter pub get
-```
-
-#### تشغيل المشروع
-
-```bash
-# تشغيل الخادم
-cd backend
-npm run start:dev
-
-# تشغيل الويب (في terminal جديد)
-cd wfrontend
-npm start
-
-# تشغيل تطبيق الموبايل (في terminal جديد)
-cd mfrontend
-flutter run
-```
+| Doc                                            | Content                                              |
+| ---------------------------------------------- | ---------------------------------------------------- |
+| [ARCHITECTURE.md](markdown/ARCHITECTURE.md)    | System architecture, all modules, entities, gateways |
+| [docs/API.md](docs/API.md)                     | REST API endpoints reference                         |
+| [docs/DATABASE.md](docs/DATABASE.md)           | Schema, ERD, migrations                              |
+| [docs/WEBSOCKETS.md](docs/WEBSOCKETS.md)       | Socket.IO namespaces & events                        |
+| [docs/FRONTEND-WEB.md](docs/FRONTEND-WEB.md)   | Angular frontend docs                                |
+| [docs/SETUP.md](docs/SETUP.md)                 | Environment setup guide                              |
+| [docs/HOSTINGER-VPS.md](docs/HOSTINGER-VPS.md) | VPS deployment & security                            |
+| [docs/i18n.md](docs/i18n.md)                   | Internationalization                                 |
+| [markdown/CATALOG.md](markdown/CATALOG.md)     | Service catalog                                      |
+| [markdown/REPORT.md](markdown/REPORT.md)       | Project status report                                |
+| [markdown/CHANGELOG.md](markdown/CHANGELOG.md) | Version history                                      |
 
 ---
 
-### 📱 لقطات الشاشة
+## License
 
-<table>
-<tr>
-<td align="center">
-<img src="docs/assets/screenshots/home.png" width="200"/>
-<br><b>الصفحة الرئيسية</b>
-</td>
-<td align="center">
-<img src="docs/assets/screenshots/restaurants.png" width="200"/>
-<br><b>قائمة المطاعم</b>
-</td>
-<td align="center">
-<img src="docs/assets/screenshots/order.png" width="200"/>
-<br><b>تتبع الطلب</b>
-</td>
-<td align="center">
-<img src="docs/assets/screenshots/admin.png" width="200"/>
-<br><b>لوحة التحكم</b>
-</td>
-</tr>
-</table>
-
----
-
-### 📊 خريطة الطريق
-
-- [x] 🎯 **المرحلة 1**: إنشاء البنية الأساسية
-- [x] 🎯 **المرحلة 2**: نظام المصادقة والمستخدمين
-- [x] 🎯 **المرحلة 3**: لوحة تحكم المسؤول
-- [x] 🎯 **المرحلة 4**: نظام المدفوعات (Stripe)
-- [x] 🎯 **المرحلة 5**: تذاكر الدعم الفني
-- [ ] 🚧 **المرحلة 6**: إدارة المطاعم والقوائم
-- [ ] 📋 **المرحلة 7**: نظام الطلبات
-- [ ] 📋 **المرحلة 8**: تتبع الطلبات المباشر
-- [ ] 📋 **المرحلة 9**: تطبيق الموبايل (Flutter)
-- [ ] 📋 **المرحلة 10**: الإشعارات والتنبيهات
-- [ ] 📋 **المرحلة 11**: نظام التقييمات
-- [ ] 📋 **المرحلة 12**: الإطلاق التجريبي
-
----
-
-### 🤝 المساهمة
-
-نرحب بمساهماتكم! يرجى قراءة [دليل المساهمة](docs/CONTRIBUTING.md) للبدء.
-
-```bash
-# إنشاء فرع جديد
-git checkout -b feature/amazing-feature
-
-# حفظ التغييرات
-git commit -m 'إضافة ميزة رائعة'
-
-# رفع التغييرات
-git push origin feature/amazing-feature
-```
-
----
-
-### 📄 الرخصة
-
-هذا المشروع مرخص بموجب رخصة MIT - راجع ملف [LICENSE](LICENSE) للتفاصيل.
-
----
-
-### 📞 التواصل
-
-<p align="center">
-  <a href="https://twitter.com/moiendelivery">
-    <img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" />
-  </a>
-  <a href="https://www.linkedin.com/company/moiendelivery">
-    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
-  </a>
-  <a href="mailto:contact@moiendelivery.com">
-    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
-  </a>
-  <a href="https://discord.gg/moiendelivery">
-    <img src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white" />
-  </a>
-</p>
-
----
-
-## Lëtzebuergesch
-
-### 📋 Iwwersiicht
-
-**Moien Delivery** ass eng komplett Liewermittelsplattform inspiréiert vun de beschten internationalen Uwendungen wéi **Uber Eats**, **Wolt**, **Talabat** a **Deliveroo**. D'Plattform bitt eng nahtlos Erfarung fir Benotzer, Restauranten a Liwwerer duerch en integréiert Ökosystem:
-
-- 🌐 **Websäit** - Attraktiv Heemssäit + Komplett Administratiounspanel
-- 📱 **Client & Restaurant App** - Vereenegt App fir Bestellungen an Restaurantmanagement
-- 🚗 **Driver App** - Dedizéiert App fir Liwwerer
-
-### ✨ Haaptfunktiounen
-
-#### 👤 Fir Benotzer
-
-- 🔍 Intelligent Sich no Restauranten an Wieder
-- 📍 Präzis Geolokaliséierung
-- 🛒 Multi-Restaurant Akeefswon
-- 💳 Verschidden Bezuelmethoden
-- ⏱️ Live Bestellverfolgung op der Kaart
-- ⭐ Bewäertungen a Kritiken System
-
-#### 🍴 Fir Restauranten
-
-- 📊 Komplett Statistik Dashboard
-- 📝 Einfach Menü Verwaltung
-- 💰 Detailléiert Finanzberichten
-- 📈 Verkaf an Performance Analyse
-
-#### 🚴 Fir Liwwerer
-
-- 🗺️ Integréiert Navigatiounssystem
-- 💵 Deeglech a wöchentlech Verdéngscht Rechnung
-- 🏆 Ranking a Belounung System
-
----
-
-### 🚀 Schnell Start
-
-```bash
-# Projet klonen
-git clone https://github.com/moien-delivery/moien-delivery.git
-cd moien-delivery
-
-# Server Ofhängegkeeten installéieren
-cd backend && npm install
-
-# Web Ofhängegkeeten installéieren
-cd ../wfrontend && npm install
-
-# Mobil Ofhängegkeeten installéieren
-cd ../mfrontend && flutter pub get
-```
-
----
-
-<div align="center">
-
-### ⭐ Wann Dir de Projet gär hutt, gitt eis e Stär!
-
-**Gemaach mat ❤️ zu Lëtzebuerg**
-
-[🔝 Zréck no uewen](#-moien-delivery--موين-دليفري)
-
-</div>
+MIT — see [LICENSE](LICENSE)
